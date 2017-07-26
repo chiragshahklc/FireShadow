@@ -217,6 +217,7 @@ namespace Shadev
                 refreshTandD();
                 RefreshGeneralSettings();
                 RefreshTaxMaster();
+                RefreshHSN();
 
                 foreach (TabPage page in tabControl1.TabPages)
                 {
@@ -2550,7 +2551,21 @@ namespace Shadev
 
         private void RefreshHSN()
         {
-            
+            try
+            {
+                AIO.command = "SELECT id,hsnCode as HSN_Code,sgst as SGST,cgst as CGST,igst as IGST ,Desc as Description FROM hsnTax";
+                var v1 = a1.dataload();
+                if (v1 != null)
+                {
+                    dgvHsn.DataSource = v1;
+                    dgvHsn.Columns["id"].Visible = false;
+                }
+             
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void toolStripMenuItem12_Click(object sender, EventArgs e)
@@ -2560,6 +2575,8 @@ namespace Shadev
                 frmHsnTax fr = new frmHsnTax();
                 fr.StartPosition = FormStartPosition.CenterParent;
                 fr.Stat = FrmCompany.HSNEdit;
+                fr.row = ((DataTable)dgvHsn.DataSource).Rows[dgvHsn.SelectedRows[0].Index];
+                fr.id = long.Parse(dgvHsn.SelectedRows[0].Cells["id"].Value.ToString());
                 fr.ShowDialog();
 
                 RefreshHSN();
@@ -2576,7 +2593,7 @@ namespace Shadev
             {
                 if (dgvHsn.SelectedRows.Count > 0)
                 {
-                    AIO.command = "delete from Customer where id=" + dgvHsn.SelectedRows[0].Cells["id"].Value.ToString();
+                    AIO.command = "delete from hsnTax where id=" + dgvHsn.SelectedRows[0].Cells["id"].Value.ToString();
                     a1.cmdexe();
 
                 }

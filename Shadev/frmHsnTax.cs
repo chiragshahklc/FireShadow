@@ -15,6 +15,8 @@ namespace Shadev
         AIO A1;
         public FrmCompany Stat { get; set; }
         static int TempId = -1;
+        public long id { get; set; }
+        public DataRow row { get; set; }
         public frmHsnTax()
         {
             InitializeComponent();
@@ -23,7 +25,7 @@ namespace Shadev
             //dgvHsn.AllowUserToAddRows = false;
             //dgvHsn.AllowUserToDeleteRows = false;
             //dgvHsn.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            btnSave.Enabled = false;
+            
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -53,12 +55,50 @@ namespace Shadev
             {
                 case FrmCompany.HSNAdd:
                     {
+                        if (!string.IsNullOrWhiteSpace(txtCGST.Text) || !string.IsNullOrWhiteSpace(txtHsnCode.Text) || !string.IsNullOrWhiteSpace(txtIGST.Text) || !string.IsNullOrWhiteSpace(txtSGST.Text))
+                        {
+                            AIO.command = "INSERT INTO hsnTax(hsnCode,cgst,sgst,igst,Desc) VALUES(" + txtHsnCode.Text + "," + txtCGST.Text + " , " + txtSGST.Text + "," + txtIGST.Text + ",'" + rtbDesc.Text + "')";
+                            A1.cmdexe();
+                            MessageBox.Show("Item Inserted", "FireShadow", MessageBoxButtons.OK);
+                            txtCGST.Clear();
+                            txtHsnCode.Clear();
+                            txtIGST.Clear();
+                            txtSGST.Clear();
+                            rtbDesc.Clear();
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Blank is Not Allow", "FireShadow", MessageBoxButtons.OK);
+                        }
 
                     }
                     break;
                 case FrmCompany.HSNEdit:
                     {
+                        if (!string.IsNullOrWhiteSpace(txtCGST.Text) || !string.IsNullOrWhiteSpace(txtHsnCode.Text) || !string.IsNullOrWhiteSpace(txtIGST.Text) || !string.IsNullOrWhiteSpace(txtSGST.Text))
+                        {
+                            if (id != -1)
+                            {
+                                AIO.command = "UPDATE hsnTax SET hsnCode = " + txtHsnCode.Text + ",cgst = " + txtCGST.Text + " , sgst = " + txtSGST.Text + ", igst = " + txtIGST.Text + ",Desc = '" + rtbDesc.Text + "' WHERE id = " + id + " ";
+                                A1.cmdexe();
+                                MessageBox.Show("Item Updated", "FireShadow", MessageBoxButtons.OK);
+                                txtCGST.Clear();
+                                txtHsnCode.Clear();
+                                txtIGST.Clear();
+                                txtSGST.Clear();
+                                rtbDesc.Clear();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Select Any Value Please", "FireShadow", MessageBoxButtons.OK);
+                            }
 
+                        }
+                        else
+                        {
+                            MessageBox.Show("Blank is Not Allow", "FireShadow", MessageBoxButtons.OK);
+                        }
                     }
                     break;
                 default:
@@ -185,12 +225,41 @@ namespace Shadev
         {
             try
             {
-                DataRefresh();
+                switch (Stat)
+                {
+                    case FrmCompany.HSNAdd:
+                        {
+                            this.Text = "HSN: Add";
+
+                        }
+                        break;
+                    case FrmCompany.HSNEdit:
+                        {
+                            this.Text = "HSN: Edit";
+                            if (!DBNull.Value.Equals(row[0]))
+                            {
+                                txtHsnCode.Text = row["Hsn_Code"].ToString();
+                                txtCGST.Text = row["CGST"].ToString();
+                                txtSGST.Text = row["SGST"].ToString();
+                                txtIGST.Text = row["IGST"].ToString();
+                                rtbDesc.Text = row["Description"].ToString();
+                                
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnCencel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
