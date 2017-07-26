@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            //this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SuspendLayout();
             // 
             // button1
@@ -44,18 +44,18 @@
             // 
             // reportViewer1
             // 
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Shadev.mrStockReport.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(100, 83);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(1101, 412);
-            this.reportViewer1.TabIndex = 1;
+            //this.reportViewer1.LocalReport.ReportEmbeddedResource = "Shadev.mrStockReport.rdlc";
+            //this.reportViewer1.Location = new System.Drawing.Point(100, 83);
+            //this.reportViewer1.Name = "reportViewer1";
+            //this.reportViewer1.Size = new System.Drawing.Size(1101, 412);
+            //this.reportViewer1.TabIndex = 1;
             // 
             // temp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1277, 703);
-            this.Controls.Add(this.reportViewer1);
+            //this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.button1);
             this.Name = "temp";
             this.Text = "temp";
@@ -67,6 +67,6 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        //private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

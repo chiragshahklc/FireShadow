@@ -33,7 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            Xbutton.Office2010Yellow office2010Yellow1 = new Xbutton.Office2010Yellow();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -51,6 +50,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabCompany = new System.Windows.Forms.TabPage();
@@ -79,7 +84,6 @@
             this.dtpToStock = new System.Windows.Forms.DateTimePicker();
             this.label61 = new System.Windows.Forms.Label();
             this.dtpFromStock = new System.Windows.Forms.DateTimePicker();
-            this.btnStockReport = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbModelCatagory = new System.Windows.Forms.ComboBox();
@@ -92,10 +96,10 @@
             this.editToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.TabCustomer = new System.Windows.Forms.TabPage();
+            this.btnPayment = new System.Windows.Forms.Button();
             this.txtCustSearch = new System.Windows.Forms.TextBox();
             this.txtOutstanding = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.btnPayment = new Xbutton.xButtons();
             this.dgvCustomer = new System.Windows.Forms.DataGridView();
             this.cmsCustomer = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,7 +109,9 @@
             this.deleteToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabAbout = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAboutSave = new System.Windows.Forms.Button();
             this.rtbAboutAdd = new System.Windows.Forms.RichTextBox();
+            this.btnAboutEdit = new System.Windows.Forms.Button();
             this.dtpAboutCompanyEsta = new System.Windows.Forms.DateTimePicker();
             this.txtAboutCompanyName = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -122,9 +128,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtAboutCompanyCST = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnAboutEdit = new Xbutton.xButtons();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnAboutSave = new Xbutton.xButtons();
             this.tabBank = new System.Windows.Forms.TabPage();
             this.dgvBank = new System.Windows.Forms.DataGridView();
             this.cmsBank = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -147,7 +151,6 @@
             this.cmbTransASC = new System.Windows.Forms.ComboBox();
             this.label56 = new System.Windows.Forms.Label();
             this.cmbTransSort = new System.Windows.Forms.ComboBox();
-            this.btnTransSearch = new Xbutton.xButtons();
             this.label48 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.dtpTransTo = new System.Windows.Forms.DateTimePicker();
@@ -157,10 +160,6 @@
             this.btnSale = new System.Windows.Forms.Button();
             this.btnPurchase = new System.Windows.Forms.Button();
             this.btnAll = new System.Windows.Forms.Button();
-            this.btnPDF = new Xbutton.xButtons();
-            this.btnTransReport = new Xbutton.xButtons();
-            this.btnTranBillView = new Xbutton.xButtons();
-            this.btnTransType = new Xbutton.xButtons();
             this.dgvTransaction = new System.Windows.Forms.DataGridView();
             this.cmsTrans = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
@@ -170,8 +169,6 @@
             this.deleteToolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabExpense = new System.Windows.Forms.TabPage();
             this.txtExpenseSearch = new System.Windows.Forms.TextBox();
-            this.xButtons3 = new Xbutton.xButtons();
-            this.xButtons4 = new Xbutton.xButtons();
             this.label40 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -188,8 +185,8 @@
             this.label38 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnsearch = new System.Windows.Forms.Button();
             this.label39 = new System.Windows.Forms.Label();
-            this.btnsearch = new Xbutton.xButtons();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.dtpstart = new System.Windows.Forms.DateTimePicker();
@@ -215,8 +212,6 @@
             this.btnPayCust = new System.Windows.Forms.Button();
             this.label47 = new System.Windows.Forms.Label();
             this.cmbPaymentType = new System.Windows.Forms.ComboBox();
-            this.xButtons1 = new Xbutton.xButtons();
-            this.btnPaymentDisplay = new Xbutton.xButtons();
             this.dgvPayment = new System.Windows.Forms.DataGridView();
             this.cmsPayment = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
@@ -235,38 +230,24 @@
             this.label33 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.xButtons2 = new System.Windows.Forms.Button();
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.xButtons2 = new Xbutton.xButtons();
             this.tabGeneral = new System.Windows.Forms.TabPage();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btngeneraltaxsave = new Xbutton.xButtons();
-            this.txttax1name = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.txttax2percentage = new System.Windows.Forms.TextBox();
-            this.txttax2name = new System.Windows.Forms.TextBox();
-            this.txttax2percentages = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.bsngeneralsave = new Xbutton.xButtons();
             this.txtoldpass = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.txtnewpass2 = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.txtnewpass1 = new System.Windows.Forms.TextBox();
-            this.btngeneralenable = new Xbutton.xButtons();
             this.tabTransReport = new System.Windows.Forms.TabPage();
             this.cmbTRASC = new System.Windows.Forms.ComboBox();
             this.label55 = new System.Windows.Forms.Label();
             this.cmbTRSort = new System.Windows.Forms.ComboBox();
             this.btnTRCust = new System.Windows.Forms.Button();
             this.dgvTR = new System.Windows.Forms.DataGridView();
-            this.btnTRPrint = new Xbutton.xButtons();
-            this.btnTRShow = new Xbutton.xButtons();
             this.label42 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
@@ -304,6 +285,14 @@
             this.txtTMTax1 = new System.Windows.Forms.TextBox();
             this.txtTMTax2Name = new System.Windows.Forms.TextBox();
             this.txtTMTax2 = new System.Windows.Forms.TextBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dgvHsn = new System.Windows.Forms.DataGridView();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtItemDescription = new System.Windows.Forms.TextBox();
+            this.lbl1 = new System.Windows.Forms.Label();
+            this.cmbUnit = new System.Windows.Forms.ComboBox();
+            this.label69 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.companyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -321,10 +310,39 @@
             this.taxMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.termsAndConditionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnHomePage = new Xbutton.xButtons();
             this.label36 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.cmsHsnMaster = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsItemMaster = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem15 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnHomePage = new System.Windows.Forms.Button();
+            this.btnStockReport = new System.Windows.Forms.Button();
+            this.btnTransSearch = new System.Windows.Forms.Button();
+            this.btnTransType = new System.Windows.Forms.Button();
+            this.btnTransReport = new System.Windows.Forms.Button();
+            this.btnPDF = new System.Windows.Forms.Button();
+            this.btnTranBillView = new System.Windows.Forms.Button();
+            this.xButtons4 = new System.Windows.Forms.Button();
+            this.xButtons3 = new System.Windows.Forms.Button();
+            this.btnPaymentDisplay = new System.Windows.Forms.Button();
+            this.xButtons1 = new System.Windows.Forms.Button();
+            this.btngeneralenable = new System.Windows.Forms.Button();
+            this.bsngeneralsave = new System.Windows.Forms.Button();
+            this.btnTRShow = new System.Windows.Forms.Button();
+            this.btnTRPrint = new System.Windows.Forms.Button();
+            this.dgvItem = new System.Windows.Forms.DataGridView();
+            this.masterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.hSNMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabCompany.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompany)).BeginInit();
@@ -366,7 +384,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.tabGeneral.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabTransReport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTR)).BeginInit();
@@ -379,7 +396,14 @@
             this.tabTaxMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTM)).BeginInit();
             this.cmsTaxMaster.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHsn)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.cmsHsnMaster.SuspendLayout();
+            this.cmsItemMaster.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -404,6 +428,8 @@
             this.tabControl1.Controls.Add(this.tabAboutUs);
             this.tabControl1.Controls.Add(this.tabReg);
             this.tabControl1.Controls.Add(this.tabTaxMaster);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(13, 62);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
@@ -545,7 +571,7 @@
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -627,13 +653,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnStockReport);
             this.groupBox1.Controls.Add(this.label63);
             this.groupBox1.Controls.Add(this.dtpStartStock);
             this.groupBox1.Controls.Add(this.label62);
             this.groupBox1.Controls.Add(this.dtpToStock);
             this.groupBox1.Controls.Add(this.label61);
             this.groupBox1.Controls.Add(this.dtpFromStock);
-            this.groupBox1.Controls.Add(this.btnStockReport);
             this.groupBox1.Location = new System.Drawing.Point(655, 8);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(566, 84);
@@ -695,20 +721,6 @@
             this.dtpFromStock.Size = new System.Drawing.Size(200, 22);
             this.dtpFromStock.TabIndex = 6;
             // 
-            // btnStockReport
-            // 
-            this.btnStockReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStockReport.BackColor = System.Drawing.Color.DarkGoldenrod;
-            this.btnStockReport.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnStockReport.ForeColor = System.Drawing.Color.White;
-            this.btnStockReport.Location = new System.Drawing.Point(264, 21);
-            this.btnStockReport.Name = "btnStockReport";
-            this.btnStockReport.Size = new System.Drawing.Size(94, 28);
-            this.btnStockReport.TabIndex = 5;
-            this.btnStockReport.Text = "Generate";
-            this.btnStockReport.UseVisualStyleBackColor = false;
-            this.btnStockReport.Click += new System.EventHandler(this.btnStockReport_Click);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -769,7 +781,7 @@
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -832,10 +844,10 @@
             // TabCustomer
             // 
             this.TabCustomer.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.TabCustomer.Controls.Add(this.btnPayment);
             this.TabCustomer.Controls.Add(this.txtCustSearch);
             this.TabCustomer.Controls.Add(this.txtOutstanding);
             this.TabCustomer.Controls.Add(this.label13);
-            this.TabCustomer.Controls.Add(this.btnPayment);
             this.TabCustomer.Controls.Add(this.dgvCustomer);
             this.TabCustomer.Location = new System.Drawing.Point(4, 25);
             this.TabCustomer.Margin = new System.Windows.Forms.Padding(4);
@@ -844,6 +856,20 @@
             this.TabCustomer.Size = new System.Drawing.Size(1228, 543);
             this.TabCustomer.TabIndex = 5;
             this.TabCustomer.Text = "Customer";
+            // 
+            // btnPayment
+            // 
+            this.btnPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPayment.BackColor = System.Drawing.Color.Teal;
+            this.btnPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPayment.ForeColor = System.Drawing.Color.White;
+            this.btnPayment.Location = new System.Drawing.Point(7, 506);
+            this.btnPayment.Name = "btnPayment";
+            this.btnPayment.Size = new System.Drawing.Size(100, 29);
+            this.btnPayment.TabIndex = 13;
+            this.btnPayment.Text = "Payment";
+            this.btnPayment.UseVisualStyleBackColor = false;
+            this.btnPayment.Click += new System.EventHandler(this.btnPayment_Click);
             // 
             // txtCustSearch
             // 
@@ -877,37 +903,6 @@
             this.label13.TabIndex = 4;
             this.label13.Text = "Outstanding:";
             // 
-            // btnPayment
-            // 
-            this.btnPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            office2010Yellow1.BorderColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(72)))), ((int)(((byte)(161)))));
-            office2010Yellow1.BorderColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(135)))), ((int)(((byte)(228)))));
-            office2010Yellow1.ButtonMouseOverColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010Yellow1.ButtonMouseOverColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010Yellow1.ButtonMouseOverColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(225)))), ((int)(((byte)(137)))));
-            office2010Yellow1.ButtonMouseOverColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(249)))), ((int)(((byte)(224)))));
-            office2010Yellow1.ButtonNormalColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(161)))), ((int)(((byte)(8)))));
-            office2010Yellow1.ButtonNormalColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(45)))));
-            office2010Yellow1.ButtonNormalColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(161)))), ((int)(((byte)(8)))));
-            office2010Yellow1.ButtonNormalColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(191)))), ((int)(((byte)(45)))));
-            office2010Yellow1.ButtonSelectedColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(199)))), ((int)(((byte)(87)))));
-            office2010Yellow1.ButtonSelectedColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(243)))), ((int)(((byte)(215)))));
-            office2010Yellow1.ButtonSelectedColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(229)))), ((int)(((byte)(117)))));
-            office2010Yellow1.ButtonSelectedColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(216)))), ((int)(((byte)(107)))));
-            office2010Yellow1.HoverTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010Yellow1.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(57)))), ((int)(((byte)(91)))));
-            office2010Yellow1.TextColor = System.Drawing.Color.White;
-            this.btnPayment.ColorTable = office2010Yellow1;
-            this.btnPayment.Location = new System.Drawing.Point(4, 507);
-            this.btnPayment.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPayment.Name = "btnPayment";
-            this.btnPayment.Size = new System.Drawing.Size(100, 28);
-            this.btnPayment.TabIndex = 3;
-            this.btnPayment.Text = "Payment";
-            this.btnPayment.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.btnPayment.UseVisualStyleBackColor = true;
-            this.btnPayment.Click += new System.EventHandler(this.btnPayment_Click);
-            // 
             // dgvCustomer
             // 
             this.dgvCustomer.AllowUserToAddRows = false;
@@ -928,7 +923,7 @@
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -1006,7 +1001,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnAboutSave);
             this.panel1.Controls.Add(this.rtbAboutAdd);
+            this.panel1.Controls.Add(this.btnAboutEdit);
             this.panel1.Controls.Add(this.dtpAboutCompanyEsta);
             this.panel1.Controls.Add(this.txtAboutCompanyName);
             this.panel1.Controls.Add(this.label12);
@@ -1023,13 +1020,25 @@
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.txtAboutCompanyCST);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.btnAboutEdit);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.btnAboutSave);
             this.panel1.Location = new System.Drawing.Point(7, 7);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(581, 445);
             this.panel1.TabIndex = 21;
+            // 
+            // btnAboutSave
+            // 
+            this.btnAboutSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAboutSave.BackColor = System.Drawing.Color.Teal;
+            this.btnAboutSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAboutSave.ForeColor = System.Drawing.Color.White;
+            this.btnAboutSave.Location = new System.Drawing.Point(234, 401);
+            this.btnAboutSave.Name = "btnAboutSave";
+            this.btnAboutSave.Size = new System.Drawing.Size(100, 29);
+            this.btnAboutSave.TabIndex = 23;
+            this.btnAboutSave.Text = "Save";
+            this.btnAboutSave.UseVisualStyleBackColor = false;
+            this.btnAboutSave.Click += new System.EventHandler(this.btnAboutSave_Click);
             // 
             // rtbAboutAdd
             // 
@@ -1040,6 +1049,20 @@
             this.rtbAboutAdd.Size = new System.Drawing.Size(441, 117);
             this.rtbAboutAdd.TabIndex = 1;
             this.rtbAboutAdd.Text = "";
+            // 
+            // btnAboutEdit
+            // 
+            this.btnAboutEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAboutEdit.BackColor = System.Drawing.Color.Teal;
+            this.btnAboutEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAboutEdit.ForeColor = System.Drawing.Color.White;
+            this.btnAboutEdit.Location = new System.Drawing.Point(128, 401);
+            this.btnAboutEdit.Name = "btnAboutEdit";
+            this.btnAboutEdit.Size = new System.Drawing.Size(100, 29);
+            this.btnAboutEdit.TabIndex = 22;
+            this.btnAboutEdit.Text = "Edit";
+            this.btnAboutEdit.UseVisualStyleBackColor = false;
+            this.btnAboutEdit.Click += new System.EventHandler(this.btnAboutEdit_Click);
             // 
             // dtpAboutCompanyEsta
             // 
@@ -1195,19 +1218,6 @@
             this.label7.TabIndex = 8;
             this.label7.Text = "Email:";
             // 
-            // btnAboutEdit
-            // 
-            this.btnAboutEdit.ColorTable = office2010Yellow1;
-            this.btnAboutEdit.Location = new System.Drawing.Point(128, 404);
-            this.btnAboutEdit.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAboutEdit.Name = "btnAboutEdit";
-            this.btnAboutEdit.Size = new System.Drawing.Size(100, 28);
-            this.btnAboutEdit.TabIndex = 9;
-            this.btnAboutEdit.Text = "Edit";
-            this.btnAboutEdit.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.btnAboutEdit.UseVisualStyleBackColor = true;
-            this.btnAboutEdit.Click += new System.EventHandler(this.btnAboutEdit_Click);
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -1217,19 +1227,6 @@
             this.label8.Size = new System.Drawing.Size(80, 17);
             this.label8.TabIndex = 9;
             this.label8.Text = "GSTIN No.:";
-            // 
-            // btnAboutSave
-            // 
-            this.btnAboutSave.ColorTable = office2010Yellow1;
-            this.btnAboutSave.Location = new System.Drawing.Point(236, 404);
-            this.btnAboutSave.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAboutSave.Name = "btnAboutSave";
-            this.btnAboutSave.Size = new System.Drawing.Size(100, 28);
-            this.btnAboutSave.TabIndex = 10;
-            this.btnAboutSave.Text = "Save";
-            this.btnAboutSave.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.btnAboutSave.UseVisualStyleBackColor = true;
-            this.btnAboutSave.Click += new System.EventHandler(this.btnAboutSave_Click);
             // 
             // tabBank
             // 
@@ -1263,7 +1260,7 @@
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -1356,7 +1353,7 @@
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -1421,12 +1418,16 @@
             // tabTransaction
             // 
             this.tabTransaction.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tabTransaction.Controls.Add(this.btnTranBillView);
+            this.tabTransaction.Controls.Add(this.btnPDF);
+            this.tabTransaction.Controls.Add(this.btnTransReport);
+            this.tabTransaction.Controls.Add(this.btnTransType);
+            this.tabTransaction.Controls.Add(this.btnTransSearch);
             this.tabTransaction.Controls.Add(this.btnTransCustSearch);
             this.tabTransaction.Controls.Add(this.comboBox2);
             this.tabTransaction.Controls.Add(this.cmbTransASC);
             this.tabTransaction.Controls.Add(this.label56);
             this.tabTransaction.Controls.Add(this.cmbTransSort);
-            this.tabTransaction.Controls.Add(this.btnTransSearch);
             this.tabTransaction.Controls.Add(this.label48);
             this.tabTransaction.Controls.Add(this.label49);
             this.tabTransaction.Controls.Add(this.dtpTransTo);
@@ -1436,10 +1437,6 @@
             this.tabTransaction.Controls.Add(this.btnSale);
             this.tabTransaction.Controls.Add(this.btnPurchase);
             this.tabTransaction.Controls.Add(this.btnAll);
-            this.tabTransaction.Controls.Add(this.btnPDF);
-            this.tabTransaction.Controls.Add(this.btnTransReport);
-            this.tabTransaction.Controls.Add(this.btnTranBillView);
-            this.tabTransaction.Controls.Add(this.btnTransType);
             this.tabTransaction.Controls.Add(this.dgvTransaction);
             this.tabTransaction.Location = new System.Drawing.Point(4, 25);
             this.tabTransaction.Margin = new System.Windows.Forms.Padding(4);
@@ -1514,19 +1511,6 @@
             this.cmbTransSort.Name = "cmbTransSort";
             this.cmbTransSort.Size = new System.Drawing.Size(100, 24);
             this.cmbTransSort.TabIndex = 19;
-            // 
-            // btnTransSearch
-            // 
-            this.btnTransSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTransSearch.ColorTable = office2010Yellow1;
-            this.btnTransSearch.Location = new System.Drawing.Point(1122, 58);
-            this.btnTransSearch.Name = "btnTransSearch";
-            this.btnTransSearch.Size = new System.Drawing.Size(99, 25);
-            this.btnTransSearch.TabIndex = 18;
-            this.btnTransSearch.Text = "Show";
-            this.btnTransSearch.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.btnTransSearch.UseVisualStyleBackColor = true;
-            this.btnTransSearch.Click += new System.EventHandler(this.btnTransSearch_Click);
             // 
             // label48
             // 
@@ -1619,63 +1603,6 @@
             this.btnAll.UseVisualStyleBackColor = true;
             this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
             // 
-            // btnPDF
-            // 
-            this.btnPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPDF.ColorTable = office2010Yellow1;
-            this.btnPDF.Location = new System.Drawing.Point(1016, 507);
-            this.btnPDF.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPDF.Name = "btnPDF";
-            this.btnPDF.Size = new System.Drawing.Size(100, 28);
-            this.btnPDF.TabIndex = 4;
-            this.btnPDF.Text = "PDF";
-            this.btnPDF.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.btnPDF.UseVisualStyleBackColor = true;
-            this.btnPDF.Visible = false;
-            this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
-            // 
-            // btnTransReport
-            // 
-            this.btnTransReport.ColorTable = office2010Yellow1;
-            this.btnTransReport.Location = new System.Drawing.Point(112, 54);
-            this.btnTransReport.Margin = new System.Windows.Forms.Padding(4);
-            this.btnTransReport.Name = "btnTransReport";
-            this.btnTransReport.Size = new System.Drawing.Size(100, 28);
-            this.btnTransReport.TabIndex = 3;
-            this.btnTransReport.Text = "Report";
-            this.btnTransReport.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.btnTransReport.UseVisualStyleBackColor = true;
-            this.btnTransReport.Click += new System.EventHandler(this.btnTransReport_Click);
-            // 
-            // btnTranBillView
-            // 
-            this.btnTranBillView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTranBillView.ColorTable = office2010Yellow1;
-            this.btnTranBillView.Location = new System.Drawing.Point(1124, 507);
-            this.btnTranBillView.Margin = new System.Windows.Forms.Padding(4);
-            this.btnTranBillView.Name = "btnTranBillView";
-            this.btnTranBillView.Size = new System.Drawing.Size(100, 28);
-            this.btnTranBillView.TabIndex = 2;
-            this.btnTranBillView.Text = "Generate Bill";
-            this.btnTranBillView.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.btnTranBillView.UseVisualStyleBackColor = true;
-            this.btnTranBillView.Visible = false;
-            this.btnTranBillView.Click += new System.EventHandler(this.btnTranBillView_Click);
-            // 
-            // btnTransType
-            // 
-            this.btnTransType.ColorTable = office2010Yellow1;
-            this.btnTransType.Enabled = false;
-            this.btnTransType.Location = new System.Drawing.Point(4, 54);
-            this.btnTransType.Margin = new System.Windows.Forms.Padding(4);
-            this.btnTransType.Name = "btnTransType";
-            this.btnTransType.Size = new System.Drawing.Size(100, 28);
-            this.btnTransType.TabIndex = 1;
-            this.btnTransType.Text = "All";
-            this.btnTransType.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.btnTransType.UseVisualStyleBackColor = true;
-            this.btnTransType.Click += new System.EventHandler(this.btnTransType_Click);
-            // 
             // dgvTransaction
             // 
             this.dgvTransaction.AllowUserToAddRows = false;
@@ -1696,7 +1623,7 @@
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -1759,9 +1686,9 @@
             // tabExpense
             // 
             this.tabExpense.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.tabExpense.Controls.Add(this.txtExpenseSearch);
             this.tabExpense.Controls.Add(this.xButtons3);
             this.tabExpense.Controls.Add(this.xButtons4);
+            this.tabExpense.Controls.Add(this.txtExpenseSearch);
             this.tabExpense.Controls.Add(this.label40);
             this.tabExpense.Controls.Add(this.label41);
             this.tabExpense.Controls.Add(this.dateTimePicker1);
@@ -1780,33 +1707,6 @@
             this.txtExpenseSearch.Size = new System.Drawing.Size(503, 22);
             this.txtExpenseSearch.TabIndex = 15;
             this.txtExpenseSearch.TextChanged += new System.EventHandler(this.txtExpenseSearch_TextChanged);
-            // 
-            // xButtons3
-            // 
-            this.xButtons3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.xButtons3.ColorTable = office2010Yellow1;
-            this.xButtons3.Location = new System.Drawing.Point(1115, 44);
-            this.xButtons3.Name = "xButtons3";
-            this.xButtons3.Size = new System.Drawing.Size(99, 25);
-            this.xButtons3.TabIndex = 14;
-            this.xButtons3.Text = "Print";
-            this.xButtons3.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.xButtons3.UseVisualStyleBackColor = true;
-            this.xButtons3.Visible = false;
-            this.xButtons3.Click += new System.EventHandler(this.xButtons3_Click);
-            // 
-            // xButtons4
-            // 
-            this.xButtons4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.xButtons4.ColorTable = office2010Yellow1;
-            this.xButtons4.Location = new System.Drawing.Point(1010, 44);
-            this.xButtons4.Name = "xButtons4";
-            this.xButtons4.Size = new System.Drawing.Size(99, 25);
-            this.xButtons4.TabIndex = 13;
-            this.xButtons4.Text = "Show";
-            this.xButtons4.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.xButtons4.UseVisualStyleBackColor = true;
-            this.xButtons4.Click += new System.EventHandler(this.xButtons4_Click);
             // 
             // label40
             // 
@@ -1870,7 +1770,7 @@
             dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -1986,8 +1886,8 @@
             // panel3
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.Controls.Add(this.label39);
             this.panel3.Controls.Add(this.btnsearch);
+            this.panel3.Controls.Add(this.label39);
             this.panel3.Controls.Add(this.label22);
             this.panel3.Controls.Add(this.label21);
             this.panel3.Controls.Add(this.dtpstart);
@@ -1996,6 +1896,20 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(418, 233);
             this.panel3.TabIndex = 40;
+            // 
+            // btnsearch
+            // 
+            this.btnsearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnsearch.BackColor = System.Drawing.Color.Teal;
+            this.btnsearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnsearch.ForeColor = System.Drawing.Color.White;
+            this.btnsearch.Location = new System.Drawing.Point(152, 183);
+            this.btnsearch.Name = "btnsearch";
+            this.btnsearch.Size = new System.Drawing.Size(136, 33);
+            this.btnsearch.TabIndex = 47;
+            this.btnsearch.Text = "Search";
+            this.btnsearch.UseVisualStyleBackColor = false;
+            this.btnsearch.Click += new System.EventHandler(this.btnsearch_Click);
             // 
             // label39
             // 
@@ -2007,20 +1921,6 @@
             this.label39.Size = new System.Drawing.Size(153, 25);
             this.label39.TabIndex = 38;
             this.label39.Text = "Balance Sheet";
-            // 
-            // btnsearch
-            // 
-            this.btnsearch.ColorTable = office2010Yellow1;
-            this.btnsearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnsearch.Location = new System.Drawing.Point(143, 188);
-            this.btnsearch.Margin = new System.Windows.Forms.Padding(4);
-            this.btnsearch.Name = "btnsearch";
-            this.btnsearch.Size = new System.Drawing.Size(136, 33);
-            this.btnsearch.TabIndex = 3;
-            this.btnsearch.Text = "Search";
-            this.btnsearch.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.btnsearch.UseVisualStyleBackColor = true;
-            this.btnsearch.Click += new System.EventHandler(this.btnsearch_Click);
             // 
             // label22
             // 
@@ -2237,14 +2137,14 @@
             // tabPayment
             // 
             this.tabPayment.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tabPayment.Controls.Add(this.xButtons1);
+            this.tabPayment.Controls.Add(this.btnPaymentDisplay);
             this.tabPayment.Controls.Add(this.cmbPayASC);
             this.tabPayment.Controls.Add(this.label54);
             this.tabPayment.Controls.Add(this.cmbPaymentSortby);
             this.tabPayment.Controls.Add(this.btnPayCust);
             this.tabPayment.Controls.Add(this.label47);
             this.tabPayment.Controls.Add(this.cmbPaymentType);
-            this.tabPayment.Controls.Add(this.xButtons1);
-            this.tabPayment.Controls.Add(this.btnPaymentDisplay);
             this.tabPayment.Controls.Add(this.dgvPayment);
             this.tabPayment.Controls.Add(this.label25);
             this.tabPayment.Controls.Add(this.label24);
@@ -2338,32 +2238,6 @@
             this.cmbPaymentType.Size = new System.Drawing.Size(121, 24);
             this.cmbPaymentType.TabIndex = 13;
             // 
-            // xButtons1
-            // 
-            this.xButtons1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.xButtons1.ColorTable = office2010Yellow1;
-            this.xButtons1.Location = new System.Drawing.Point(1123, 52);
-            this.xButtons1.Name = "xButtons1";
-            this.xButtons1.Size = new System.Drawing.Size(99, 25);
-            this.xButtons1.TabIndex = 12;
-            this.xButtons1.Text = "Print";
-            this.xButtons1.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.xButtons1.UseVisualStyleBackColor = true;
-            this.xButtons1.Click += new System.EventHandler(this.xButtons1_Click_1);
-            // 
-            // btnPaymentDisplay
-            // 
-            this.btnPaymentDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPaymentDisplay.ColorTable = office2010Yellow1;
-            this.btnPaymentDisplay.Location = new System.Drawing.Point(1123, 11);
-            this.btnPaymentDisplay.Name = "btnPaymentDisplay";
-            this.btnPaymentDisplay.Size = new System.Drawing.Size(99, 25);
-            this.btnPaymentDisplay.TabIndex = 11;
-            this.btnPaymentDisplay.Text = "Show";
-            this.btnPaymentDisplay.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.btnPaymentDisplay.UseVisualStyleBackColor = true;
-            this.btnPaymentDisplay.Click += new System.EventHandler(this.btnPaymentDisplay_Click);
-            // 
             // dgvPayment
             // 
             this.dgvPayment.AllowUserToAddRows = false;
@@ -2384,7 +2258,7 @@
             dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -2556,15 +2430,29 @@
             // groupBox5
             // 
             this.groupBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox5.Controls.Add(this.xButtons2);
             this.groupBox5.Controls.Add(this.label35);
             this.groupBox5.Controls.Add(this.label34);
             this.groupBox5.Controls.Add(this.textBox2);
-            this.groupBox5.Controls.Add(this.xButtons2);
             this.groupBox5.Location = new System.Drawing.Point(548, 188);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(603, 221);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
+            // 
+            // xButtons2
+            // 
+            this.xButtons2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.xButtons2.BackColor = System.Drawing.Color.Teal;
+            this.xButtons2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.xButtons2.ForeColor = System.Drawing.Color.White;
+            this.xButtons2.Location = new System.Drawing.Point(278, 146);
+            this.xButtons2.Name = "xButtons2";
+            this.xButtons2.Size = new System.Drawing.Size(100, 29);
+            this.xButtons2.TabIndex = 23;
+            this.xButtons2.Text = "Login";
+            this.xButtons2.UseVisualStyleBackColor = false;
+            this.xButtons2.Click += new System.EventHandler(this.xButtons2_Click);
             // 
             // label35
             // 
@@ -2596,25 +2484,11 @@
             this.textBox2.Size = new System.Drawing.Size(180, 31);
             this.textBox2.TabIndex = 15;
             // 
-            // xButtons2
-            // 
-            this.xButtons2.ColorTable = office2010Yellow1;
-            this.xButtons2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xButtons2.Location = new System.Drawing.Point(272, 159);
-            this.xButtons2.Name = "xButtons2";
-            this.xButtons2.Size = new System.Drawing.Size(105, 32);
-            this.xButtons2.TabIndex = 9;
-            this.xButtons2.Text = "Login";
-            this.xButtons2.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.xButtons2.UseVisualStyleBackColor = true;
-            this.xButtons2.Click += new System.EventHandler(this.xButtons2_Click);
-            // 
             // tabGeneral
             // 
             this.tabGeneral.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.tabGeneral.Controls.Add(this.groupBox4);
-            this.tabGeneral.Controls.Add(this.groupBox3);
             this.tabGeneral.Controls.Add(this.btngeneralenable);
+            this.tabGeneral.Controls.Add(this.groupBox3);
             this.tabGeneral.Location = new System.Drawing.Point(4, 25);
             this.tabGeneral.Name = "tabGeneral";
             this.tabGeneral.Padding = new System.Windows.Forms.Padding(3);
@@ -2622,109 +2496,6 @@
             this.tabGeneral.TabIndex = 14;
             this.tabGeneral.Text = "General Settings";
             this.tabGeneral.Click += new System.EventHandler(this.tabGeneral_Click);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.btngeneraltaxsave);
-            this.groupBox4.Controls.Add(this.txttax1name);
-            this.groupBox4.Controls.Add(this.label28);
-            this.groupBox4.Controls.Add(this.label26);
-            this.groupBox4.Controls.Add(this.label29);
-            this.groupBox4.Controls.Add(this.label27);
-            this.groupBox4.Controls.Add(this.txttax2percentage);
-            this.groupBox4.Controls.Add(this.txttax2name);
-            this.groupBox4.Controls.Add(this.txttax2percentages);
-            this.groupBox4.Location = new System.Drawing.Point(131, 312);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(441, 199);
-            this.groupBox4.TabIndex = 17;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Global";
-            this.groupBox4.Visible = false;
-            // 
-            // btngeneraltaxsave
-            // 
-            this.btngeneraltaxsave.ColorTable = office2010Yellow1;
-            this.btngeneraltaxsave.Location = new System.Drawing.Point(273, 153);
-            this.btngeneraltaxsave.Name = "btngeneraltaxsave";
-            this.btngeneraltaxsave.Size = new System.Drawing.Size(75, 23);
-            this.btngeneraltaxsave.TabIndex = 5;
-            this.btngeneraltaxsave.Text = "Save";
-            this.btngeneraltaxsave.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.btngeneraltaxsave.UseVisualStyleBackColor = true;
-            this.btngeneraltaxsave.Click += new System.EventHandler(this.btngeneraltaxsave_Click);
-            // 
-            // txttax1name
-            // 
-            this.txttax1name.Location = new System.Drawing.Point(160, 29);
-            this.txttax1name.Name = "txttax1name";
-            this.txttax1name.Size = new System.Drawing.Size(141, 22);
-            this.txttax1name.TabIndex = 1;
-            this.txttax1name.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(84, 116);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(69, 17);
-            this.label28.TabIndex = 16;
-            this.label28.Text = "Tax2 (%):";
-            this.label28.Click += new System.EventHandler(this.label28_Click);
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(70, 29);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(84, 17);
-            this.label26.TabIndex = 0;
-            this.label26.Text = "Tax1 Name:";
-            this.label26.Click += new System.EventHandler(this.label26_Click);
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(70, 88);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(84, 17);
-            this.label29.TabIndex = 15;
-            this.label29.Text = "Tax2 Name:";
-            this.label29.Click += new System.EventHandler(this.label29_Click);
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(85, 60);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(69, 17);
-            this.label27.TabIndex = 2;
-            this.label27.Text = "Tax1 (%):";
-            this.label27.Click += new System.EventHandler(this.label27_Click);
-            // 
-            // txttax2percentage
-            // 
-            this.txttax2percentage.Location = new System.Drawing.Point(160, 57);
-            this.txttax2percentage.Name = "txttax2percentage";
-            this.txttax2percentage.Size = new System.Drawing.Size(141, 22);
-            this.txttax2percentage.TabIndex = 2;
-            this.txttax2percentage.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // txttax2name
-            // 
-            this.txttax2name.Location = new System.Drawing.Point(160, 85);
-            this.txttax2name.Name = "txttax2name";
-            this.txttax2name.Size = new System.Drawing.Size(141, 22);
-            this.txttax2name.TabIndex = 3;
-            this.txttax2name.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            // 
-            // txttax2percentages
-            // 
-            this.txttax2percentages.Location = new System.Drawing.Point(160, 113);
-            this.txttax2percentages.Name = "txttax2percentages";
-            this.txttax2percentages.Size = new System.Drawing.Size(141, 22);
-            this.txttax2percentages.TabIndex = 4;
-            this.txttax2percentages.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // groupBox3
             // 
@@ -2742,18 +2513,6 @@
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Security";
-            // 
-            // bsngeneralsave
-            // 
-            this.bsngeneralsave.ColorTable = office2010Yellow1;
-            this.bsngeneralsave.Location = new System.Drawing.Point(236, 139);
-            this.bsngeneralsave.Name = "bsngeneralsave";
-            this.bsngeneralsave.Size = new System.Drawing.Size(75, 23);
-            this.bsngeneralsave.TabIndex = 4;
-            this.bsngeneralsave.Text = "Save";
-            this.bsngeneralsave.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.bsngeneralsave.UseVisualStyleBackColor = true;
-            this.bsngeneralsave.Click += new System.EventHandler(this.bsngeneralsave_Click);
             // 
             // txtoldpass
             // 
@@ -2806,28 +2565,15 @@
             this.txtnewpass1.Size = new System.Drawing.Size(152, 22);
             this.txtnewpass1.TabIndex = 2;
             // 
-            // btngeneralenable
-            // 
-            this.btngeneralenable.ColorTable = office2010Yellow1;
-            this.btngeneralenable.Location = new System.Drawing.Point(500, 226);
-            this.btngeneralenable.Name = "btngeneralenable";
-            this.btngeneralenable.Size = new System.Drawing.Size(75, 23);
-            this.btngeneralenable.TabIndex = 9;
-            this.btngeneralenable.Text = "Disable";
-            this.btngeneralenable.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.btngeneralenable.UseVisualStyleBackColor = true;
-            this.btngeneralenable.Click += new System.EventHandler(this.btngeneralenable_Click);
-            // 
             // tabTransReport
             // 
             this.tabTransReport.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tabTransReport.Controls.Add(this.btnTRPrint);
+            this.tabTransReport.Controls.Add(this.btnTRShow);
             this.tabTransReport.Controls.Add(this.cmbTRASC);
             this.tabTransReport.Controls.Add(this.label55);
             this.tabTransReport.Controls.Add(this.cmbTRSort);
             this.tabTransReport.Controls.Add(this.btnTRCust);
-            this.tabTransReport.Controls.Add(this.dgvTR);
-            this.tabTransReport.Controls.Add(this.btnTRPrint);
-            this.tabTransReport.Controls.Add(this.btnTRShow);
             this.tabTransReport.Controls.Add(this.label42);
             this.tabTransReport.Controls.Add(this.label43);
             this.tabTransReport.Controls.Add(this.label44);
@@ -2836,6 +2582,7 @@
             this.tabTransReport.Controls.Add(this.dtpTRTo);
             this.tabTransReport.Controls.Add(this.dtpTRFrom);
             this.tabTransReport.Controls.Add(this.cmbTRCustomerName);
+            this.tabTransReport.Controls.Add(this.dgvTR);
             this.tabTransReport.Location = new System.Drawing.Point(4, 25);
             this.tabTransReport.Name = "tabTransReport";
             this.tabTransReport.Padding = new System.Windows.Forms.Padding(3);
@@ -2912,7 +2659,7 @@
             dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -2923,32 +2670,6 @@
             this.dgvTR.Size = new System.Drawing.Size(1216, 432);
             this.dgvTR.TabIndex = 23;
             this.dgvTR.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvTR_ColumnAdded);
-            // 
-            // btnTRPrint
-            // 
-            this.btnTRPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTRPrint.ColorTable = office2010Yellow1;
-            this.btnTRPrint.Location = new System.Drawing.Point(1042, 72);
-            this.btnTRPrint.Name = "btnTRPrint";
-            this.btnTRPrint.Size = new System.Drawing.Size(99, 25);
-            this.btnTRPrint.TabIndex = 22;
-            this.btnTRPrint.Text = "Print";
-            this.btnTRPrint.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.btnTRPrint.UseVisualStyleBackColor = true;
-            this.btnTRPrint.Click += new System.EventHandler(this.btnTRPrint_Click);
-            // 
-            // btnTRShow
-            // 
-            this.btnTRShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTRShow.ColorTable = office2010Yellow1;
-            this.btnTRShow.Location = new System.Drawing.Point(1042, 31);
-            this.btnTRShow.Name = "btnTRShow";
-            this.btnTRShow.Size = new System.Drawing.Size(99, 25);
-            this.btnTRShow.TabIndex = 21;
-            this.btnTRShow.Text = "Show";
-            this.btnTRShow.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.btnTRShow.UseVisualStyleBackColor = true;
-            this.btnTRShow.Click += new System.EventHandler(this.btnTRShow_Click);
             // 
             // label42
             // 
@@ -3113,12 +2834,16 @@
             // 
             // txtRegSubmit
             // 
+            this.txtRegSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRegSubmit.BackColor = System.Drawing.Color.Teal;
+            this.txtRegSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.txtRegSubmit.ForeColor = System.Drawing.Color.White;
             this.txtRegSubmit.Location = new System.Drawing.Point(1086, 224);
             this.txtRegSubmit.Name = "txtRegSubmit";
             this.txtRegSubmit.Size = new System.Drawing.Size(102, 29);
-            this.txtRegSubmit.TabIndex = 57;
+            this.txtRegSubmit.TabIndex = 58;
             this.txtRegSubmit.Text = "Submit";
-            this.txtRegSubmit.UseVisualStyleBackColor = true;
+            this.txtRegSubmit.UseVisualStyleBackColor = false;
             this.txtRegSubmit.Click += new System.EventHandler(this.txtRegSubmit_Click);
             // 
             // label52
@@ -3225,7 +2950,7 @@
             dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -3341,9 +3066,126 @@
             this.txtTMTax2.Size = new System.Drawing.Size(141, 22);
             this.txtTMTax2.TabIndex = 32;
             // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.Color.Teal;
+            this.tabPage1.Controls.Add(this.dgvHsn);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1228, 543);
+            this.tabPage1.TabIndex = 19;
+            this.tabPage1.Text = "HSN Master";
+            // 
+            // dgvHsn
+            // 
+            this.dgvHsn.AllowUserToAddRows = false;
+            this.dgvHsn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvHsn.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvHsn.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            this.dgvHsn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvHsn.ContextMenuStrip = this.cmsHsnMaster;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle23.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvHsn.DefaultCellStyle = dataGridViewCellStyle23;
+            this.dgvHsn.Location = new System.Drawing.Point(32, 95);
+            this.dgvHsn.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvHsn.MultiSelect = false;
+            this.dgvHsn.Name = "dgvHsn";
+            this.dgvHsn.ReadOnly = true;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvHsn.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            this.dgvHsn.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvHsn.Size = new System.Drawing.Size(1152, 414);
+            this.dgvHsn.TabIndex = 39;
+            this.dgvHsn.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvHsn_ColumnAdded);
+            this.dgvHsn.SelectionChanged += new System.EventHandler(this.dgvHsn_SelectionChanged);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.Color.Teal;
+            this.tabPage2.Controls.Add(this.dgvItem);
+            this.tabPage2.Controls.Add(this.groupBox6);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1228, 543);
+            this.tabPage2.TabIndex = 20;
+            this.tabPage2.Text = "Item Master";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.txtItemDescription);
+            this.groupBox6.Controls.Add(this.lbl1);
+            this.groupBox6.Controls.Add(this.cmbUnit);
+            this.groupBox6.Controls.Add(this.label69);
+            this.groupBox6.ForeColor = System.Drawing.Color.White;
+            this.groupBox6.Location = new System.Drawing.Point(24, 24);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(531, 112);
+            this.groupBox6.TabIndex = 38;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Product Description";
+            // 
+            // txtItemDescription
+            // 
+            this.txtItemDescription.Location = new System.Drawing.Point(123, 32);
+            this.txtItemDescription.Margin = new System.Windows.Forms.Padding(4);
+            this.txtItemDescription.Name = "txtItemDescription";
+            this.txtItemDescription.Size = new System.Drawing.Size(401, 22);
+            this.txtItemDescription.TabIndex = 1;
+            // 
+            // lbl1
+            // 
+            this.lbl1.AutoSize = true;
+            this.lbl1.Location = new System.Drawing.Point(12, 32);
+            this.lbl1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(113, 17);
+            this.lbl1.TabIndex = 20;
+            this.lbl1.Text = "Item Description:";
+            // 
+            // cmbUnit
+            // 
+            this.cmbUnit.FormattingEnabled = true;
+            this.cmbUnit.Location = new System.Drawing.Point(123, 64);
+            this.cmbUnit.Name = "cmbUnit";
+            this.cmbUnit.Size = new System.Drawing.Size(207, 24);
+            this.cmbUnit.TabIndex = 2;
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(75, 67);
+            this.label69.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(41, 17);
+            this.label69.TabIndex = 21;
+            this.label69.Text = "Unit :";
+            // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.menuStrip1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.menuStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -3355,7 +3197,8 @@
             this.expenseToolStripMenuItem,
             this.paymentToolStripMenuItem1,
             this.settingsToolStripMenuItem,
-            this.aboutUsToolStripMenuItem});
+            this.aboutUsToolStripMenuItem,
+            this.masterToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
@@ -3376,21 +3219,21 @@
             // companyToolStripMenuItem
             // 
             this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
-            this.companyToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
+            this.companyToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.companyToolStripMenuItem.Text = "Company";
             this.companyToolStripMenuItem.Click += new System.EventHandler(this.companyToolStripMenuItem_Click);
             // 
             // categoryToolStripMenuItem
             // 
             this.categoryToolStripMenuItem.Name = "categoryToolStripMenuItem";
-            this.categoryToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
+            this.categoryToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.categoryToolStripMenuItem.Text = "Category";
             this.categoryToolStripMenuItem.Click += new System.EventHandler(this.categoryToolStripMenuItem_Click);
             // 
             // modelToolStripMenuItem
             // 
             this.modelToolStripMenuItem.Name = "modelToolStripMenuItem";
-            this.modelToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
+            this.modelToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.modelToolStripMenuItem.Text = "Model";
             this.modelToolStripMenuItem.Click += new System.EventHandler(this.modelToolStripMenuItem_Click);
             // 
@@ -3482,20 +3325,6 @@
             this.aboutUsToolStripMenuItem.Text = "About Us";
             this.aboutUsToolStripMenuItem.Click += new System.EventHandler(this.aboutUsToolStripMenuItem_Click);
             // 
-            // btnHomePage
-            // 
-            this.btnHomePage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnHomePage.ColorTable = office2010Yellow1;
-            this.btnHomePage.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHomePage.Location = new System.Drawing.Point(1174, 32);
-            this.btnHomePage.Name = "btnHomePage";
-            this.btnHomePage.Size = new System.Drawing.Size(75, 23);
-            this.btnHomePage.TabIndex = 8;
-            this.btnHomePage.Text = "Home";
-            this.btnHomePage.Theme = Xbutton.Theme.MSOffice2010_Yellow;
-            this.btnHomePage.UseVisualStyleBackColor = true;
-            this.btnHomePage.Click += new System.EventHandler(this.xButtons1_Click);
-            // 
             // label36
             // 
             this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -3511,16 +3340,374 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // cmsHsnMaster
+            // 
+            this.cmsHsnMaster.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsHsnMaster.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem10,
+            this.toolStripSeparator11,
+            this.toolStripMenuItem11,
+            this.toolStripMenuItem12,
+            this.toolStripMenuItem13});
+            this.cmsHsnMaster.Name = "cmsHsnMaster";
+            this.cmsHsnMaster.Size = new System.Drawing.Size(123, 106);
+            this.cmsHsnMaster.Opening += new System.ComponentModel.CancelEventHandler(this.cmsHsnMaster_Opening);
+            // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItem10.Text = "None";
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(119, 6);
+            // 
+            // toolStripMenuItem11
+            // 
+            this.toolStripMenuItem11.Name = "toolStripMenuItem11";
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItem11.Text = "Add";
+            this.toolStripMenuItem11.Click += new System.EventHandler(this.toolStripMenuItem11_Click);
+            // 
+            // toolStripMenuItem12
+            // 
+            this.toolStripMenuItem12.Enabled = false;
+            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItem12.Text = "Edit";
+            this.toolStripMenuItem12.Click += new System.EventHandler(this.toolStripMenuItem12_Click);
+            // 
+            // toolStripMenuItem13
+            // 
+            this.toolStripMenuItem13.Enabled = false;
+            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItem13.Text = "Delete";
+            this.toolStripMenuItem13.Click += new System.EventHandler(this.toolStripMenuItem13_Click);
+            // 
+            // cmsItemMaster
+            // 
+            this.cmsItemMaster.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsItemMaster.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem14,
+            this.toolStripSeparator12,
+            this.toolStripMenuItem15,
+            this.toolStripMenuItem16,
+            this.toolStripMenuItem17});
+            this.cmsItemMaster.Name = "cmsHsnMaster";
+            this.cmsItemMaster.Size = new System.Drawing.Size(123, 106);
+            // 
+            // toolStripMenuItem14
+            // 
+            this.toolStripMenuItem14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolStripMenuItem14.Name = "toolStripMenuItem14";
+            this.toolStripMenuItem14.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItem14.Text = "None";
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(119, 6);
+            // 
+            // toolStripMenuItem15
+            // 
+            this.toolStripMenuItem15.Name = "toolStripMenuItem15";
+            this.toolStripMenuItem15.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItem15.Text = "Add";
+            // 
+            // toolStripMenuItem16
+            // 
+            this.toolStripMenuItem16.Enabled = false;
+            this.toolStripMenuItem16.Name = "toolStripMenuItem16";
+            this.toolStripMenuItem16.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItem16.Text = "Edit";
+            // 
+            // toolStripMenuItem17
+            // 
+            this.toolStripMenuItem17.Enabled = false;
+            this.toolStripMenuItem17.Name = "toolStripMenuItem17";
+            this.toolStripMenuItem17.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItem17.Text = "Delete";
+            // 
+            // btnHomePage
+            // 
+            this.btnHomePage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHomePage.BackColor = System.Drawing.Color.Teal;
+            this.btnHomePage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHomePage.ForeColor = System.Drawing.Color.White;
+            this.btnHomePage.Location = new System.Drawing.Point(1174, 29);
+            this.btnHomePage.Name = "btnHomePage";
+            this.btnHomePage.Size = new System.Drawing.Size(75, 26);
+            this.btnHomePage.TabIndex = 12;
+            this.btnHomePage.Text = "Home";
+            this.btnHomePage.UseVisualStyleBackColor = false;
+            this.btnHomePage.Click += new System.EventHandler(this.xButtons1_Click);
+            // 
+            // btnStockReport
+            // 
+            this.btnStockReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStockReport.BackColor = System.Drawing.Color.Teal;
+            this.btnStockReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStockReport.ForeColor = System.Drawing.Color.White;
+            this.btnStockReport.Location = new System.Drawing.Point(264, 22);
+            this.btnStockReport.Name = "btnStockReport";
+            this.btnStockReport.Size = new System.Drawing.Size(94, 29);
+            this.btnStockReport.TabIndex = 13;
+            this.btnStockReport.Text = "Generate";
+            this.btnStockReport.UseVisualStyleBackColor = false;
+            this.btnStockReport.Click += new System.EventHandler(this.btnStockReport_Click);
+            // 
+            // btnTransSearch
+            // 
+            this.btnTransSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTransSearch.BackColor = System.Drawing.Color.Teal;
+            this.btnTransSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTransSearch.ForeColor = System.Drawing.Color.White;
+            this.btnTransSearch.Location = new System.Drawing.Point(1122, 55);
+            this.btnTransSearch.Name = "btnTransSearch";
+            this.btnTransSearch.Size = new System.Drawing.Size(99, 27);
+            this.btnTransSearch.TabIndex = 25;
+            this.btnTransSearch.Text = "Show";
+            this.btnTransSearch.UseVisualStyleBackColor = false;
+            this.btnTransSearch.Click += new System.EventHandler(this.btnTransSearch_Click);
+            // 
+            // btnTransType
+            // 
+            this.btnTransType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTransType.BackColor = System.Drawing.Color.Teal;
+            this.btnTransType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTransType.ForeColor = System.Drawing.Color.White;
+            this.btnTransType.Location = new System.Drawing.Point(7, 53);
+            this.btnTransType.Name = "btnTransType";
+            this.btnTransType.Size = new System.Drawing.Size(100, 28);
+            this.btnTransType.TabIndex = 26;
+            this.btnTransType.Text = "All";
+            this.btnTransType.UseVisualStyleBackColor = false;
+            this.btnTransType.Click += new System.EventHandler(this.btnTransType_Click);
+            // 
+            // btnTransReport
+            // 
+            this.btnTransReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTransReport.BackColor = System.Drawing.Color.Teal;
+            this.btnTransReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTransReport.ForeColor = System.Drawing.Color.White;
+            this.btnTransReport.Location = new System.Drawing.Point(113, 53);
+            this.btnTransReport.Name = "btnTransReport";
+            this.btnTransReport.Size = new System.Drawing.Size(100, 28);
+            this.btnTransReport.TabIndex = 27;
+            this.btnTransReport.Text = "Report";
+            this.btnTransReport.UseVisualStyleBackColor = false;
+            this.btnTransReport.Click += new System.EventHandler(this.btnTransReport_Click);
+            // 
+            // btnPDF
+            // 
+            this.btnPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPDF.BackColor = System.Drawing.Color.Teal;
+            this.btnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPDF.ForeColor = System.Drawing.Color.White;
+            this.btnPDF.Location = new System.Drawing.Point(1017, 508);
+            this.btnPDF.Name = "btnPDF";
+            this.btnPDF.Size = new System.Drawing.Size(100, 28);
+            this.btnPDF.TabIndex = 28;
+            this.btnPDF.Text = "PDF";
+            this.btnPDF.UseVisualStyleBackColor = false;
+            this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
+            // 
+            // btnTranBillView
+            // 
+            this.btnTranBillView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTranBillView.BackColor = System.Drawing.Color.Teal;
+            this.btnTranBillView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTranBillView.ForeColor = System.Drawing.Color.White;
+            this.btnTranBillView.Location = new System.Drawing.Point(1121, 508);
+            this.btnTranBillView.Name = "btnTranBillView";
+            this.btnTranBillView.Size = new System.Drawing.Size(100, 28);
+            this.btnTranBillView.TabIndex = 29;
+            this.btnTranBillView.Text = "Generate Bill";
+            this.btnTranBillView.UseVisualStyleBackColor = false;
+            this.btnTranBillView.Click += new System.EventHandler(this.btnTranBillView_Click);
+            // 
+            // xButtons4
+            // 
+            this.xButtons4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.xButtons4.BackColor = System.Drawing.Color.Teal;
+            this.xButtons4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.xButtons4.ForeColor = System.Drawing.Color.White;
+            this.xButtons4.Location = new System.Drawing.Point(1010, 44);
+            this.xButtons4.Name = "xButtons4";
+            this.xButtons4.Size = new System.Drawing.Size(99, 27);
+            this.xButtons4.TabIndex = 16;
+            this.xButtons4.Text = "Show";
+            this.xButtons4.UseVisualStyleBackColor = false;
+            this.xButtons4.Click += new System.EventHandler(this.xButtons4_Click);
+            // 
+            // xButtons3
+            // 
+            this.xButtons3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.xButtons3.BackColor = System.Drawing.Color.Teal;
+            this.xButtons3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.xButtons3.ForeColor = System.Drawing.Color.White;
+            this.xButtons3.Location = new System.Drawing.Point(1115, 43);
+            this.xButtons3.Name = "xButtons3";
+            this.xButtons3.Size = new System.Drawing.Size(99, 29);
+            this.xButtons3.TabIndex = 17;
+            this.xButtons3.Text = "Print";
+            this.xButtons3.UseVisualStyleBackColor = false;
+            this.xButtons3.Click += new System.EventHandler(this.xButtons3_Click);
+            // 
+            // btnPaymentDisplay
+            // 
+            this.btnPaymentDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPaymentDisplay.BackColor = System.Drawing.Color.Teal;
+            this.btnPaymentDisplay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPaymentDisplay.ForeColor = System.Drawing.Color.White;
+            this.btnPaymentDisplay.Location = new System.Drawing.Point(1123, 9);
+            this.btnPaymentDisplay.Name = "btnPaymentDisplay";
+            this.btnPaymentDisplay.Size = new System.Drawing.Size(99, 28);
+            this.btnPaymentDisplay.TabIndex = 13;
+            this.btnPaymentDisplay.Text = "Show";
+            this.btnPaymentDisplay.UseVisualStyleBackColor = false;
+            this.btnPaymentDisplay.Click += new System.EventHandler(this.btnPaymentDisplay_Click);
+            // 
+            // xButtons1
+            // 
+            this.xButtons1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.xButtons1.BackColor = System.Drawing.Color.Teal;
+            this.xButtons1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.xButtons1.ForeColor = System.Drawing.Color.White;
+            this.xButtons1.Location = new System.Drawing.Point(1123, 44);
+            this.xButtons1.Name = "xButtons1";
+            this.xButtons1.Size = new System.Drawing.Size(99, 28);
+            this.xButtons1.TabIndex = 19;
+            this.xButtons1.Text = "Print";
+            this.xButtons1.UseVisualStyleBackColor = false;
+            this.xButtons1.Click += new System.EventHandler(this.xButtons1_Click_1);
+            // 
+            // btngeneralenable
+            // 
+            this.btngeneralenable.BackColor = System.Drawing.Color.Teal;
+            this.btngeneralenable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btngeneralenable.ForeColor = System.Drawing.Color.White;
+            this.btngeneralenable.Location = new System.Drawing.Point(500, 219);
+            this.btngeneralenable.Name = "btngeneralenable";
+            this.btngeneralenable.Size = new System.Drawing.Size(75, 30);
+            this.btngeneralenable.TabIndex = 20;
+            this.btngeneralenable.Text = "Disable";
+            this.btngeneralenable.UseVisualStyleBackColor = false;
+            this.btngeneralenable.Click += new System.EventHandler(this.btngeneralenable_Click);
+            // 
+            // bsngeneralsave
+            // 
+            this.bsngeneralsave.BackColor = System.Drawing.Color.Teal;
+            this.bsngeneralsave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bsngeneralsave.ForeColor = System.Drawing.Color.White;
+            this.bsngeneralsave.Location = new System.Drawing.Point(252, 136);
+            this.bsngeneralsave.Name = "bsngeneralsave";
+            this.bsngeneralsave.Size = new System.Drawing.Size(75, 28);
+            this.bsngeneralsave.TabIndex = 21;
+            this.bsngeneralsave.Text = "Save";
+            this.bsngeneralsave.UseVisualStyleBackColor = false;
+            this.bsngeneralsave.Click += new System.EventHandler(this.bsngeneralsave_Click);
+            // 
+            // btnTRShow
+            // 
+            this.btnTRShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTRShow.BackColor = System.Drawing.Color.Teal;
+            this.btnTRShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTRShow.ForeColor = System.Drawing.Color.White;
+            this.btnTRShow.Location = new System.Drawing.Point(1042, 29);
+            this.btnTRShow.Name = "btnTRShow";
+            this.btnTRShow.Size = new System.Drawing.Size(99, 29);
+            this.btnTRShow.TabIndex = 28;
+            this.btnTRShow.Text = "Show";
+            this.btnTRShow.UseVisualStyleBackColor = false;
+            this.btnTRShow.Click += new System.EventHandler(this.btnTRShow_Click);
+            // 
+            // btnTRPrint
+            // 
+            this.btnTRPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTRPrint.BackColor = System.Drawing.Color.Teal;
+            this.btnTRPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTRPrint.ForeColor = System.Drawing.Color.White;
+            this.btnTRPrint.Location = new System.Drawing.Point(1042, 64);
+            this.btnTRPrint.Name = "btnTRPrint";
+            this.btnTRPrint.Size = new System.Drawing.Size(99, 29);
+            this.btnTRPrint.TabIndex = 29;
+            this.btnTRPrint.Text = "Print";
+            this.btnTRPrint.UseVisualStyleBackColor = false;
+            this.btnTRPrint.Click += new System.EventHandler(this.btnTRPrint_Click);
+            // 
+            // dgvItem
+            // 
+            this.dgvItem.AllowUserToAddRows = false;
+            this.dgvItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvItem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvItem.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
+            this.dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvItem.ContextMenuStrip = this.cmsBank;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvItem.DefaultCellStyle = dataGridViewCellStyle26;
+            this.dgvItem.Location = new System.Drawing.Point(24, 143);
+            this.dgvItem.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvItem.MultiSelect = false;
+            this.dgvItem.Name = "dgvItem";
+            this.dgvItem.ReadOnly = true;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvItem.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            this.dgvItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvItem.Size = new System.Drawing.Size(1181, 339);
+            this.dgvItem.TabIndex = 40;
+            // 
+            // masterToolStripMenuItem1
+            // 
+            this.masterToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hSNMasterToolStripMenuItem});
+            this.masterToolStripMenuItem1.Name = "masterToolStripMenuItem1";
+            this.masterToolStripMenuItem1.Size = new System.Drawing.Size(66, 22);
+            this.masterToolStripMenuItem1.Text = "Master";
+            // 
+            // hSNMasterToolStripMenuItem
+            // 
+            this.hSNMasterToolStripMenuItem.Name = "hSNMasterToolStripMenuItem";
+            this.hSNMasterToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.hSNMasterToolStripMenuItem.Text = "HSN Master";
+            this.hSNMasterToolStripMenuItem.Click += new System.EventHandler(this.hSNMasterToolStripMenuItem_Click);
+            // 
             // MasterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1258, 649);
-            this.Controls.Add(this.label36);
             this.Controls.Add(this.btnHomePage);
+            this.Controls.Add(this.label36);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
+            this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -3584,8 +3771,6 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.tabGeneral.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.tabTransReport.ResumeLayout(false);
@@ -3603,8 +3788,16 @@
             this.tabTaxMaster.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTM)).EndInit();
             this.cmsTaxMaster.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHsn)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.cmsHsnMaster.ResumeLayout(false);
+            this.cmsItemMaster.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3632,7 +3825,6 @@
         private System.Windows.Forms.TabPage TabCustomer;
         private System.Windows.Forms.DataGridView dgvCustomer;
         private System.Windows.Forms.TabPage tabAbout;
-        private Xbutton.xButtons btnAboutSave;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -3671,7 +3863,6 @@
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem3;
-        private Xbutton.xButtons btnAboutEdit;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtAboutCompanyCIN;
         private System.Windows.Forms.Label label10;
@@ -3698,7 +3889,6 @@
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem6;
-        private Xbutton.xButtons btnTransType;
         private System.Windows.Forms.ToolStripMenuItem companyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem categoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modelToolStripMenuItem;
@@ -3708,7 +3898,6 @@
         private System.Windows.Forms.ToolStripMenuItem generalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutMeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem termsAndConditionToolStripMenuItem;
-        private Xbutton.xButtons btnPayment;
         private System.Windows.Forms.TabPage tabExpense;
         private System.Windows.Forms.DataGridView dgvExpense;
         private System.Windows.Forms.ContextMenuStrip cmsExpense;
@@ -3720,9 +3909,7 @@
         private System.Windows.Forms.TextBox txtOutstanding;
         private System.Windows.Forms.TextBox txtCustSearch;
         private System.Windows.Forms.ToolStripMenuItem expenseToolStripMenuItem;
-        private Xbutton.xButtons btnTranBillView;
         private System.Windows.Forms.TabPage tabHomePage;
-        private Xbutton.xButtons btnHomePage;
         private System.Windows.Forms.Label lblTotalProfit;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label lblTotalExpense;
@@ -3735,7 +3922,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label19;
-        private Xbutton.xButtons btnsearch;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.DateTimePicker dtpend;
@@ -3751,34 +3937,20 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox cmbPaymentMethod;
-        private Xbutton.xButtons btnPaymentDisplay;
         private System.Windows.Forms.DataGridView dgvPayment;
         private System.Windows.Forms.ToolStripMenuItem paymentToolStripMenuItem1;
         private System.Windows.Forms.TabPage tabLogin;
         private System.Windows.Forms.TabPage tabGeneral;
         private System.Windows.Forms.GroupBox groupBox3;
-        private Xbutton.xButtons bsngeneralsave;
         private System.Windows.Forms.TextBox txtoldpass;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox txtnewpass2;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.TextBox txtnewpass1;
-        private Xbutton.xButtons btngeneralenable;
-        private System.Windows.Forms.TextBox txttax2percentages;
-        private System.Windows.Forms.TextBox txttax2name;
-        private System.Windows.Forms.TextBox txttax2percentage;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox txttax1name;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label29;
-        private Xbutton.xButtons btngeneraltaxsave;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.TextBox textBox2;
-        private Xbutton.xButtons xButtons2;
         private System.Windows.Forms.ToolStripMenuItem bankToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label33;
@@ -3787,19 +3959,13 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label39;
-        private Xbutton.xButtons xButtons1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private Xbutton.xButtons xButtons3;
-        private Xbutton.xButtons xButtons4;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private Xbutton.xButtons btnTransReport;
         private System.Windows.Forms.TabPage tabTransReport;
-        private Xbutton.xButtons btnTRPrint;
-        private Xbutton.xButtons btnTRShow;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label44;
@@ -3809,7 +3975,6 @@
         private System.Windows.Forms.DateTimePicker dtpTRFrom;
         private System.Windows.Forms.ComboBox cmbTRCustomerName;
         private System.Windows.Forms.DataGridView dgvTR;
-        private Xbutton.xButtons btnPDF;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.TextBox txtExpenseSearch;
@@ -3820,7 +3985,6 @@
         private System.Windows.Forms.TextBox txtTransactionSearch;
         private System.Windows.Forms.Button btnEstimate;
         private System.Windows.Forms.Button btnSale;
-        private Xbutton.xButtons btnTransSearch;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.DateTimePicker dtpTransTo;
@@ -3852,7 +4016,6 @@
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.TabPage tabReg;
-        private System.Windows.Forms.Button txtRegSubmit;
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.TextBox txtRegSerial;
         private System.Windows.Forms.Label label37;
@@ -3877,7 +4040,6 @@
         private System.Windows.Forms.ToolStripMenuItem taxMasterToolStripMenuItem;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button btnTransCustSearch;
-        private System.Windows.Forms.Button btnStockReport;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label62;
         private System.Windows.Forms.DateTimePicker dtpToStock;
@@ -3885,5 +4047,49 @@
         private System.Windows.Forms.DateTimePicker dtpFromStock;
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.DateTimePicker dtpStartStock;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox txtItemDescription;
+        private System.Windows.Forms.Label lbl1;
+        private System.Windows.Forms.ComboBox cmbUnit;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.ContextMenuStrip cmsHsnMaster;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem10;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem11;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem12;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem13;
+        private System.Windows.Forms.ContextMenuStrip cmsItemMaster;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem14;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem15;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem16;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem17;
+        private System.Windows.Forms.Button btnHomePage;
+        private System.Windows.Forms.Button btnPayment;
+        private System.Windows.Forms.Button btnAboutSave;
+        private System.Windows.Forms.Button btnAboutEdit;
+        private System.Windows.Forms.Button xButtons2;
+        private System.Windows.Forms.Button btnsearch;
+        private System.Windows.Forms.Button txtRegSubmit;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.DataGridView dgvHsn;
+        private System.Windows.Forms.Button btnStockReport;
+        private System.Windows.Forms.Button btnTransSearch;
+        private System.Windows.Forms.Button btnTransReport;
+        private System.Windows.Forms.Button btnTransType;
+        private System.Windows.Forms.Button btnTranBillView;
+        private System.Windows.Forms.Button btnPDF;
+        private System.Windows.Forms.Button xButtons3;
+        private System.Windows.Forms.Button xButtons4;
+        private System.Windows.Forms.Button xButtons1;
+        private System.Windows.Forms.Button btnPaymentDisplay;
+        private System.Windows.Forms.Button btngeneralenable;
+        private System.Windows.Forms.Button bsngeneralsave;
+        private System.Windows.Forms.Button btnTRShow;
+        private System.Windows.Forms.Button btnTRPrint;
+        private System.Windows.Forms.DataGridView dgvItem;
+        private System.Windows.Forms.ToolStripMenuItem masterToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem hSNMasterToolStripMenuItem;
     }
 }

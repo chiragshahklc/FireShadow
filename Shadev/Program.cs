@@ -30,7 +30,9 @@ namespace Shadev
         itgAdd = 20,
         itgEdit = 21,
         PaymentAdd = 22,
-        PaymentEdit = 23
+        PaymentEdit = 23,
+        HSNAdd = 24,
+        HSNEdit = 25
     }
 
     public enum AllTabs : int
@@ -51,7 +53,8 @@ namespace Shadev
         TransactionReport = 13,
         AboutUs = 14,
         Registration = 15,
-        TaxMaster = 16
+        TaxMaster = 16,
+        HSNMaster = 17
     }
 
     public enum TranSearc : int

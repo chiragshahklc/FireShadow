@@ -1,5 +1,4 @@
-﻿using Microsoft.Reporting.WinForms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,26 +32,26 @@ namespace Shadev
             //}
             //MessageBox.Show("Done");
 
-            AIO.command = "select abtComName as [comName],abtComMob as [comMob], abtComEmail as [comEmail], abtPAN as [comPAN], abtVatTIN as [comTIN] from AboutMe as [Company]";
-            var dt = a1.dataload();
+            //    AIO.command = "select abtComName as [comName],abtComMob as [comMob], abtComEmail as [comEmail], abtPAN as [comPAN], abtVatTIN as [comTIN] from AboutMe as [Company]";
+            //    var dt = a1.dataload();
 
-            ReportDataSource rds = new ReportDataSource();
-            rds.Name = "Company";
-            rds.Value = dt;
+            //    ReportDataSource rds = new ReportDataSource();
+            //    rds.Name = "Company";
+            //    rds.Value = dt;
 
-            reportViewer1.Refresh();
-            reportViewer1.LocalReport.DataSources.Add(rds);
-            
-            reportViewer1.LocalReport.ReportEmbeddedResource = "Shadev.mrStockReport.rdlc";
-            
-            reportViewer1.LocalReport.Refresh();
-            reportViewer1.RefreshReport();
+            //    reportViewer1.Refresh();
+            //    reportViewer1.LocalReport.DataSources.Add(rds);
+
+            //    reportViewer1.LocalReport.ReportEmbeddedResource = "Shadev.mrStockReport.rdlc";
+
+            //    reportViewer1.LocalReport.Refresh();
+            //    reportViewer1.RefreshReport();
         }
 
         private void temp_Load(object sender, EventArgs e)
         {
 
-            this.reportViewer1.RefreshReport();
+            //this.reportViewer1.RefreshReport();
         }
     }
 }

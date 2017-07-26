@@ -1628,21 +1628,21 @@ namespace Shadev
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(txttax1name.Text) || string.IsNullOrWhiteSpace(txttax2name.Text) || string.IsNullOrWhiteSpace(txttax2percentage.Text) || string.IsNullOrWhiteSpace(txttax2percentages.Text))
-                {
+                //if (string.IsNullOrWhiteSpace(txttax1name.Text) || string.IsNullOrWhiteSpace(txttax2name.Text) || string.IsNullOrWhiteSpace(txttax2percentage.Text) || string.IsNullOrWhiteSpace(txttax2percentages.Text))
+                //{
 
-                }
-                else
-                {
-                    string tax1 = "", tax2 = "";
-                    tax1 = txttax1name.Text.Replace("'", "''");
-                    tax2 = txttax2name.Text.Replace("'", "''");
-                    AIO.command = "update GeneralSettings set tax1name='" + tax1 + "', tax2name='" + tax2 + "',tax1per=" + txttax2percentage.Text + ",tax2per=" + txttax2percentages.Text + " where id=1";
-                    a1.cmdexe();
-                    RefreshGeneralSettings();
+                //}
+                //else
+                //{
+                //    string tax1 = "", tax2 = "";
+                //    tax1 = txttax1name.Text.Replace("'", "''");
+                //    tax2 = txttax2name.Text.Replace("'", "''");
+                //    AIO.command = "update GeneralSettings set tax1name='" + tax1 + "', tax2name='" + tax2 + "',tax1per=" + txttax2percentage.Text + ",tax2per=" + txttax2percentages.Text + " where id=1";
+                //    a1.cmdexe();
+                //    RefreshGeneralSettings();
 
-                    MessageBox.Show("Saved Successfully.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                //    MessageBox.Show("Saved Successfully.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //}
 
             }
             catch (Exception ex)
@@ -1720,10 +1720,10 @@ namespace Shadev
                 var dt = a1.dataload();
                 if (dt.Rows.Count > 0 && !DBNull.Value.Equals(dt.Rows[0][0]))
                 {
-                    txttax1name.Text = dt.Rows[0]["tax1name"].ToString();
-                    txttax2name.Text = dt.Rows[0]["tax2name"].ToString();
-                    txttax2percentage.Text = dt.Rows[0]["tax1per"].ToString();
-                    txttax2percentages.Text = dt.Rows[0]["tax2per"].ToString();
+                    //txttax1name.Text = dt.Rows[0]["tax1name"].ToString();
+                    //txttax2name.Text = dt.Rows[0]["tax2name"].ToString();
+                    //txttax2percentage.Text = dt.Rows[0]["tax1per"].ToString();
+                    //txttax2percentages.Text = dt.Rows[0]["tax2per"].ToString();
                 }
             }
             catch (Exception ex)
@@ -2526,7 +2526,140 @@ namespace Shadev
             fr.ShowDialog();
         }
 
+        private void dgvHsn_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        }
 
+        private void toolStripMenuItem11_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmHsnTax fr = new frmHsnTax();
+                fr.StartPosition = FormStartPosition.CenterParent;
+                fr.Stat = FrmCompany.HSNAdd;
+
+                fr.ShowDialog();
+                RefreshHSN();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void RefreshHSN()
+        {
+            
+        }
+
+        private void toolStripMenuItem12_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmHsnTax fr = new frmHsnTax();
+                fr.StartPosition = FormStartPosition.CenterParent;
+                fr.Stat = FrmCompany.HSNEdit;
+                fr.ShowDialog();
+
+                RefreshHSN();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void toolStripMenuItem13_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvHsn.SelectedRows.Count > 0)
+                {
+                    AIO.command = "delete from Customer where id=" + dgvHsn.SelectedRows[0].Cells["id"].Value.ToString();
+                    a1.cmdexe();
+
+                }
+                RefreshHSN();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvHsn_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvCustomer.SelectedRows.Count > 0)
+                {
+                    double payReceive = 0, payDone = 0, tranPurchase = 0, tranSell = 0;
+                    string id = dgvCustomer.SelectedRows[0].Cells["id"].Value.ToString();
+
+                    AIO.command = "select sum(payAmount) from Payment where payCustId=" + id + " and payType='Receive'";
+                    var tmp = a1.cmdexesc();
+                    if (!DBNull.Value.Equals(tmp))
+                        payReceive = Convert.ToDouble(tmp);
+                    AIO.command = "select sum(payAmount) from Payment where payCustId=" + id + " and payType='Paid'";
+                    tmp = a1.cmdexesc();
+                    if (!DBNull.Value.Equals(tmp))
+                        payDone = Convert.ToDouble(tmp);
+                    AIO.command = "select sum(tranFinalTotal) from Trans where TranCustID=" + id + " and tranType='Purchase'";
+                    tmp = a1.cmdexesc();
+                    if (!DBNull.Value.Equals(tmp))
+                        tranPurchase = Convert.ToDouble(tmp);
+                    AIO.command = "select sum(tranFinalTotal) from Trans where TranCustID=" + id + " and tranType='Sale'";
+                    tmp = a1.cmdexesc();
+                    if (!DBNull.Value.Equals(tmp))
+                        tranSell = Convert.ToDouble(tmp);
+
+                    //double outstand = (tranPurchase - payDone) - (tranSell - payReceive);
+                    double outstand = (tranSell - payReceive) - (tranPurchase - payDone);
+                    txtOutstanding.Text = outstand.ToString();
+                    txtOutstanding.BackColor = txtOutstanding.BackColor;
+                    if (outstand > 0)
+                        txtOutstanding.ForeColor = Color.Green;
+                    else if (outstand < 0)
+                        txtOutstanding.ForeColor = Color.Red;
+                    else
+                        txtOutstanding.ForeColor = Color.Black;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmsHsnMaster_Opening(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                if (dgvHsn.SelectedRows.Count > 0)
+                {
+                    cmsHsnMaster.Items[0].Text = dgvHsn.SelectedRows[0].Cells["id"].Value.ToString();
+                    cmsHsnMaster.Items[3].Enabled = true;
+                    cmsHsnMaster.Items[4].Enabled = true;
+                }
+                else
+                {
+                    cmsHsnMaster.Items[0].Text = "None";
+                    cmsHsnMaster.Items[3].Enabled = false;
+                    cmsHsnMaster.Items[4].Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void hSNMasterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SwitchTabPages(AllTabs.HSNMaster);
+        }
     }
 }
 
