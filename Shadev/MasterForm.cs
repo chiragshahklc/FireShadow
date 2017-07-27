@@ -2699,7 +2699,27 @@ namespace Shadev
 
         private void RefreshNewItem()
         {
-            
+            try
+            {
+                AIO.command = "SELECT I.id,I.itemDesc as Description,H.hsnCode as HSN_Code,U.uom as Unit" +
+                    "FROM" +
+                    "Items as I LEFT JOIN hsnTax as H" +
+                    "ON I.hsnId = H.id" +
+                    "LEFT JOIN Units as U" +
+                    "ON I.oid = U.id";
+
+                var v1 = a1.dataload();
+                if (v1 != null)
+                {
+                    dgvItem.DataSource = v1;
+                    dgvItem.Columns["id"].Visible = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void toolStripMenuItem16_Click(object sender, EventArgs e)
@@ -2709,7 +2729,9 @@ namespace Shadev
                 frmNewItems fr = new frmNewItems();
                 fr.StartPosition = FormStartPosition.CenterParent;
                 fr.Stat = FrmCompany.NewItemEdit;
-                
+                fr.Stat = FrmCompany.CustEdit;
+                fr.row = ((DataTable)dgvItem.DataSource).Rows[dgvItem.SelectedRows[0].Index];
+                fr.id = long.Parse(dgvItem.SelectedRows[0].Cells["id"].Value.ToString());
                 fr.ShowDialog();
 
                 RefreshNewItem();

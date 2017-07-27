@@ -17,6 +17,10 @@ namespace Shadev
         AIO A1;
         public FrmCompany Stat { get; set; }
         List<long> UnitId = new List<long>();
+        List<long> HSNId = new List<long>();
+        public long id { get; set; }
+
+        public DataRow row { get; set; }
 
         public frmNewItems()
         {
@@ -33,22 +37,68 @@ namespace Shadev
         {
             try
             {
-                if (!string.IsNullOrWhiteSpace(txtItemDescription.Text) || cmbUnit.SelectedIndex != 0)
+
+
+                
+                switch (Stat)
                 {
-                    AIO.command = "INSERT into Items(itemDesc,hsnId,oid) VALUES('" + txtItemDescription.Text + "',," + UnitId[cmbUnit.SelectedIndex] + ")";
-                    A1.cmdexe();
-                    MessageBox.Show("Item Inserted", "FireShadow", MessageBoxButtons.OK);
-                    DataRefresh();
-                    //btnDelete.Enabled = true;
-                    //btnUpdate.Enabled = true;
-                    //btnDelete.Enabled = true;
-                    btnSave.Enabled = false;
+
+                
+
+                    case FrmCompany.NewItemAdd:
+                        {
+                            if (!string.IsNullOrWhiteSpace(txtItemDescription.Text) || cmbUnit.SelectedIndex != 0)
+                            {
+                                AIO.command = "INSERT into Items(itemDesc,hsnId,oid) VALUES('" + txtItemDescription.Text + "',," + UnitId[cmbUnit.SelectedIndex] + ")";
+                                A1.cmdexe();
+                                MessageBox.Show("Item Inserted", "FireShadow", MessageBoxButtons.OK);
+                                this.Close();
+                             
+                            }
+                            else
+                            {
+                                MessageBox.Show("Blank is Not Allow", "FireShadow", MessageBoxButtons.OK);
+                            }
+
+                        }
+                        break;
+                    case FrmCompany.NewItemEdit:
+                        {
+                            if (!string.IsNullOrWhiteSpace(txtItemDescription.Text) || cmbUnit.SelectedIndex != 0)
+                            {
+                                if (row != null)
+                                {
+                                    AIO.command = " Update Items SET itemDesc = '" + txtItemDescription.Text + "',hsnId = " + txtItemDescription.Text + ",oid = " + UnitId[cmbUnit.SelectedIndex] + " WHERE id = " + TempId + " ";
+                                    A1.cmdexe();
+                                    MessageBox.Show("Item Updatd", "FireShadow", MessageBoxButtons.OK);
+                                    
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Please Select any Data", "Fire Shadow", MessageBoxButtons.OK);
+                                }
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Blank is Not Allow", "FireShadow", MessageBoxButtons.OK);
+                            }
+
+                        }
+                        break;
+                    default:
+                        break;
+
+
 
                 }
-                else
-                {
-                    MessageBox.Show("Blank is Not Allow", "FireShadow", MessageBoxButtons.OK);
-                }
+
+
+
+
+
+
+                
             }
             catch (Exception ex)
             {
@@ -149,37 +199,68 @@ namespace Shadev
 
         private void frmNewItems_Load(object sender, EventArgs e)
         {
+            
             try
             {
-
                 switch (Stat)
                 {
                     case FrmCompany.NewItemAdd:
                         {
+                            this.Text = "Item: Add";
+
                         }
                         break;
                     case FrmCompany.NewItemEdit:
                         {
+                            this.Text = "Item: Edit";
+                            if (!DBNull.Value.Equals(row[0]))
+                            {
+                                txtItemDescription.Text = row["Description"].ToString();
+                                cmbUnit.SelectedItem = row["Unit"];
+                                comboBox1.SelectedItem = row["HSN_Code"];
+                            }
                         }
                         break;
                     default:
                         break;
                 }
 
-                //AIO.command = "SELECT id,uom from Units";
-                //var dt = A1.dataload();
 
-                //cmbUnit.Items.Clear();
-                //UnitId.Clear();
+                AIO.command = "SELECT id,uom from Units";
+                var dt = A1.dataload();
 
-                //foreach (DataRow row in dt.Rows)
-                //{
-                //    cmbUnit.Items.Add(row["uom"].ToString());
-                //    UnitId.Add(Convert.ToInt64(row["id"].ToString()));
-                //}
+                cmbUnit.Items.Clear();
+                UnitId.Clear();
 
-                //cmbUnit.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                //cmbUnit.AutoCompleteSource = AutoCompleteSource.ListItems;
+                foreach (DataRow row in dt.Rows)
+                {
+                    cmbUnit.Items.Add(row["uom"].ToString());
+                    UnitId.Add(Convert.ToInt64(row["id"].ToString()));
+                }
+
+                cmbUnit.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                cmbUnit.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+                AIO.command = "SELECT id,hsnCode from Units";
+                var dt1 = A1.dataload();
+
+                comboBox1.Items.Clear();
+                HSNId.Clear();
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    comboBox1.Items.Add(row["hsnCode"].ToString());
+                    HSNId.Add(Convert.ToInt64(row["id"].ToString()));
+                }
+
+                comboBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                comboBox1.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+
+
+
+
+
                 //DataRefresh();
             }
             catch (Exception ex)
