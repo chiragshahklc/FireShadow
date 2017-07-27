@@ -59,12 +59,8 @@ namespace Shadev
                         {
                             AIO.command = "INSERT INTO hsnTax(hsnCode,cgst,sgst,igst,Desc) VALUES(" + txtHsnCode.Text + "," + txtCGST.Text + " , " + txtSGST.Text + "," + txtIGST.Text + ",'" + rtbDesc.Text + "')";
                             A1.cmdexe();
-                            MessageBox.Show("Item Inserted", "FireShadow", MessageBoxButtons.OK);
-                            txtCGST.Clear();
-                            txtHsnCode.Clear();
-                            txtIGST.Clear();
-                            txtSGST.Clear();
-                            rtbDesc.Clear();
+
+                            this.Close();
 
                         }
                         else
@@ -82,12 +78,7 @@ namespace Shadev
                             {
                                 AIO.command = "UPDATE hsnTax SET hsnCode = " + txtHsnCode.Text + ",cgst = " + txtCGST.Text + " , sgst = " + txtSGST.Text + ", igst = " + txtIGST.Text + ",Desc = '" + rtbDesc.Text + "' WHERE id = " + id + " ";
                                 A1.cmdexe();
-                                MessageBox.Show("Item Updated", "FireShadow", MessageBoxButtons.OK);
-                                txtCGST.Clear();
-                                txtHsnCode.Clear();
-                                txtIGST.Clear();
-                                txtSGST.Clear();
-                                rtbDesc.Clear();
+                                this.Close();
                             }
                             else
                             {

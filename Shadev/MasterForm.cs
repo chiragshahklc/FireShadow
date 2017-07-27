@@ -28,6 +28,7 @@ namespace Shadev
         {
             InitializeComponent();
             this.DoubleBuffered = true;
+            
         }
 
         private void txtAboutCompanyName_KeyPress(object sender, KeyPressEventArgs e)
@@ -218,12 +219,13 @@ namespace Shadev
                 RefreshGeneralSettings();
                 RefreshTaxMaster();
                 RefreshHSN();
-
+                tabControl1.Visible = false;
                 foreach (TabPage page in tabControl1.TabPages)
                 {
                     allTabs.Add(page);
                     tabControl1.TabPages.Remove(page);
                 }
+                tabControl1.Visible = true;
 
                 btnHomePage.Visible = false;
                 menuStrip1.Visible = false;
@@ -2676,6 +2678,87 @@ namespace Shadev
         private void hSNMasterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SwitchTabPages(AllTabs.HSNMaster);
+        }
+
+        private void toolStripMenuItem15_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmNewItems fr = new frmNewItems();
+                fr.StartPosition = FormStartPosition.CenterParent;
+                fr.Stat = FrmCompany.NewItemAdd;
+                fr.ShowDialog();
+
+                RefreshNewItem();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void RefreshNewItem()
+        {
+            
+        }
+
+        private void toolStripMenuItem16_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmNewItems fr = new frmNewItems();
+                fr.StartPosition = FormStartPosition.CenterParent;
+                fr.Stat = FrmCompany.NewItemEdit;
+                
+                fr.ShowDialog();
+
+                RefreshNewItem();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void toolStripMenuItem17_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvItem.SelectedRows.Count > 0)
+                {
+                    AIO.command = "delete from hsnTax where id=" + dgvItem.SelectedRows[0].Cells["id"].Value.ToString();
+                    a1.cmdexe();
+
+                }
+                RefreshNewItem();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cmsItemMaster_Opening(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                if (dgvItem.SelectedRows.Count > 0)
+                {
+                    cmsItemMaster.Items[0].Text = dgvItem.SelectedRows[0].Cells["id"].Value.ToString();
+                    cmsItemMaster.Items[3].Enabled = true;
+                    cmsItemMaster.Items[4].Enabled = true;
+                }
+                else
+                {
+                    cmsItemMaster.Items[0].Text = "None";
+                    cmsItemMaster.Items[3].Enabled = false;
+                    cmsItemMaster.Items[4].Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

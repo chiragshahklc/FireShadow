@@ -32,7 +32,9 @@ namespace Shadev
         PaymentAdd = 22,
         PaymentEdit = 23,
         HSNAdd = 24,
-        HSNEdit = 25
+        HSNEdit = 25,
+        NewItemAdd = 26,
+        NewItemEdit = 27
     }
 
     public enum AllTabs : int

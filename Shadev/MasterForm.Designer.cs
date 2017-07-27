@@ -78,6 +78,7 @@
             this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabModel = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnStockReport = new System.Windows.Forms.Button();
             this.label63 = new System.Windows.Forms.Label();
             this.dtpStartStock = new System.Windows.Forms.DateTimePicker();
             this.label62 = new System.Windows.Forms.Label();
@@ -146,6 +147,11 @@
             this.editToolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabTransaction = new System.Windows.Forms.TabPage();
+            this.btnTranBillView = new System.Windows.Forms.Button();
+            this.btnPDF = new System.Windows.Forms.Button();
+            this.btnTransReport = new System.Windows.Forms.Button();
+            this.btnTransType = new System.Windows.Forms.Button();
+            this.btnTransSearch = new System.Windows.Forms.Button();
             this.btnTransCustSearch = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.cmbTransASC = new System.Windows.Forms.ComboBox();
@@ -168,6 +174,8 @@
             this.editToolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabExpense = new System.Windows.Forms.TabPage();
+            this.xButtons3 = new System.Windows.Forms.Button();
+            this.xButtons4 = new System.Windows.Forms.Button();
             this.txtExpenseSearch = new System.Windows.Forms.TextBox();
             this.label40 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
@@ -206,6 +214,8 @@
             this.lblTotalPaymentR = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPayment = new System.Windows.Forms.TabPage();
+            this.xButtons1 = new System.Windows.Forms.Button();
+            this.btnPaymentDisplay = new System.Windows.Forms.Button();
             this.cmbPayASC = new System.Windows.Forms.ComboBox();
             this.label54 = new System.Windows.Forms.Label();
             this.cmbPaymentSortby = new System.Windows.Forms.ComboBox();
@@ -235,7 +245,9 @@
             this.label34 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.btngeneralenable = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.bsngeneralsave = new System.Windows.Forms.Button();
             this.txtoldpass = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.txtnewpass2 = new System.Windows.Forms.TextBox();
@@ -243,11 +255,12 @@
             this.label32 = new System.Windows.Forms.Label();
             this.txtnewpass1 = new System.Windows.Forms.TextBox();
             this.tabTransReport = new System.Windows.Forms.TabPage();
+            this.btnTRPrint = new System.Windows.Forms.Button();
+            this.btnTRShow = new System.Windows.Forms.Button();
             this.cmbTRASC = new System.Windows.Forms.ComboBox();
             this.label55 = new System.Windows.Forms.Label();
             this.cmbTRSort = new System.Windows.Forms.ComboBox();
             this.btnTRCust = new System.Windows.Forms.Button();
-            this.dgvTR = new System.Windows.Forms.DataGridView();
             this.label42 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
@@ -256,6 +269,7 @@
             this.dtpTRTo = new System.Windows.Forms.DateTimePicker();
             this.dtpTRFrom = new System.Windows.Forms.DateTimePicker();
             this.cmbTRCustomerName = new System.Windows.Forms.ComboBox();
+            this.dgvTR = new System.Windows.Forms.DataGridView();
             this.tabAboutUs = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label51 = new System.Windows.Forms.Label();
@@ -287,12 +301,14 @@
             this.txtTMTax2 = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvHsn = new System.Windows.Forms.DataGridView();
+            this.cmsHsnMaster = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.txtItemDescription = new System.Windows.Forms.TextBox();
-            this.lbl1 = new System.Windows.Forms.Label();
-            this.cmbUnit = new System.Windows.Forms.ComboBox();
-            this.label69 = new System.Windows.Forms.Label();
+            this.dgvItem = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.companyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -310,15 +326,11 @@
             this.taxMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.termsAndConditionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.masterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.hSNMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label36 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.cmsHsnMaster = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsItemMaster = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
@@ -326,23 +338,6 @@
             this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripMenuItem();
             this.btnHomePage = new System.Windows.Forms.Button();
-            this.btnStockReport = new System.Windows.Forms.Button();
-            this.btnTransSearch = new System.Windows.Forms.Button();
-            this.btnTransType = new System.Windows.Forms.Button();
-            this.btnTransReport = new System.Windows.Forms.Button();
-            this.btnPDF = new System.Windows.Forms.Button();
-            this.btnTranBillView = new System.Windows.Forms.Button();
-            this.xButtons4 = new System.Windows.Forms.Button();
-            this.xButtons3 = new System.Windows.Forms.Button();
-            this.btnPaymentDisplay = new System.Windows.Forms.Button();
-            this.xButtons1 = new System.Windows.Forms.Button();
-            this.btngeneralenable = new System.Windows.Forms.Button();
-            this.bsngeneralsave = new System.Windows.Forms.Button();
-            this.btnTRShow = new System.Windows.Forms.Button();
-            this.btnTRPrint = new System.Windows.Forms.Button();
-            this.dgvItem = new System.Windows.Forms.DataGridView();
-            this.masterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.hSNMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabCompany.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompany)).BeginInit();
@@ -398,12 +393,11 @@
             this.cmsTaxMaster.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHsn)).BeginInit();
-            this.tabPage2.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.cmsHsnMaster.SuspendLayout();
-            this.cmsItemMaster.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).BeginInit();
+            this.menuStrip1.SuspendLayout();
+            this.cmsItemMaster.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -666,6 +660,20 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Stock Report";
+            // 
+            // btnStockReport
+            // 
+            this.btnStockReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStockReport.BackColor = System.Drawing.Color.Teal;
+            this.btnStockReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStockReport.ForeColor = System.Drawing.Color.White;
+            this.btnStockReport.Location = new System.Drawing.Point(264, 22);
+            this.btnStockReport.Name = "btnStockReport";
+            this.btnStockReport.Size = new System.Drawing.Size(94, 29);
+            this.btnStockReport.TabIndex = 13;
+            this.btnStockReport.Text = "Generate";
+            this.btnStockReport.UseVisualStyleBackColor = false;
+            this.btnStockReport.Click += new System.EventHandler(this.btnStockReport_Click);
             // 
             // label63
             // 
@@ -1446,6 +1454,76 @@
             this.tabTransaction.TabIndex = 9;
             this.tabTransaction.Text = "Transaction";
             // 
+            // btnTranBillView
+            // 
+            this.btnTranBillView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTranBillView.BackColor = System.Drawing.Color.Teal;
+            this.btnTranBillView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTranBillView.ForeColor = System.Drawing.Color.White;
+            this.btnTranBillView.Location = new System.Drawing.Point(1121, 508);
+            this.btnTranBillView.Name = "btnTranBillView";
+            this.btnTranBillView.Size = new System.Drawing.Size(100, 28);
+            this.btnTranBillView.TabIndex = 29;
+            this.btnTranBillView.Text = "Generate Bill";
+            this.btnTranBillView.UseVisualStyleBackColor = false;
+            this.btnTranBillView.Click += new System.EventHandler(this.btnTranBillView_Click);
+            // 
+            // btnPDF
+            // 
+            this.btnPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPDF.BackColor = System.Drawing.Color.Teal;
+            this.btnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPDF.ForeColor = System.Drawing.Color.White;
+            this.btnPDF.Location = new System.Drawing.Point(1017, 508);
+            this.btnPDF.Name = "btnPDF";
+            this.btnPDF.Size = new System.Drawing.Size(100, 28);
+            this.btnPDF.TabIndex = 28;
+            this.btnPDF.Text = "PDF";
+            this.btnPDF.UseVisualStyleBackColor = false;
+            this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
+            // 
+            // btnTransReport
+            // 
+            this.btnTransReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTransReport.BackColor = System.Drawing.Color.Teal;
+            this.btnTransReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTransReport.ForeColor = System.Drawing.Color.White;
+            this.btnTransReport.Location = new System.Drawing.Point(113, 53);
+            this.btnTransReport.Name = "btnTransReport";
+            this.btnTransReport.Size = new System.Drawing.Size(100, 28);
+            this.btnTransReport.TabIndex = 27;
+            this.btnTransReport.Text = "Report";
+            this.btnTransReport.UseVisualStyleBackColor = false;
+            this.btnTransReport.Click += new System.EventHandler(this.btnTransReport_Click);
+            // 
+            // btnTransType
+            // 
+            this.btnTransType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTransType.BackColor = System.Drawing.Color.Teal;
+            this.btnTransType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTransType.ForeColor = System.Drawing.Color.White;
+            this.btnTransType.Location = new System.Drawing.Point(7, 53);
+            this.btnTransType.Name = "btnTransType";
+            this.btnTransType.Size = new System.Drawing.Size(100, 28);
+            this.btnTransType.TabIndex = 26;
+            this.btnTransType.Text = "All";
+            this.btnTransType.UseVisualStyleBackColor = false;
+            this.btnTransType.Click += new System.EventHandler(this.btnTransType_Click);
+            // 
+            // btnTransSearch
+            // 
+            this.btnTransSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTransSearch.BackColor = System.Drawing.Color.Teal;
+            this.btnTransSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTransSearch.ForeColor = System.Drawing.Color.White;
+            this.btnTransSearch.Location = new System.Drawing.Point(1122, 55);
+            this.btnTransSearch.Name = "btnTransSearch";
+            this.btnTransSearch.Size = new System.Drawing.Size(99, 27);
+            this.btnTransSearch.TabIndex = 25;
+            this.btnTransSearch.Text = "Show";
+            this.btnTransSearch.UseVisualStyleBackColor = false;
+            this.btnTransSearch.Click += new System.EventHandler(this.btnTransSearch_Click);
+            // 
             // btnTransCustSearch
             // 
             this.btnTransCustSearch.Location = new System.Drawing.Point(411, 57);
@@ -1699,6 +1777,34 @@
             this.tabExpense.Size = new System.Drawing.Size(1228, 543);
             this.tabExpense.TabIndex = 10;
             this.tabExpense.Text = "Expense";
+            // 
+            // xButtons3
+            // 
+            this.xButtons3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.xButtons3.BackColor = System.Drawing.Color.Teal;
+            this.xButtons3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.xButtons3.ForeColor = System.Drawing.Color.White;
+            this.xButtons3.Location = new System.Drawing.Point(1115, 43);
+            this.xButtons3.Name = "xButtons3";
+            this.xButtons3.Size = new System.Drawing.Size(99, 29);
+            this.xButtons3.TabIndex = 17;
+            this.xButtons3.Text = "Print";
+            this.xButtons3.UseVisualStyleBackColor = false;
+            this.xButtons3.Click += new System.EventHandler(this.xButtons3_Click);
+            // 
+            // xButtons4
+            // 
+            this.xButtons4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.xButtons4.BackColor = System.Drawing.Color.Teal;
+            this.xButtons4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.xButtons4.ForeColor = System.Drawing.Color.White;
+            this.xButtons4.Location = new System.Drawing.Point(1010, 44);
+            this.xButtons4.Name = "xButtons4";
+            this.xButtons4.Size = new System.Drawing.Size(99, 27);
+            this.xButtons4.TabIndex = 16;
+            this.xButtons4.Text = "Show";
+            this.xButtons4.UseVisualStyleBackColor = false;
+            this.xButtons4.Click += new System.EventHandler(this.xButtons4_Click);
             // 
             // txtExpenseSearch
             // 
@@ -2161,6 +2267,34 @@
             this.tabPayment.TabIndex = 12;
             this.tabPayment.Text = "Payment";
             // 
+            // xButtons1
+            // 
+            this.xButtons1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.xButtons1.BackColor = System.Drawing.Color.Teal;
+            this.xButtons1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.xButtons1.ForeColor = System.Drawing.Color.White;
+            this.xButtons1.Location = new System.Drawing.Point(1123, 44);
+            this.xButtons1.Name = "xButtons1";
+            this.xButtons1.Size = new System.Drawing.Size(99, 28);
+            this.xButtons1.TabIndex = 19;
+            this.xButtons1.Text = "Print";
+            this.xButtons1.UseVisualStyleBackColor = false;
+            this.xButtons1.Click += new System.EventHandler(this.xButtons1_Click_1);
+            // 
+            // btnPaymentDisplay
+            // 
+            this.btnPaymentDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPaymentDisplay.BackColor = System.Drawing.Color.Teal;
+            this.btnPaymentDisplay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPaymentDisplay.ForeColor = System.Drawing.Color.White;
+            this.btnPaymentDisplay.Location = new System.Drawing.Point(1123, 9);
+            this.btnPaymentDisplay.Name = "btnPaymentDisplay";
+            this.btnPaymentDisplay.Size = new System.Drawing.Size(99, 28);
+            this.btnPaymentDisplay.TabIndex = 13;
+            this.btnPaymentDisplay.Text = "Show";
+            this.btnPaymentDisplay.UseVisualStyleBackColor = false;
+            this.btnPaymentDisplay.Click += new System.EventHandler(this.btnPaymentDisplay_Click);
+            // 
             // cmbPayASC
             // 
             this.cmbPayASC.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -2497,6 +2631,19 @@
             this.tabGeneral.Text = "General Settings";
             this.tabGeneral.Click += new System.EventHandler(this.tabGeneral_Click);
             // 
+            // btngeneralenable
+            // 
+            this.btngeneralenable.BackColor = System.Drawing.Color.Teal;
+            this.btngeneralenable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btngeneralenable.ForeColor = System.Drawing.Color.White;
+            this.btngeneralenable.Location = new System.Drawing.Point(500, 219);
+            this.btngeneralenable.Name = "btngeneralenable";
+            this.btngeneralenable.Size = new System.Drawing.Size(75, 30);
+            this.btngeneralenable.TabIndex = 20;
+            this.btngeneralenable.Text = "Disable";
+            this.btngeneralenable.UseVisualStyleBackColor = false;
+            this.btngeneralenable.Click += new System.EventHandler(this.btngeneralenable_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.bsngeneralsave);
@@ -2513,6 +2660,19 @@
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Security";
+            // 
+            // bsngeneralsave
+            // 
+            this.bsngeneralsave.BackColor = System.Drawing.Color.Teal;
+            this.bsngeneralsave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bsngeneralsave.ForeColor = System.Drawing.Color.White;
+            this.bsngeneralsave.Location = new System.Drawing.Point(252, 136);
+            this.bsngeneralsave.Name = "bsngeneralsave";
+            this.bsngeneralsave.Size = new System.Drawing.Size(75, 28);
+            this.bsngeneralsave.TabIndex = 21;
+            this.bsngeneralsave.Text = "Save";
+            this.bsngeneralsave.UseVisualStyleBackColor = false;
+            this.bsngeneralsave.Click += new System.EventHandler(this.bsngeneralsave_Click);
             // 
             // txtoldpass
             // 
@@ -2590,6 +2750,34 @@
             this.tabTransReport.TabIndex = 15;
             this.tabTransReport.Text = "Transaction Report";
             // 
+            // btnTRPrint
+            // 
+            this.btnTRPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTRPrint.BackColor = System.Drawing.Color.Teal;
+            this.btnTRPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTRPrint.ForeColor = System.Drawing.Color.White;
+            this.btnTRPrint.Location = new System.Drawing.Point(1042, 64);
+            this.btnTRPrint.Name = "btnTRPrint";
+            this.btnTRPrint.Size = new System.Drawing.Size(99, 29);
+            this.btnTRPrint.TabIndex = 29;
+            this.btnTRPrint.Text = "Print";
+            this.btnTRPrint.UseVisualStyleBackColor = false;
+            this.btnTRPrint.Click += new System.EventHandler(this.btnTRPrint_Click);
+            // 
+            // btnTRShow
+            // 
+            this.btnTRShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTRShow.BackColor = System.Drawing.Color.Teal;
+            this.btnTRShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTRShow.ForeColor = System.Drawing.Color.White;
+            this.btnTRShow.Location = new System.Drawing.Point(1042, 29);
+            this.btnTRShow.Name = "btnTRShow";
+            this.btnTRShow.Size = new System.Drawing.Size(99, 29);
+            this.btnTRShow.TabIndex = 28;
+            this.btnTRShow.Text = "Show";
+            this.btnTRShow.UseVisualStyleBackColor = false;
+            this.btnTRShow.Click += new System.EventHandler(this.btnTRShow_Click);
+            // 
             // cmbTRASC
             // 
             this.cmbTRASC.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -2641,35 +2829,6 @@
             this.btnTRCust.Text = "btnTRCust";
             this.btnTRCust.UseVisualStyleBackColor = true;
             this.btnTRCust.Click += new System.EventHandler(this.btnTRCust_Click);
-            // 
-            // dgvTR
-            // 
-            this.dgvTR.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTR.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
-            this.dgvTR.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTR.DefaultCellStyle = dataGridViewCellStyle18;
-            this.dgvTR.Location = new System.Drawing.Point(6, 103);
-            this.dgvTR.Name = "dgvTR";
-            this.dgvTR.RowTemplate.Height = 24;
-            this.dgvTR.Size = new System.Drawing.Size(1216, 432);
-            this.dgvTR.TabIndex = 23;
-            this.dgvTR.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvTR_ColumnAdded);
             // 
             // label42
             // 
@@ -2753,6 +2912,35 @@
             this.cmbTRCustomerName.Size = new System.Drawing.Size(443, 24);
             this.cmbTRCustomerName.TabIndex = 13;
             // 
+            // dgvTR
+            // 
+            this.dgvTR.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTR.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            this.dgvTR.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTR.DefaultCellStyle = dataGridViewCellStyle18;
+            this.dgvTR.Location = new System.Drawing.Point(6, 103);
+            this.dgvTR.Name = "dgvTR";
+            this.dgvTR.RowTemplate.Height = 24;
+            this.dgvTR.Size = new System.Drawing.Size(1216, 432);
+            this.dgvTR.TabIndex = 23;
+            this.dgvTR.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvTR_ColumnAdded);
+            // 
             // tabAboutUs
             // 
             this.tabAboutUs.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -2834,11 +3022,10 @@
             // 
             // txtRegSubmit
             // 
-            this.txtRegSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRegSubmit.BackColor = System.Drawing.Color.Teal;
             this.txtRegSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.txtRegSubmit.ForeColor = System.Drawing.Color.White;
-            this.txtRegSubmit.Location = new System.Drawing.Point(1086, 224);
+            this.txtRegSubmit.Location = new System.Drawing.Point(1026, 184);
             this.txtRegSubmit.Name = "txtRegSubmit";
             this.txtRegSubmit.Size = new System.Drawing.Size(102, 29);
             this.txtRegSubmit.TabIndex = 58;
@@ -2849,7 +3036,7 @@
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(513, 230);
+            this.label52.Location = new System.Drawing.Point(453, 190);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(86, 17);
             this.label52.TabIndex = 56;
@@ -2857,7 +3044,7 @@
             // 
             // txtRegSerial
             // 
-            this.txtRegSerial.Location = new System.Drawing.Point(605, 227);
+            this.txtRegSerial.Location = new System.Drawing.Point(545, 187);
             this.txtRegSerial.Name = "txtRegSerial";
             this.txtRegSerial.Size = new System.Drawing.Size(475, 22);
             this.txtRegSerial.TabIndex = 55;
@@ -2866,7 +3053,7 @@
             // 
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Monotype Corsiva", 48F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(478, 77);
+            this.label37.Location = new System.Drawing.Point(418, 37);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(403, 97);
             this.label37.TabIndex = 54;
@@ -2875,7 +3062,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::Shadev.Properties.Resources.iconImage;
-            this.pictureBox3.Location = new System.Drawing.Point(256, 77);
+            this.pictureBox3.Location = new System.Drawing.Point(196, 37);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(216, 218);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -3121,11 +3308,58 @@
             this.dgvHsn.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvHsn_ColumnAdded);
             this.dgvHsn.SelectionChanged += new System.EventHandler(this.dgvHsn_SelectionChanged);
             // 
+            // cmsHsnMaster
+            // 
+            this.cmsHsnMaster.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsHsnMaster.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem10,
+            this.toolStripSeparator11,
+            this.toolStripMenuItem11,
+            this.toolStripMenuItem12,
+            this.toolStripMenuItem13});
+            this.cmsHsnMaster.Name = "cmsHsnMaster";
+            this.cmsHsnMaster.Size = new System.Drawing.Size(123, 106);
+            this.cmsHsnMaster.Opening += new System.ComponentModel.CancelEventHandler(this.cmsHsnMaster_Opening);
+            // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItem10.Text = "None";
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(119, 6);
+            // 
+            // toolStripMenuItem11
+            // 
+            this.toolStripMenuItem11.Name = "toolStripMenuItem11";
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItem11.Text = "Add";
+            this.toolStripMenuItem11.Click += new System.EventHandler(this.toolStripMenuItem11_Click);
+            // 
+            // toolStripMenuItem12
+            // 
+            this.toolStripMenuItem12.Enabled = false;
+            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItem12.Text = "Edit";
+            this.toolStripMenuItem12.Click += new System.EventHandler(this.toolStripMenuItem12_Click);
+            // 
+            // toolStripMenuItem13
+            // 
+            this.toolStripMenuItem13.Enabled = false;
+            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItem13.Text = "Delete";
+            this.toolStripMenuItem13.Click += new System.EventHandler(this.toolStripMenuItem13_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Teal;
             this.tabPage2.Controls.Add(this.dgvItem);
-            this.tabPage2.Controls.Add(this.groupBox6);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -3133,55 +3367,47 @@
             this.tabPage2.TabIndex = 20;
             this.tabPage2.Text = "Item Master";
             // 
-            // groupBox6
+            // dgvItem
             // 
-            this.groupBox6.Controls.Add(this.txtItemDescription);
-            this.groupBox6.Controls.Add(this.lbl1);
-            this.groupBox6.Controls.Add(this.cmbUnit);
-            this.groupBox6.Controls.Add(this.label69);
-            this.groupBox6.ForeColor = System.Drawing.Color.White;
-            this.groupBox6.Location = new System.Drawing.Point(24, 24);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(531, 112);
-            this.groupBox6.TabIndex = 38;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Product Description";
-            // 
-            // txtItemDescription
-            // 
-            this.txtItemDescription.Location = new System.Drawing.Point(123, 32);
-            this.txtItemDescription.Margin = new System.Windows.Forms.Padding(4);
-            this.txtItemDescription.Name = "txtItemDescription";
-            this.txtItemDescription.Size = new System.Drawing.Size(401, 22);
-            this.txtItemDescription.TabIndex = 1;
-            // 
-            // lbl1
-            // 
-            this.lbl1.AutoSize = true;
-            this.lbl1.Location = new System.Drawing.Point(12, 32);
-            this.lbl1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(113, 17);
-            this.lbl1.TabIndex = 20;
-            this.lbl1.Text = "Item Description:";
-            // 
-            // cmbUnit
-            // 
-            this.cmbUnit.FormattingEnabled = true;
-            this.cmbUnit.Location = new System.Drawing.Point(123, 64);
-            this.cmbUnit.Name = "cmbUnit";
-            this.cmbUnit.Size = new System.Drawing.Size(207, 24);
-            this.cmbUnit.TabIndex = 2;
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(75, 67);
-            this.label69.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(41, 17);
-            this.label69.TabIndex = 21;
-            this.label69.Text = "Unit :";
+            this.dgvItem.AllowUserToAddRows = false;
+            this.dgvItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvItem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvItem.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
+            this.dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvItem.ContextMenuStrip = this.cmsItemMaster;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvItem.DefaultCellStyle = dataGridViewCellStyle26;
+            this.dgvItem.Location = new System.Drawing.Point(24, 143);
+            this.dgvItem.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvItem.MultiSelect = false;
+            this.dgvItem.Name = "dgvItem";
+            this.dgvItem.ReadOnly = true;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvItem.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            this.dgvItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvItem.Size = new System.Drawing.Size(1181, 339);
+            this.dgvItem.TabIndex = 40;
             // 
             // menuStrip1
             // 
@@ -3219,21 +3445,21 @@
             // companyToolStripMenuItem
             // 
             this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
-            this.companyToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.companyToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
             this.companyToolStripMenuItem.Text = "Company";
             this.companyToolStripMenuItem.Click += new System.EventHandler(this.companyToolStripMenuItem_Click);
             // 
             // categoryToolStripMenuItem
             // 
             this.categoryToolStripMenuItem.Name = "categoryToolStripMenuItem";
-            this.categoryToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.categoryToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
             this.categoryToolStripMenuItem.Text = "Category";
             this.categoryToolStripMenuItem.Click += new System.EventHandler(this.categoryToolStripMenuItem_Click);
             // 
             // modelToolStripMenuItem
             // 
             this.modelToolStripMenuItem.Name = "modelToolStripMenuItem";
-            this.modelToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.modelToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
             this.modelToolStripMenuItem.Text = "Model";
             this.modelToolStripMenuItem.Click += new System.EventHandler(this.modelToolStripMenuItem_Click);
             // 
@@ -3325,6 +3551,21 @@
             this.aboutUsToolStripMenuItem.Text = "About Us";
             this.aboutUsToolStripMenuItem.Click += new System.EventHandler(this.aboutUsToolStripMenuItem_Click);
             // 
+            // masterToolStripMenuItem1
+            // 
+            this.masterToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hSNMasterToolStripMenuItem});
+            this.masterToolStripMenuItem1.Name = "masterToolStripMenuItem1";
+            this.masterToolStripMenuItem1.Size = new System.Drawing.Size(66, 22);
+            this.masterToolStripMenuItem1.Text = "Master";
+            // 
+            // hSNMasterToolStripMenuItem
+            // 
+            this.hSNMasterToolStripMenuItem.Name = "hSNMasterToolStripMenuItem";
+            this.hSNMasterToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.hSNMasterToolStripMenuItem.Text = "HSN Master";
+            this.hSNMasterToolStripMenuItem.Click += new System.EventHandler(this.hSNMasterToolStripMenuItem_Click);
+            // 
             // label36
             // 
             this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -3340,54 +3581,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // cmsHsnMaster
-            // 
-            this.cmsHsnMaster.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsHsnMaster.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem10,
-            this.toolStripSeparator11,
-            this.toolStripMenuItem11,
-            this.toolStripMenuItem12,
-            this.toolStripMenuItem13});
-            this.cmsHsnMaster.Name = "cmsHsnMaster";
-            this.cmsHsnMaster.Size = new System.Drawing.Size(123, 106);
-            this.cmsHsnMaster.Opening += new System.ComponentModel.CancelEventHandler(this.cmsHsnMaster_Opening);
-            // 
-            // toolStripMenuItem10
-            // 
-            this.toolStripMenuItem10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(122, 24);
-            this.toolStripMenuItem10.Text = "None";
-            // 
-            // toolStripSeparator11
-            // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(119, 6);
-            // 
-            // toolStripMenuItem11
-            // 
-            this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(122, 24);
-            this.toolStripMenuItem11.Text = "Add";
-            this.toolStripMenuItem11.Click += new System.EventHandler(this.toolStripMenuItem11_Click);
-            // 
-            // toolStripMenuItem12
-            // 
-            this.toolStripMenuItem12.Enabled = false;
-            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(122, 24);
-            this.toolStripMenuItem12.Text = "Edit";
-            this.toolStripMenuItem12.Click += new System.EventHandler(this.toolStripMenuItem12_Click);
-            // 
-            // toolStripMenuItem13
-            // 
-            this.toolStripMenuItem13.Enabled = false;
-            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(122, 24);
-            this.toolStripMenuItem13.Text = "Delete";
-            this.toolStripMenuItem13.Click += new System.EventHandler(this.toolStripMenuItem13_Click);
-            // 
             // cmsItemMaster
             // 
             this.cmsItemMaster.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -3399,6 +3592,7 @@
             this.toolStripMenuItem17});
             this.cmsItemMaster.Name = "cmsHsnMaster";
             this.cmsItemMaster.Size = new System.Drawing.Size(123, 106);
+            this.cmsItemMaster.Opening += new System.ComponentModel.CancelEventHandler(this.cmsItemMaster_Opening);
             // 
             // toolStripMenuItem14
             // 
@@ -3417,6 +3611,7 @@
             this.toolStripMenuItem15.Name = "toolStripMenuItem15";
             this.toolStripMenuItem15.Size = new System.Drawing.Size(122, 24);
             this.toolStripMenuItem15.Text = "Add";
+            this.toolStripMenuItem15.Click += new System.EventHandler(this.toolStripMenuItem15_Click);
             // 
             // toolStripMenuItem16
             // 
@@ -3424,6 +3619,7 @@
             this.toolStripMenuItem16.Name = "toolStripMenuItem16";
             this.toolStripMenuItem16.Size = new System.Drawing.Size(122, 24);
             this.toolStripMenuItem16.Text = "Edit";
+            this.toolStripMenuItem16.Click += new System.EventHandler(this.toolStripMenuItem16_Click);
             // 
             // toolStripMenuItem17
             // 
@@ -3431,6 +3627,7 @@
             this.toolStripMenuItem17.Name = "toolStripMenuItem17";
             this.toolStripMenuItem17.Size = new System.Drawing.Size(122, 24);
             this.toolStripMenuItem17.Text = "Delete";
+            this.toolStripMenuItem17.Click += new System.EventHandler(this.toolStripMenuItem17_Click);
             // 
             // btnHomePage
             // 
@@ -3445,257 +3642,6 @@
             this.btnHomePage.Text = "Home";
             this.btnHomePage.UseVisualStyleBackColor = false;
             this.btnHomePage.Click += new System.EventHandler(this.xButtons1_Click);
-            // 
-            // btnStockReport
-            // 
-            this.btnStockReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStockReport.BackColor = System.Drawing.Color.Teal;
-            this.btnStockReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStockReport.ForeColor = System.Drawing.Color.White;
-            this.btnStockReport.Location = new System.Drawing.Point(264, 22);
-            this.btnStockReport.Name = "btnStockReport";
-            this.btnStockReport.Size = new System.Drawing.Size(94, 29);
-            this.btnStockReport.TabIndex = 13;
-            this.btnStockReport.Text = "Generate";
-            this.btnStockReport.UseVisualStyleBackColor = false;
-            this.btnStockReport.Click += new System.EventHandler(this.btnStockReport_Click);
-            // 
-            // btnTransSearch
-            // 
-            this.btnTransSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTransSearch.BackColor = System.Drawing.Color.Teal;
-            this.btnTransSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTransSearch.ForeColor = System.Drawing.Color.White;
-            this.btnTransSearch.Location = new System.Drawing.Point(1122, 55);
-            this.btnTransSearch.Name = "btnTransSearch";
-            this.btnTransSearch.Size = new System.Drawing.Size(99, 27);
-            this.btnTransSearch.TabIndex = 25;
-            this.btnTransSearch.Text = "Show";
-            this.btnTransSearch.UseVisualStyleBackColor = false;
-            this.btnTransSearch.Click += new System.EventHandler(this.btnTransSearch_Click);
-            // 
-            // btnTransType
-            // 
-            this.btnTransType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTransType.BackColor = System.Drawing.Color.Teal;
-            this.btnTransType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTransType.ForeColor = System.Drawing.Color.White;
-            this.btnTransType.Location = new System.Drawing.Point(7, 53);
-            this.btnTransType.Name = "btnTransType";
-            this.btnTransType.Size = new System.Drawing.Size(100, 28);
-            this.btnTransType.TabIndex = 26;
-            this.btnTransType.Text = "All";
-            this.btnTransType.UseVisualStyleBackColor = false;
-            this.btnTransType.Click += new System.EventHandler(this.btnTransType_Click);
-            // 
-            // btnTransReport
-            // 
-            this.btnTransReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTransReport.BackColor = System.Drawing.Color.Teal;
-            this.btnTransReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTransReport.ForeColor = System.Drawing.Color.White;
-            this.btnTransReport.Location = new System.Drawing.Point(113, 53);
-            this.btnTransReport.Name = "btnTransReport";
-            this.btnTransReport.Size = new System.Drawing.Size(100, 28);
-            this.btnTransReport.TabIndex = 27;
-            this.btnTransReport.Text = "Report";
-            this.btnTransReport.UseVisualStyleBackColor = false;
-            this.btnTransReport.Click += new System.EventHandler(this.btnTransReport_Click);
-            // 
-            // btnPDF
-            // 
-            this.btnPDF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPDF.BackColor = System.Drawing.Color.Teal;
-            this.btnPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPDF.ForeColor = System.Drawing.Color.White;
-            this.btnPDF.Location = new System.Drawing.Point(1017, 508);
-            this.btnPDF.Name = "btnPDF";
-            this.btnPDF.Size = new System.Drawing.Size(100, 28);
-            this.btnPDF.TabIndex = 28;
-            this.btnPDF.Text = "PDF";
-            this.btnPDF.UseVisualStyleBackColor = false;
-            this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
-            // 
-            // btnTranBillView
-            // 
-            this.btnTranBillView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTranBillView.BackColor = System.Drawing.Color.Teal;
-            this.btnTranBillView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTranBillView.ForeColor = System.Drawing.Color.White;
-            this.btnTranBillView.Location = new System.Drawing.Point(1121, 508);
-            this.btnTranBillView.Name = "btnTranBillView";
-            this.btnTranBillView.Size = new System.Drawing.Size(100, 28);
-            this.btnTranBillView.TabIndex = 29;
-            this.btnTranBillView.Text = "Generate Bill";
-            this.btnTranBillView.UseVisualStyleBackColor = false;
-            this.btnTranBillView.Click += new System.EventHandler(this.btnTranBillView_Click);
-            // 
-            // xButtons4
-            // 
-            this.xButtons4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.xButtons4.BackColor = System.Drawing.Color.Teal;
-            this.xButtons4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.xButtons4.ForeColor = System.Drawing.Color.White;
-            this.xButtons4.Location = new System.Drawing.Point(1010, 44);
-            this.xButtons4.Name = "xButtons4";
-            this.xButtons4.Size = new System.Drawing.Size(99, 27);
-            this.xButtons4.TabIndex = 16;
-            this.xButtons4.Text = "Show";
-            this.xButtons4.UseVisualStyleBackColor = false;
-            this.xButtons4.Click += new System.EventHandler(this.xButtons4_Click);
-            // 
-            // xButtons3
-            // 
-            this.xButtons3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.xButtons3.BackColor = System.Drawing.Color.Teal;
-            this.xButtons3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.xButtons3.ForeColor = System.Drawing.Color.White;
-            this.xButtons3.Location = new System.Drawing.Point(1115, 43);
-            this.xButtons3.Name = "xButtons3";
-            this.xButtons3.Size = new System.Drawing.Size(99, 29);
-            this.xButtons3.TabIndex = 17;
-            this.xButtons3.Text = "Print";
-            this.xButtons3.UseVisualStyleBackColor = false;
-            this.xButtons3.Click += new System.EventHandler(this.xButtons3_Click);
-            // 
-            // btnPaymentDisplay
-            // 
-            this.btnPaymentDisplay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPaymentDisplay.BackColor = System.Drawing.Color.Teal;
-            this.btnPaymentDisplay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPaymentDisplay.ForeColor = System.Drawing.Color.White;
-            this.btnPaymentDisplay.Location = new System.Drawing.Point(1123, 9);
-            this.btnPaymentDisplay.Name = "btnPaymentDisplay";
-            this.btnPaymentDisplay.Size = new System.Drawing.Size(99, 28);
-            this.btnPaymentDisplay.TabIndex = 13;
-            this.btnPaymentDisplay.Text = "Show";
-            this.btnPaymentDisplay.UseVisualStyleBackColor = false;
-            this.btnPaymentDisplay.Click += new System.EventHandler(this.btnPaymentDisplay_Click);
-            // 
-            // xButtons1
-            // 
-            this.xButtons1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.xButtons1.BackColor = System.Drawing.Color.Teal;
-            this.xButtons1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.xButtons1.ForeColor = System.Drawing.Color.White;
-            this.xButtons1.Location = new System.Drawing.Point(1123, 44);
-            this.xButtons1.Name = "xButtons1";
-            this.xButtons1.Size = new System.Drawing.Size(99, 28);
-            this.xButtons1.TabIndex = 19;
-            this.xButtons1.Text = "Print";
-            this.xButtons1.UseVisualStyleBackColor = false;
-            this.xButtons1.Click += new System.EventHandler(this.xButtons1_Click_1);
-            // 
-            // btngeneralenable
-            // 
-            this.btngeneralenable.BackColor = System.Drawing.Color.Teal;
-            this.btngeneralenable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btngeneralenable.ForeColor = System.Drawing.Color.White;
-            this.btngeneralenable.Location = new System.Drawing.Point(500, 219);
-            this.btngeneralenable.Name = "btngeneralenable";
-            this.btngeneralenable.Size = new System.Drawing.Size(75, 30);
-            this.btngeneralenable.TabIndex = 20;
-            this.btngeneralenable.Text = "Disable";
-            this.btngeneralenable.UseVisualStyleBackColor = false;
-            this.btngeneralenable.Click += new System.EventHandler(this.btngeneralenable_Click);
-            // 
-            // bsngeneralsave
-            // 
-            this.bsngeneralsave.BackColor = System.Drawing.Color.Teal;
-            this.bsngeneralsave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bsngeneralsave.ForeColor = System.Drawing.Color.White;
-            this.bsngeneralsave.Location = new System.Drawing.Point(252, 136);
-            this.bsngeneralsave.Name = "bsngeneralsave";
-            this.bsngeneralsave.Size = new System.Drawing.Size(75, 28);
-            this.bsngeneralsave.TabIndex = 21;
-            this.bsngeneralsave.Text = "Save";
-            this.bsngeneralsave.UseVisualStyleBackColor = false;
-            this.bsngeneralsave.Click += new System.EventHandler(this.bsngeneralsave_Click);
-            // 
-            // btnTRShow
-            // 
-            this.btnTRShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTRShow.BackColor = System.Drawing.Color.Teal;
-            this.btnTRShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTRShow.ForeColor = System.Drawing.Color.White;
-            this.btnTRShow.Location = new System.Drawing.Point(1042, 29);
-            this.btnTRShow.Name = "btnTRShow";
-            this.btnTRShow.Size = new System.Drawing.Size(99, 29);
-            this.btnTRShow.TabIndex = 28;
-            this.btnTRShow.Text = "Show";
-            this.btnTRShow.UseVisualStyleBackColor = false;
-            this.btnTRShow.Click += new System.EventHandler(this.btnTRShow_Click);
-            // 
-            // btnTRPrint
-            // 
-            this.btnTRPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTRPrint.BackColor = System.Drawing.Color.Teal;
-            this.btnTRPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTRPrint.ForeColor = System.Drawing.Color.White;
-            this.btnTRPrint.Location = new System.Drawing.Point(1042, 64);
-            this.btnTRPrint.Name = "btnTRPrint";
-            this.btnTRPrint.Size = new System.Drawing.Size(99, 29);
-            this.btnTRPrint.TabIndex = 29;
-            this.btnTRPrint.Text = "Print";
-            this.btnTRPrint.UseVisualStyleBackColor = false;
-            this.btnTRPrint.Click += new System.EventHandler(this.btnTRPrint_Click);
-            // 
-            // dgvItem
-            // 
-            this.dgvItem.AllowUserToAddRows = false;
-            this.dgvItem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvItem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvItem.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
-            this.dgvItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvItem.ContextMenuStrip = this.cmsBank;
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvItem.DefaultCellStyle = dataGridViewCellStyle26;
-            this.dgvItem.Location = new System.Drawing.Point(24, 143);
-            this.dgvItem.Margin = new System.Windows.Forms.Padding(4);
-            this.dgvItem.MultiSelect = false;
-            this.dgvItem.Name = "dgvItem";
-            this.dgvItem.ReadOnly = true;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvItem.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
-            this.dgvItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvItem.Size = new System.Drawing.Size(1181, 339);
-            this.dgvItem.TabIndex = 40;
-            // 
-            // masterToolStripMenuItem1
-            // 
-            this.masterToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hSNMasterToolStripMenuItem});
-            this.masterToolStripMenuItem1.Name = "masterToolStripMenuItem1";
-            this.masterToolStripMenuItem1.Size = new System.Drawing.Size(66, 22);
-            this.masterToolStripMenuItem1.Text = "Master";
-            // 
-            // hSNMasterToolStripMenuItem
-            // 
-            this.hSNMasterToolStripMenuItem.Name = "hSNMasterToolStripMenuItem";
-            this.hSNMasterToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.hSNMasterToolStripMenuItem.Text = "HSN Master";
-            this.hSNMasterToolStripMenuItem.Click += new System.EventHandler(this.hSNMasterToolStripMenuItem_Click);
             // 
             // MasterForm
             // 
@@ -3790,14 +3736,12 @@
             this.cmsTaxMaster.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHsn)).EndInit();
+            this.cmsHsnMaster.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.cmsHsnMaster.ResumeLayout(false);
             this.cmsItemMaster.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4048,11 +3992,6 @@
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.DateTimePicker dtpStartStock;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox txtItemDescription;
-        private System.Windows.Forms.Label lbl1;
-        private System.Windows.Forms.ComboBox cmbUnit;
-        private System.Windows.Forms.Label label69;
         private System.Windows.Forms.ContextMenuStrip cmsHsnMaster;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem10;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;

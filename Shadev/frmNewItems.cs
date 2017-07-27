@@ -15,16 +15,17 @@ namespace Shadev
 
         static int TempId = -1;
         AIO A1;
+        public FrmCompany Stat { get; set; }
         List<long> UnitId = new List<long>();
 
         public frmNewItems()
         {
             InitializeComponent();
             A1 = new AIO();
-            dgvItem.AllowUserToAddRows = false;
-            dgvItem.AllowUserToDeleteRows = false;
-            dgvItem.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvItem.ReadOnly = true;
+            //dgvItem.AllowUserToAddRows = false;
+            //dgvItem.AllowUserToDeleteRows = false;
+            //dgvItem.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //dgvItem.ReadOnly = true;
             btnSave.Enabled = false;
         }
 
@@ -38,9 +39,9 @@ namespace Shadev
                     A1.cmdexe();
                     MessageBox.Show("Item Inserted", "FireShadow", MessageBoxButtons.OK);
                     DataRefresh();
-                    btnDelete.Enabled = true;
-                    btnUpdate.Enabled = true;
-                    btnDelete.Enabled = true;
+                    //btnDelete.Enabled = true;
+                    //btnUpdate.Enabled = true;
+                    //btnDelete.Enabled = true;
                     btnSave.Enabled = false;
 
                 }
@@ -120,8 +121,8 @@ namespace Shadev
                 var v1 = A1.dataload();
                 if (v1 == null)
                 {
-                    dgvItem.DataSource = v1;
-                    dgvItem.Columns["id"].Visible = false;
+                    //dgvItem.DataSource = v1;
+                    //dgvItem.Columns["id"].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -135,9 +136,9 @@ namespace Shadev
         {
             try
             {
-                btnDelete.Enabled = false;
-                btnUpdate.Enabled = false;
-                btnDelete.Enabled = false;
+                //btnDelete.Enabled = false;
+                //btnUpdate.Enabled = false;
+                //btnDelete.Enabled = false;
                 btnSave.Enabled = true;
             }
             catch (Exception ex)
@@ -150,21 +151,36 @@ namespace Shadev
         {
             try
             {
-                AIO.command = "SELECT id,uom from Units";
-                var dt = A1.dataload();
 
-                cmbUnit.Items.Clear();
-                UnitId.Clear();
-
-                foreach (DataRow row in dt.Rows)
+                switch (Stat)
                 {
-                    cmbUnit.Items.Add(row["uom"].ToString());
-                    UnitId.Add(Convert.ToInt64(row["id"].ToString()));
+                    case FrmCompany.NewItemAdd:
+                        {
+                        }
+                        break;
+                    case FrmCompany.NewItemEdit:
+                        {
+                        }
+                        break;
+                    default:
+                        break;
                 }
 
-                cmbUnit.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                cmbUnit.AutoCompleteSource = AutoCompleteSource.ListItems;
-                DataRefresh();
+                //AIO.command = "SELECT id,uom from Units";
+                //var dt = A1.dataload();
+
+                //cmbUnit.Items.Clear();
+                //UnitId.Clear();
+
+                //foreach (DataRow row in dt.Rows)
+                //{
+                //    cmbUnit.Items.Add(row["uom"].ToString());
+                //    UnitId.Add(Convert.ToInt64(row["id"].ToString()));
+                //}
+
+                //cmbUnit.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                //cmbUnit.AutoCompleteSource = AutoCompleteSource.ListItems;
+                //DataRefresh();
             }
             catch (Exception ex)
             {
@@ -176,14 +192,19 @@ namespace Shadev
         {
             try
             {
-                TempId = Convert.ToInt32(dgvItem.SelectedRows[0].Cells["id"].Value.ToString());
-                txtItemDescription.Text = dgvItem.SelectedRows[0].Cells["itemDesc"].ToString();
-                cmbUnit.SelectedIndex = Convert.ToInt32(dgvItem.SelectedRows[0].Cells["oid"].Value.ToString());
+                //TempId = Convert.ToInt32(dgvItem.SelectedRows[0].Cells["id"].Value.ToString());
+                //txtItemDescription.Text = dgvItem.SelectedRows[0].Cells["itemDesc"].ToString();
+                //cmbUnit.SelectedIndex = Convert.ToInt32(dgvItem.SelectedRows[0].Cells["oid"].Value.ToString());
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
