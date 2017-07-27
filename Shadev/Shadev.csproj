@@ -201,11 +201,23 @@
     <Compile Include="frmTermsAndCond.Designer.cs">
       <DependentUpon>frmTermsAndCond.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmNewTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNewTransaction.Designer.cs">
+      <DependentUpon>frmNewTransaction.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTransaction.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmTransaction.Designer.cs">
       <DependentUpon>frmTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNewTransactionItemsGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNewTransactionItemsGrid.Designer.cs">
+      <DependentUpon>frmNewTransactionItemsGrid.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTransactionItemsGrid.cs">
       <SubType>Form</SubType>
@@ -307,8 +319,14 @@
     <EmbeddedResource Include="frmTermsAndCond.resx">
       <DependentUpon>frmTermsAndCond.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmNewTransaction.resx">
+      <DependentUpon>frmNewTransaction.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTransaction.resx">
       <DependentUpon>frmTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNewTransactionItemsGrid.resx">
+      <DependentUpon>frmNewTransactionItemsGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTransactionItemsGrid.resx">
       <DependentUpon>frmTransactionItemsGrid.cs</DependentUpon>
