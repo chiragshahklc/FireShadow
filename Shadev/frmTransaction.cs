@@ -483,7 +483,7 @@ namespace Shadev
                     txtTotal.Text = price.ToString();
                     txtTax1Amount.Text = Math.Round((price * (double.Parse(txtTax1Percentage.Text)) / 100), 2).ToString();
                     txtTax2Amount.Text = Math.Round((price * (double.Parse(txtTax2Percentage.Text)) / 100), 2).ToString();
-                    txtFinalAmount.Text = Math.Round((double.Parse(txtTax1Amount.Text) + double.Parse(txtTax2Amount.Text) + price), 0).ToString();
+                    txtFinalAmount.Text = Math.Round((double.Parse(txtTax1Amount.Text) + double.Parse(txtTax2Amount.Text) + price), 2).ToString();
                 }
                 else
                 {

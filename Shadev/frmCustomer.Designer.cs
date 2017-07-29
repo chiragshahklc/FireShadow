@@ -125,12 +125,12 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(35, 265);
+            this.label5.Location = new System.Drawing.Point(42, 264);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(85, 17);
+            this.label5.Size = new System.Drawing.Size(80, 17);
             this.label5.TabIndex = 11;
-            this.label5.Text = "Vat TIN No.:";
+            this.label5.Text = "GSTIN No.:";
             // 
             // txtCustomerVat
             // 
@@ -143,7 +143,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(56, 297);
+            this.label6.Location = new System.Drawing.Point(56, 293);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 17);

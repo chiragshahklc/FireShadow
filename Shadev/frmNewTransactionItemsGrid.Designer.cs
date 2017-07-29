@@ -85,7 +85,7 @@
             // 
             // rtbDesc
             // 
-            this.rtbDesc.Location = new System.Drawing.Point(119, 232);
+            this.rtbDesc.Location = new System.Drawing.Point(119, 187);
             this.rtbDesc.Margin = new System.Windows.Forms.Padding(4);
             this.rtbDesc.Name = "rtbDesc";
             this.rtbDesc.Size = new System.Drawing.Size(363, 117);
@@ -95,7 +95,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(27, 286);
+            this.label9.Location = new System.Drawing.Point(27, 241);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(83, 17);
@@ -117,7 +117,7 @@
             this.btnSave.BackColor = System.Drawing.Color.Teal;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(119, 358);
+            this.btnSave.Location = new System.Drawing.Point(119, 313);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 29);
             this.btnSave.TabIndex = 7;
@@ -131,7 +131,7 @@
             this.btnCancel.BackColor = System.Drawing.Color.Teal;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(225, 358);
+            this.btnCancel.Location = new System.Drawing.Point(225, 313);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 29);
             this.btnCancel.TabIndex = 8;
@@ -193,7 +193,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(529, 445);
+            this.ClientSize = new System.Drawing.Size(529, 364);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.label1);

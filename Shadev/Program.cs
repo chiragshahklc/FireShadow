@@ -56,7 +56,8 @@ namespace Shadev
         AboutUs = 14,
         Registration = 15,
         TaxMaster = 16,
-        HSNMaster = 17
+        HSNMaster = 17,
+        ItemMaster  =18
     }
 
     public enum TranSearc : int

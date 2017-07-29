@@ -30,7 +30,7 @@ namespace Shadev
 
             try
             {
-                rptMainBill rpt = new rptMainBill();
+                rptMainBill2 rpt = new rptMainBill2();
                 dsCommon ds = new dsCommon();
 
 
@@ -40,9 +40,9 @@ namespace Shadev
                 SQLiteDataAdapter da = new SQLiteDataAdapter(AIO.command, con);
                 da.Fill(ds, "AM");
 
-                AIO.command = "select tranNo as[No],tranDate as [Date],tranTotal as [Price],tranTax1 as [Tax1],tranTax2 as [Tax2],tranDiscPerc as [DiscPerc],tranDiscRs as [DiscRs],tranFinalTotal as [Total],tranInvoice as [Invoice],tranTax1Name as [tax1n],tranTax2Name as [tax2n] from Trans as [T] where id=" + ID;
+                AIO.command = "select tranNo as[No],tranDate as [Date],tranInvoice as [Invoice] from Trans as [T] where id=" + ID;
                 da = new SQLiteDataAdapter(AIO.command, con);
-                da.Fill(ds, "Trans");
+                da.Fill(ds, "Trans2");
 
                 //AIO.command = "select id,itgQTY as [qty],itgPrice as [price],itgDesc as [desc] from TranItemsGrid where itgTranID=" + ID + " order by id asc";
                 //da = new SQLiteDataAdapter(AIO.command, con);
@@ -81,9 +81,45 @@ namespace Shadev
                 //}
                 //coms = coms.Remove(coms.Length - 1, 1);
 
-                AIO.command = "select (select comName from Company where id=(select catComID from Category where id=modCatID)) as [com],modName as [mod],itgQTY as [qty],itgPrice as [price],itgDesc as [desc] from model as m left join TranItemsGrid as tg on m.id=tg.itgModID  where m.id in (select itgModID from TranItemsGrid where itgTranID=" + ID + ") and tg.itgTranID=" + ID +" order by tg.id ASC";
+                StringBuilder sb = new StringBuilder();
+                sb.Append("SELECT I.itemDesc AS [Item], ");
+                sb.Append("H.hsnCode AS [HSN], ");
+                sb.Append("T.itgPrice AS [Price], ");
+                sb.Append("T.itgQTY AS [QTY], ");
+                sb.Append("T.itgTotal AS [Total], ");
+                sb.Append("Round(T.itgTotal * (H.sgst / 100), 2) AS [SGST], ");
+                sb.Append("Round(T.itgTotal * (H.cgst / 100), 2) AS [CGST], ");
+                sb.Append("Round(T.itgTotal * (H.igst / 100), 2) AS [IGST],");
+                sb.Append("Round(T.itgTotal + T.itgTotal * (H.igst / 100), 2) AS [Amount], ");
+                sb.Append("T.itgDesc AS [Desc] ");
+                sb.Append("FROM TranItemsGrid AS T ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Items AS I ON T.itgModID = I.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("HsnTax AS H ON I.hsnId = H.id ");
+                sb.Append("WHERE T.itgTranID=" + ID + " ");
+                sb.Append("ORDER BY T.id ASC");
+                AIO.command = sb.ToString();
+                //AIO.command = "select (select comName from Company where id=(select catComID from Category where id=modCatID)) as [com],modName as [mod],itgQTY as [qty],itgPrice as [price],itgDesc as [desc] from model as m left join TranItemsGrid as tg on m.id=tg.itgModID  where m.id in (select itgModID from TranItemsGrid where itgTranID=" + ID + ") and tg.itgTranID=" + ID +" order by tg.id ASC";
                 da = new SQLiteDataAdapter(AIO.command, con);
-                da.Fill(ds, "CM");
+                da.Fill(ds, "ITG");
+
+                sb = new StringBuilder();
+                sb.Append("SELECT group_concat(DISTINCT(h.hsnCode)) as [code], ");
+                sb.Append("h.sgst AS [SGST], ");
+                sb.Append("h.cgst AS [CGST], ");
+                sb.Append("h.igst AS [IGST], ");
+                sb.Append("sum(itg.itgPrice * itg.itgQTY * (h.sgst / 100)) AS [TAX] ");
+                sb.Append("FROM HsnTax AS h ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Items AS i ON i.hsnId = h.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("TranItemsGrid AS itg ON itg.itgModID = i.id ");
+                sb.Append("WHERE itg.itgTranID ="+ ID + " ");
+                sb.Append("GROUP BY h.sgst");
+                AIO.command = sb.ToString();
+                da = new SQLiteDataAdapter(AIO.command, con);
+                da.Fill(ds, "HSN");
 
                 AIO.command = "select tax1name,tax2name from GeneralSettings";
                 da = new SQLiteDataAdapter(AIO.command, con);

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using SqliteDbAIO;
+
 
 namespace Shadev
 {
@@ -31,8 +31,6 @@ namespace Shadev
             try
             {
                 InitializeComponent();
-                //this.FormBorderStyle = FormBorderStyle.FixedDialog;
-                //this.ShowInTaskbar = false;
             }
             catch (Exception ex)
             {
@@ -63,7 +61,7 @@ namespace Shadev
                                 {
                                     ext = " and tranCustID = " + custID[cbmCustomer.SelectedIndex];
                                 }
-                                AIO.command = "select count(id) from Trans where tranNo='" + txtTransactionNo.Text + "'" + ext;
+                                AIO.command = "select count(id) from Trans2 where tranNo='" + txtTransactionNo.Text + "'" + ext;
                                 var tmp = Convert.ToInt32(a1.cmdexesc());
                                 if (tmp > 0)
                                 {
@@ -90,9 +88,9 @@ namespace Shadev
                             }
                             else
                             {
-                                AIO.command = "insert into Trans(tranType,tranNo,tranCustID,tranTotal,tranTax1,tranTax2,tranFinalTotal,tranDate,tranBankID,tranInvoice,tranTax1Name,tranTax2Name) values('" + txtTransactionType.Text + "','" + txtTransactionNo.Text + "'," + custID[cbmCustomer.SelectedIndex] + "," + txtTotal.Text + "," + txtTax1Percentage.Text + "," + txtTax2Percentage.Text + "," + txtFinalAmount.Text + ",'" + dtpTranDate.Value.ToString("yyyy-MM-dd") + "'," + bnkID[cmbBank.SelectedIndex] + ",'" + cmbInvoice.SelectedItem.ToString() + "','" + tax1 + "','" + tax2 + "')";
+                                AIO.command = "insert into Trans2(tranType,tranNo,tranCustID,tranDate,tranBankID,tranInvoice, taxType) values('" + txtTransactionType.Text + "','" + txtTransactionNo.Text + "'," + custID[cbmCustomer.SelectedIndex] + ",'" + dtpTranDate.Value.ToString("yyyy-MM-dd") + "'," + bnkID[cmbBank.SelectedIndex] + ",'" + cmbInvoice.SelectedItem.ToString() + "',"+ taxID[cmbTaxType.SelectedIndex]+ ")";
                                 a1.cmdexe();
-                                AIO.command = "select id from Trans where tranNo='" + txtTransactionNo.Text + "'";
+                                AIO.command = "select id from Trans2 where tranNo='" + txtTransactionNo.Text + "'";
                                 var tmp = Convert.ToInt32(a1.cmdexesc());
                                 AIO.command = "update TranItemsGrid set itgTranID=" + tmp + ",itgTranType='" + txtTransactionType.Text + "' where itgTranNo='" + txtTransactionNo.Text + "'";
                                 a1.cmdexe();
@@ -122,7 +120,7 @@ namespace Shadev
                             }
                             else
                             {
-                                AIO.command = "update Trans set tranCustID=" + custID[cbmCustomer.SelectedIndex] + ",tranTotal=" + txtTotal.Text + ",tranTax1=" + txtTax1Percentage.Text + ",tranTax2=" + txtTax2Percentage.Text + ",tranFinalTotal=" + txtFinalAmount.Text + ",tranDate='" + dtpTranDate.Value.ToString("yyyy-MM-dd") + "',tranBankID=" + bnkID[cmbBank.SelectedIndex] + ",tranInvoice='" + cmbInvoice.SelectedItem.ToString() + "' where id=" + id;
+                                AIO.command = "update Trans2 set tranCustID=" + custID[cbmCustomer.SelectedIndex] + ",tranDate='" + dtpTranDate.Value.ToString("yyyy-MM-dd") + "',tranBankID=" + bnkID[cmbBank.SelectedIndex] + ",tranInvoice='" + cmbInvoice.SelectedItem.ToString() + "',taxType="+taxID[cmbTaxType.SelectedIndex]+" where id=" + id;
                                 a1.cmdexe();
                                 AIO.command = "update TranItemsGrid set itgTranType='" + txtTransactionType.Text + "' where itgTranNo='" + txtTransactionNo.Text + "'";
                                 a1.cmdexe();
@@ -215,22 +213,10 @@ namespace Shadev
             {
                 cmbInvoice.SelectedIndex = 0;
 
-                //Fill combobox of Customer
-                AIO.command = "select id,custName from Customer where custType='" + custType + "'";
-                var dt = a1.dataload();
-                cbmCustomer.Items.Clear();
-                custID.Clear();
-                foreach (DataRow row in dt.Rows)
-                {
-                    cbmCustomer.Items.Add(row["custName"].ToString());
-                    custID.Add(Convert.ToInt64(row["id"].ToString()));
-                }
-                cbmCustomer.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                cbmCustomer.AutoCompleteSource = AutoCompleteSource.ListItems;
-                this.ActiveControl = cbmCustomer;
+                
 
                 //Fill combobox of Tax Type
-                AIO.command = "select id,tType from TaxMaster";
+                AIO.command = "select id,tType from TaxType";
                 var dtTT = a1.dataload();
                 cmbTaxType.Items.Clear();
                 taxID.Clear();
@@ -242,8 +228,9 @@ namespace Shadev
                         taxID.Add(Convert.ToInt64(row[0].ToString()));
                     }
                 }
-                cmbTaxType.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                cmbTaxType.AutoCompleteSource = AutoCompleteSource.ListItems;
+                cmbTaxType.SelectedIndex = 0;
+                //cmbTaxType.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                //cmbTaxType.AutoCompleteSource = AutoCompleteSource.ListItems;
 
                 //Fill combobox of Bank
                 AIO.command = "select id,bnkName from Banks";
@@ -263,21 +250,19 @@ namespace Shadev
                 {
                     case FrmCompany.TransAdd:
                         {
-                            //AIO.command = "select tax1per from GeneralSettings where id=1";
-                            //txtTax1Percentage.Text = a1.cmdexesc().ToString();
-                            //AIO.command = "select tax2per from GeneralSettings where id=1";
-                            //txtTax2Percentage.Text = a1.cmdexesc().ToString();
-
-                            //AIO.command = "select id,tmType from TaxMaster";
-                            //var dtTM = a1.dataload();
-                            //if (dtTM.Rows.Count > 0)
-                            //{
-                            //    foreach (DataRow row in dtTM.Rows)
-                            //    {
-                            //        cmbTaxType.Items.Add(row[1].ToString());
-                            //        taxID.Add(Convert.ToInt64(row[0].ToString()));
-                            //    }
-                            //}
+                            //Fill combobox of Customer
+                            AIO.command = "select id,custName from Customer where custType='" + custType + "'";
+                            var dt = a1.dataload();
+                            cbmCustomer.Items.Clear();
+                            custID.Clear();
+                            foreach (DataRow row in dt.Rows)
+                            {
+                                cbmCustomer.Items.Add(row["custName"].ToString());
+                                custID.Add(Convert.ToInt64(row["id"].ToString()));
+                            }
+                            cbmCustomer.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                            cbmCustomer.AutoCompleteSource = AutoCompleteSource.ListItems;
+                            this.ActiveControl = cbmCustomer;
 
                             this.Text = TransType + ": Add";
                             txtTransactionType.Text = TransType;
@@ -286,8 +271,6 @@ namespace Shadev
                                 cmbInvoice.SelectedItem = "Estimate";
                                 cmbInvoice.Enabled = false;
                             }
-                            //txtTransactionNo.Text = TransNo.ToString();
-                            //id = TransNo;
                             RefreshItems();
                         }
                         break;
@@ -303,7 +286,7 @@ namespace Shadev
                             txtTransactionNo.Text = TransNo.ToString();
                             txtTransactionNo.ReadOnly = true;
 
-                            AIO.command = "select tranCustID from Trans where id=" + id;
+                            AIO.command = "select tranCustID from Trans2 where id=" + id;
                             cID = Convert.ToInt64(a1.cmdexesc());
                             AIO.command = "select custType from Customer where id=" + cID;
                             custType = a1.cmdexesc().ToString();
@@ -323,22 +306,16 @@ namespace Shadev
                             cbmCustomer.SelectedIndex = custID.FindIndex(x => x == cID);
                             dtpTranDate.Value = date;
 
-                            AIO.command = "select tranBankID from Trans where id=" + id;
+                            AIO.command = "select tranBankID from Trans2 where id=" + id;
                             bID = Convert.ToInt64(a1.cmdexesc());
                             cmbBank.SelectedIndex = bnkID.FindIndex(x => x == bID);
 
-                            AIO.command = "select tranInvoice from Trans where id=" + id;
+                            AIO.command = "select tranInvoice from Trans2 where id=" + id;
                             cmbInvoice.SelectedItem = a1.cmdexesc().ToString();
 
-                            cmbTaxType.Visible = false;
-                            //AIO.command = "select tranTax1 from Trans where id=" + id;
-                            //txtTax1Percentage.Text = a1.cmdexesc().ToString();
-
-                            //AIO.command = "select tranTax2 from Trans where id=" + id;
-                            //txtTax2Percentage.Text = a1.cmdexesc().ToString();
-
-
-
+                            AIO.command = "select taxType from Trans2 where id=" + id;
+                            cmbTaxType.SelectedIndex = taxID.FindIndex(x => x == int.Parse(a1.cmdexesc().ToString()));
+                            cmbTaxType.Visible = true;
                             RefreshItems();
                         }
                         break;
@@ -369,7 +346,7 @@ namespace Shadev
                         {
                             ext = " and tranCustID = " + custID[cbmCustomer.SelectedIndex];
                         }
-                        AIO.command = "select count(id) from Trans where tranNo='" + txtTransactionNo.Text + "'" + ext;
+                        AIO.command = "select count(id) from Trans2 where tranNo='" + txtTransactionNo.Text + "'" + ext;
                         var tmp = Convert.ToInt32(a1.cmdexesc());
                         if (Stat == FrmCompany.TransEdit)
                             tmp = 0;
@@ -424,7 +401,7 @@ namespace Shadev
             {
                 if (dgvTransaction.SelectedRows.Count > 0)
                 {
-                    cmsTransaction.Items[0].Text = dgvTransaction.SelectedRows[0].Cells["Model"].Value.ToString();
+                    cmsTransaction.Items[0].Text = dgvTransaction.SelectedRows[0].Cells["Item"].Value.ToString();
                     cmsTransaction.Items[3].Enabled = true;
                     cmsTransaction.Items[4].Enabled = true;
                 }
@@ -471,37 +448,68 @@ namespace Shadev
                     query = "where itgTranID=" + id;
                 //AIO.command = "select id,(select modName from Model where id=itgModID) as [Model],itgTranID,itgQTY as [QTY],Round((itgPrice*itgQTY),2) as [Price],Round(((itgTax1/100)*(itgPrice*itgQTY)),2) as [Tax1],Round(((itgTax2/100)*(itgPrice*itgQTY)),2) as [Tax2],Round((itgTotal*itgQTY),2) as [Total],itgDesc as [Desc] from TranItemsGrid " + query + " order by id ASC";
                 AIO.command = "select id,(select itemDesc from Items where id=itgModID) as [Item],itgTranID,itgQTY as [QTY],Round((itgPrice*itgQTY),2) as [Price],Round((itgTotal*itgQTY),2) as [Total],itgDesc as [Desc] from TranItemsGrid " + query + " order by id ASC";
+                StringBuilder sb = new StringBuilder();
+                sb.Append("SELECT T.id, ");
+                sb.Append("T.itgTranID, ");
+                sb.Append("I.itemDesc AS Item, ");
+                sb.Append("H.hsnCode AS HSN, ");
+                sb.Append("T.itgPrice AS Price, ");
+                sb.Append("T.itgQTY AS QTY, ");
+                sb.Append("T.itgTotal AS Total, ");
+                sb.Append("Round(T.itgTotal * (H.sgst / 100), 2) AS SGST, ");
+                sb.Append("Round(T.itgTotal * (H.cgst / 100), 2) AS CGST, ");
+                sb.Append("Round(T.itgTotal * (H.igst / 100), 2) AS IGST,");
+                sb.Append("Round(T.itgTotal + T.itgTotal * (H.igst / 100), 2) AS Amount, ");
+                sb.Append("T.itgDesc AS[Desc] ");
+                sb.Append("FROM TranItemsGrid AS T ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Items AS I ON T.itgModID = I.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("HsnTax AS H ON I.hsnId = H.id ");
+                sb.Append(query);
+                AIO.command = sb.ToString();
                 var dt = a1.dataload();
-
                 dgvTransaction.DataSource = dt;
                 dgvTransaction.Columns["id"].Visible = false;
                 dgvTransaction.Columns["itgTranID"].Visible = false;
+                if (cmbTaxType.SelectedIndex == 0)
+                {
+                    dgvTransaction.Columns["IGST"].Visible = false;
+                    dgvTransaction.Columns["SGST"].Visible = true;
+                    dgvTransaction.Columns["CGST"].Visible = true;
+
+                }
+                else if(cmbTaxType.SelectedIndex == 1)
+                {
+                    dgvTransaction.Columns["IGST"].Visible = true;
+                    dgvTransaction.Columns["SGST"].Visible = false;
+                    dgvTransaction.Columns["CGST"].Visible = false;
+                }
 
                 if (dt.Rows.Count > 0)
                 {
-                    double price = 0; //, tax1 = 0, tax2 = 0, total = 0
+                    double price = 0, sgst = 0, cgst = 0, igst = 0, total = 0;
                     int count = dgvTransaction.Rows.Count;
                     for (int i = 0; i < count; i++)
                     {
-                        price += Math.Round(Convert.ToDouble(dgvTransaction.Rows[i].Cells["Price"].Value.ToString()), 2);
-                        //tax1 += Convert.ToDouble(dgvTransaction.Rows[i].Cells["Tax1"].Value.ToString());
-                        //tax2 += Convert.ToDouble(dgvTransaction.Rows[i].Cells["Tax2"].Value.ToString());
-                        //total += Convert.ToDouble(dgvTransaction.Rows[i].Cells["Total"].Value.ToString());
+                        price += Math.Round(Convert.ToDouble(dgvTransaction.Rows[i].Cells["Total"].Value.ToString()), 2);
+                        sgst += Convert.ToDouble(dgvTransaction.Rows[i].Cells["SGST"].Value.ToString());
+                        cgst += Convert.ToDouble(dgvTransaction.Rows[i].Cells["CGST"].Value.ToString());
+                        igst += Convert.ToDouble(dgvTransaction.Rows[i].Cells["IGST"].Value.ToString());
+                        total += Convert.ToDouble(dgvTransaction.Rows[i].Cells["Amount"].Value.ToString());
                     }
 
                     txtTotal.Text = price.ToString();
-                    txtSGST.Text = Math.Round((price * (double.Parse(txtTax1Percentage.Text)) / 100), 2).ToString();
-                    txtCGST.Text = Math.Round((price * (double.Parse(txtTax2Percentage.Text)) / 100), 2).ToString();
-                    txtFinalAmount.Text = Math.Round((double.Parse(txtSGST.Text) + double.Parse(txtCGST.Text) + price), 0).ToString();
+                    txtSGST.Text = sgst.ToString();
+                    txtCGST.Text = cgst.ToString();
+                    txtIGST.Text = igst.ToString();
+                    txtFinalAmount.Text = Math.Round(total, 2).ToString();
                 }
                 else
                 {
                     txtTotal.Text = "0";
                     txtSGST.Text = "0";
                     txtCGST.Text = "0";
-                    //txtDiscountAmount.Text = "0";
-                    //txtDiscountPercentage.Text = "0";
-                    // txtDiscountRs.Text = "0";
                     txtFinalAmount.Text = "0";
 
                 }
@@ -547,7 +555,7 @@ namespace Shadev
                         {
                             ext = " and tranCustID = " + custID[cbmCustomer.SelectedIndex];
                         }
-                        AIO.command = "select count(id) from Trans where tranNo='" + txtTransactionNo.Text + "'" + ext;
+                        AIO.command = "select count(id) from Trans2 where tranNo='" + txtTransactionNo.Text + "'" + ext;
                         var tmp = Convert.ToInt32(a1.cmdexesc());
                         if (tmp > 0)
                         {
@@ -574,7 +582,7 @@ namespace Shadev
                 if (dgvTransaction.SelectedRows.Count > 0)
                 {
                     DataRow row = ((DataTable)dgvTransaction.DataSource).Rows[dgvTransaction.SelectedRows[0].Index];
-                    frmTransactionItemsGrid fr = new frmTransactionItemsGrid();
+                    frmNewTransactionItemsGrid fr = new frmNewTransactionItemsGrid();
                     fr.row = row;
                     fr.Stat = Stat;
                     fr.tranTYPE = txtTransactionType.Text;
@@ -623,8 +631,8 @@ namespace Shadev
                 if (cmbInvoice.SelectedIndex == 2)
                 {
 
-                    txtTax1Percentage.Text = "0";
-                    txtTax2Percentage.Text = "0";
+                    //txtTax1Percentage.Text = "0";
+                    //txtTax2Percentage.Text = "0";
                     RefreshItems();
 
                 }
@@ -650,18 +658,7 @@ namespace Shadev
 
         private void cmbTaxType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbTaxType.SelectedIndex >= 0)
-            {
-                AIO.command = "select tmTax1 from TaxMaster where id=" + taxID[cmbTaxType.SelectedIndex];
-                txtTax1Percentage.Text = a1.cmdexesc().ToString();
-                AIO.command = "select tmTax1Name from TaxMaster where id=" + taxID[cmbTaxType.SelectedIndex];
-                tax1 = a1.cmdexesc().ToString();
-                AIO.command = "select tmTax2 from TaxMaster where id=" + taxID[cmbTaxType.SelectedIndex];
-                txtTax2Percentage.Text = a1.cmdexesc().ToString();
-                AIO.command = "select tmTax2Name from TaxMaster where id=" + taxID[cmbTaxType.SelectedIndex];
-                tax2 = a1.cmdexesc().ToString();
-                RefreshItems();
-            }
+            RefreshItems();
         }
     }
 }

@@ -333,7 +333,7 @@ namespace Shadev
                 double price = double.Parse(txtPrice.Text);
 
                 //double total = total / (1 + (Convert.ToDouble(txtTax1Percentage.Text) / 100) + (Convert.ToDouble(txtTax2Percentage.Text) / 100));
-                //txtPrice.Text = Math.Round(price, 0).ToString();
+                //txtPrice.Text = Math.Round(price, 2).ToString();
 
                 double tax1 = Math.Round((double.Parse(txtPrice.Text) * (double.Parse(txtTax1Percentage.Text) / 100)), 2);
                 double tax2 = Math.Round((double.Parse(txtPrice.Text) * (double.Parse(txtTax2Percentage.Text) / 100)), 2);

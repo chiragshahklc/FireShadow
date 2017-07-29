@@ -28,7 +28,7 @@ namespace Shadev
         {
             InitializeComponent();
             this.DoubleBuffered = true;
-            
+
         }
 
         private void txtAboutCompanyName_KeyPress(object sender, KeyPressEventArgs e)
@@ -219,6 +219,7 @@ namespace Shadev
                 RefreshGeneralSettings();
                 RefreshTaxMaster();
                 RefreshHSN();
+                RefreshNewItem();
                 tabControl1.Visible = false;
                 foreach (TabPage page in tabControl1.TabPages)
                 {
@@ -886,7 +887,7 @@ namespace Shadev
                 var x = a1.cmdexesc();
 
 
-                frmTransaction fr = new frmTransaction();
+                frmNewTransaction fr = new frmNewTransaction();
                 fr.StartPosition = FormStartPosition.CenterParent;
                 fr.Stat = FrmCompany.TransAdd;
                 fr.custType = custType;
@@ -907,12 +908,11 @@ namespace Shadev
         {
             try
             {
-                frmTransaction fr = new frmTransaction();
+                frmNewTransaction fr = new frmNewTransaction();
                 fr.StartPosition = FormStartPosition.CenterParent;
                 fr.Stat = FrmCompany.TransEdit;
                 fr.TransType = dgvTransaction.SelectedRows[0].Cells["Type"].Value.ToString();
                 fr.id = Convert.ToInt64(dgvTransaction.SelectedRows[0].Cells["id"].Value.ToString());
-
                 fr.TransNo = dgvTransaction.SelectedRows[0].Cells["No."].Value.ToString();
                 fr.date = Convert.ToDateTime(dgvTransaction.SelectedRows[0].Cells["Date"].Value.ToString());
                 fr.ShowDialog();
@@ -1000,40 +1000,67 @@ namespace Shadev
                 txtTransactionSearch.Clear();
                 string query = "", sort = "", asc = "", param = "";
 
+                //Basic query
+                StringBuilder sb = new StringBuilder();
+                sb.Append("SELECT T.id AS id, ");
+                sb.Append("T.tranNo AS [No.], ");
+                sb.Append("T.tranType AS [Type], ");
+                sb.Append("C.custName AS [Name], ");
+                sb.Append("T.tranDate AS [Date], ");
+                sb.Append("sum(TIG.itgTotal) AS [Total], ");
+                sb.Append("CASE WHEN T.taxType = 1 THEN Round(sum((TIG.itgTotal) * (H.sgst / 100)), 2) ELSE 0 END AS [SGST], ");
+                sb.Append("CASE WHEN T.taxType = 1 THEN Round(sum((TIG.itgTotal) * (H.cgst / 100)), 2) ELSE 0 END AS [CGST], ");
+                sb.Append("CASE WHEN T.taxType = 2 THEN Round(sum((TIG.itgTotal) * (H.igst / 100)), 2) ELSE 0 END AS [IGST], ");
+                sb.Append("Round(sum(TIG.itgTotal) + sum((TIG.itgTotal) * (H.igst / 100)), 2) AS [Amount], ");
+                sb.Append("T.tranInvoice as [Invoice] ");
+                sb.Append("FROM Trans2 AS T ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Customer AS C ON T.tranCustID = C.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("TranItemsGrid AS TIG ON T.id = TIG.itgTranID ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Items AS I ON TIG.itgModID = I.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("HsnTax AS H ON I.hsnId = H.id ");
 
+                //Apply search parameters
                 if (btnTransCustSearch.Text != "Transaction No")
                 {
                     if (comboBox2.SelectedIndex < 0)
                         param = "";
                     else
                     {
-                        param = " tranCustID=" + CustIDSearch[comboBox2.SelectedIndex] + " and";
+                        param = " T.tranCustID=" + CustIDSearch[comboBox2.SelectedIndex] + " and";
                         //query = CustIDSearch[comboBox2.SelectedIndex].ToString();
                     }
                 }
                 else if (btnTransCustSearch.Text == "Transaction No")
                 {
-                    param = " tranNo like '%" + comboBox2.Text + "%' and";
+                    param = " T.tranNo like '%" + comboBox2.Text + "%' and";
                 }
 
-
-
+                //Apply where condition in query
                 if (btnTransType.Text == "All")
-                    query = " where tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
-                //AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Customer],tranDate as [Date],tranTotal as [Price],((tranTax1/100) * tranTotal) as [Tax1],((tranTax2/100) * tranTotal) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans";
+                    query = " where T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
                 else if (btnTransType.Text == "Purchase")
-                    query = " where" + param + " tranType='Purchase' and tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
-                //AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Customer],tranDate as [Date],tranTotal as [Price],((tranTax1/100) * tranTotal) as [Tax1],((tranTax2/100) * tranTotal) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans where tranType='Purchase'";
+                    query = " where" + param + " T.tranType='Purchase' and T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
                 else if (btnTransType.Text == "Sale")
-                    query = " where" + param + "  tranType='Sale' and tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
-                //AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Customer],tranDate as [Date],tranTotal as [Price],((tranTax1/100) * tranTotal) as [Tax1],((tranTax2/100) * tranTotal) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans where tranType='Sale'";
+                    query = " where" + param + " T.tranType='Sale' and T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
                 else if (btnTransType.Text == "Estimate")
-                    query = " where" + param + "  tranType='Estimate' and tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
+                    query = " where" + param + " T.tranType='Estimate' and T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
+                sb.Append(query);
+                
+                //Apply sorting in query
                 if (cmbTransSort.SelectedIndex > 0)
                     sort = " order by [" + cmbTransSort.SelectedItem.ToString() + "]";
+                sb.Append(sort);
+
                 if (cmbTransSort.SelectedIndex > 0 && cmbTransASC.SelectedIndex > 0)
                     asc = " " + cmbTransASC.SelectedItem.ToString();
-                AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Name],tranDate as [Date],tranTotal as [Price],Round(((tranTax1/100) * tranTotal),2) as [Tax1],Round(((tranTax2/100) * tranTotal),2) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans" + query + "" + sort + "" + asc;
+                sb.Append(asc);
+
+                sb.Append("GROUP BY T.id");
+                AIO.command = sb.ToString();
                 var dt = a1.dataload();
                 dgvTransaction.DataSource = dt;
                 dgvTransaction.Columns["id"].Visible = false;
@@ -2400,7 +2427,7 @@ namespace Shadev
                     comboBox2.AutoCompleteSource = AutoCompleteSource.ListItems;
                 }
                 comboBox2.Text = "";
-                
+
             }
             else
             {
@@ -2465,7 +2492,7 @@ namespace Shadev
                     if (cmbTransSort.SelectedIndex > 0 && cmbTransASC.SelectedIndex > 0)
                         asc = " " + cmbTransASC.SelectedItem.ToString();
                 }
-                AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Customer],tranDate as [Date],tranTotal as [Price],((tranTax1/100) * tranTotal) as [Tax1],((tranTax2/100) * tranTotal) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans" + param + ""+sort+""+asc+"";
+                AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Customer],tranDate as [Date],tranTotal as [Price],((tranTax1/100) * tranTotal) as [Tax1],((tranTax2/100) * tranTotal) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans" + param + "" + sort + "" + asc + "";
                 var dt = a1.dataload();
                 dgvTransaction.DataSource = dt;
                 dgvTransaction.Columns["id"].Visible = false;
@@ -2512,7 +2539,7 @@ namespace Shadev
                 if (cmbTransSort.SelectedIndex > 0 && cmbTransASC.SelectedIndex > 0)
                     asc = " " + cmbTransASC.SelectedItem.ToString();
 
-                AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Customer],tranDate as [Date],tranTotal as [Price],((tranTax1/100) * tranTotal) as [Tax1],((tranTax2/100) * tranTotal) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans" + param + ""+sort+""+asc+"";
+                AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Customer],tranDate as [Date],tranTotal as [Price],((tranTax1/100) * tranTotal) as [Tax1],((tranTax2/100) * tranTotal) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans" + param + "" + sort + "" + asc + "";
                 var dt = a1.dataload();
                 dgvTransaction.DataSource = dt;
                 dgvTransaction.Columns["id"].Visible = false;
@@ -2562,7 +2589,7 @@ namespace Shadev
                     dgvHsn.DataSource = v1;
                     dgvHsn.Columns["id"].Visible = false;
                 }
-             
+
             }
             catch (Exception ex)
             {
@@ -2701,13 +2728,15 @@ namespace Shadev
         {
             try
             {
-                AIO.command = "SELECT I.id,I.itemDesc as Description,H.hsnCode as HSN_Code,U.uom as Unit" +
-                    "FROM" +
-                    "Items as I LEFT JOIN hsnTax as H" +
-                    "ON I.hsnId = H.id" +
-                    "LEFT JOIN Units as U" +
-                    "ON I.oid = U.id";
+                StringBuilder sb = new StringBuilder();
 
+                sb.Append("SELECT I.id,I.itemDesc as Item,H.hsnCode as HSN_Code,U.uom as Unit ");
+                sb.Append("FROM ");
+                sb.Append("Items as I LEFT JOIN hsnTax as H ");
+                sb.Append("ON I.hsnId = H.id ");
+                sb.Append("LEFT JOIN Units as U ");
+                sb.Append("ON I.oid = U.id");
+                AIO.command = sb.ToString();
                 var v1 = a1.dataload();
                 if (v1 != null)
                 {
@@ -2729,7 +2758,6 @@ namespace Shadev
                 frmNewItems fr = new frmNewItems();
                 fr.StartPosition = FormStartPosition.CenterParent;
                 fr.Stat = FrmCompany.NewItemEdit;
-                fr.Stat = FrmCompany.CustEdit;
                 fr.row = ((DataTable)dgvItem.DataSource).Rows[dgvItem.SelectedRows[0].Index];
                 fr.id = long.Parse(dgvItem.SelectedRows[0].Cells["id"].Value.ToString());
                 fr.ShowDialog();
@@ -2744,11 +2772,12 @@ namespace Shadev
 
         private void toolStripMenuItem17_Click(object sender, EventArgs e)
         {
+
             try
             {
                 if (dgvItem.SelectedRows.Count > 0)
                 {
-                    AIO.command = "delete from hsnTax where id=" + dgvItem.SelectedRows[0].Cells["id"].Value.ToString();
+                    AIO.command = "delete from Items where id=" + dgvItem.SelectedRows[0].Cells["id"].Value.ToString();
                     a1.cmdexe();
 
                 }
@@ -2766,7 +2795,7 @@ namespace Shadev
             {
                 if (dgvItem.SelectedRows.Count > 0)
                 {
-                    cmsItemMaster.Items[0].Text = dgvItem.SelectedRows[0].Cells["id"].Value.ToString();
+                    cmsItemMaster.Items[0].Text = dgvItem.SelectedRows[0].Cells["Item"].Value.ToString();
                     cmsItemMaster.Items[3].Enabled = true;
                     cmsItemMaster.Items[4].Enabled = true;
                 }
@@ -2781,6 +2810,17 @@ namespace Shadev
             {
                 MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void itemMasterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SwitchTabPages(AllTabs.ItemMaster);
+        }
+
+        private void newTransToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmNewTransaction fr = new frmNewTransaction();
+            fr.ShowDialog();
         }
     }
 }

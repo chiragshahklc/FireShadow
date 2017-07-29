@@ -309,6 +309,12 @@
             this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgvItem = new System.Windows.Forms.DataGridView();
+            this.cmsItemMaster = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem15 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.masterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.companyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -328,15 +334,11 @@
             this.aboutUsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.hSNMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newTransToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label36 = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.cmsItemMaster = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem15 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripMenuItem();
             this.btnHomePage = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabCompany.SuspendLayout();
@@ -396,8 +398,8 @@
             this.cmsHsnMaster.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             this.cmsItemMaster.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1484,7 +1486,6 @@
             // 
             // btnTransReport
             // 
-            this.btnTransReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTransReport.BackColor = System.Drawing.Color.Teal;
             this.btnTransReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTransReport.ForeColor = System.Drawing.Color.White;
@@ -1498,8 +1499,8 @@
             // 
             // btnTransType
             // 
-            this.btnTransType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTransType.BackColor = System.Drawing.Color.Teal;
+            this.btnTransType.Enabled = false;
             this.btnTransType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTransType.ForeColor = System.Drawing.Color.White;
             this.btnTransType.Location = new System.Drawing.Point(7, 53);
@@ -3409,6 +3410,54 @@
             this.dgvItem.Size = new System.Drawing.Size(1181, 339);
             this.dgvItem.TabIndex = 40;
             // 
+            // cmsItemMaster
+            // 
+            this.cmsItemMaster.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsItemMaster.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem14,
+            this.toolStripSeparator12,
+            this.toolStripMenuItem15,
+            this.toolStripMenuItem16,
+            this.toolStripMenuItem17});
+            this.cmsItemMaster.Name = "cmsHsnMaster";
+            this.cmsItemMaster.Size = new System.Drawing.Size(123, 106);
+            this.cmsItemMaster.Opening += new System.ComponentModel.CancelEventHandler(this.cmsItemMaster_Opening);
+            // 
+            // toolStripMenuItem14
+            // 
+            this.toolStripMenuItem14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.toolStripMenuItem14.Name = "toolStripMenuItem14";
+            this.toolStripMenuItem14.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItem14.Text = "None";
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(119, 6);
+            // 
+            // toolStripMenuItem15
+            // 
+            this.toolStripMenuItem15.Name = "toolStripMenuItem15";
+            this.toolStripMenuItem15.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItem15.Text = "Add";
+            this.toolStripMenuItem15.Click += new System.EventHandler(this.toolStripMenuItem15_Click);
+            // 
+            // toolStripMenuItem16
+            // 
+            this.toolStripMenuItem16.Enabled = false;
+            this.toolStripMenuItem16.Name = "toolStripMenuItem16";
+            this.toolStripMenuItem16.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItem16.Text = "Edit";
+            this.toolStripMenuItem16.Click += new System.EventHandler(this.toolStripMenuItem16_Click);
+            // 
+            // toolStripMenuItem17
+            // 
+            this.toolStripMenuItem17.Enabled = false;
+            this.toolStripMenuItem17.Name = "toolStripMenuItem17";
+            this.toolStripMenuItem17.Size = new System.Drawing.Size(122, 24);
+            this.toolStripMenuItem17.Text = "Delete";
+            this.toolStripMenuItem17.Click += new System.EventHandler(this.toolStripMenuItem17_Click);
+            // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -3424,7 +3473,8 @@
             this.paymentToolStripMenuItem1,
             this.settingsToolStripMenuItem,
             this.aboutUsToolStripMenuItem,
-            this.masterToolStripMenuItem1});
+            this.masterToolStripMenuItem1,
+            this.newTransToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
@@ -3554,7 +3604,8 @@
             // masterToolStripMenuItem1
             // 
             this.masterToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hSNMasterToolStripMenuItem});
+            this.hSNMasterToolStripMenuItem,
+            this.itemMasterToolStripMenuItem});
             this.masterToolStripMenuItem1.Name = "masterToolStripMenuItem1";
             this.masterToolStripMenuItem1.Size = new System.Drawing.Size(66, 22);
             this.masterToolStripMenuItem1.Text = "Master";
@@ -3566,12 +3617,26 @@
             this.hSNMasterToolStripMenuItem.Text = "HSN Master";
             this.hSNMasterToolStripMenuItem.Click += new System.EventHandler(this.hSNMasterToolStripMenuItem_Click);
             // 
+            // itemMasterToolStripMenuItem
+            // 
+            this.itemMasterToolStripMenuItem.Name = "itemMasterToolStripMenuItem";
+            this.itemMasterToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.itemMasterToolStripMenuItem.Text = "Item Master";
+            this.itemMasterToolStripMenuItem.Click += new System.EventHandler(this.itemMasterToolStripMenuItem_Click);
+            // 
+            // newTransToolStripMenuItem
+            // 
+            this.newTransToolStripMenuItem.Name = "newTransToolStripMenuItem";
+            this.newTransToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.newTransToolStripMenuItem.Text = "New Trans";
+            this.newTransToolStripMenuItem.Click += new System.EventHandler(this.newTransToolStripMenuItem_Click);
+            // 
             // label36
             // 
             this.label36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Comic Sans MS", 6.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(929, 633);
+            this.label36.Location = new System.Drawing.Point(936, 632);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(322, 17);
             this.label36.TabIndex = 3;
@@ -3580,54 +3645,6 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // cmsItemMaster
-            // 
-            this.cmsItemMaster.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsItemMaster.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem14,
-            this.toolStripSeparator12,
-            this.toolStripMenuItem15,
-            this.toolStripMenuItem16,
-            this.toolStripMenuItem17});
-            this.cmsItemMaster.Name = "cmsHsnMaster";
-            this.cmsItemMaster.Size = new System.Drawing.Size(123, 106);
-            this.cmsItemMaster.Opening += new System.ComponentModel.CancelEventHandler(this.cmsItemMaster_Opening);
-            // 
-            // toolStripMenuItem14
-            // 
-            this.toolStripMenuItem14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.toolStripMenuItem14.Name = "toolStripMenuItem14";
-            this.toolStripMenuItem14.Size = new System.Drawing.Size(122, 24);
-            this.toolStripMenuItem14.Text = "None";
-            // 
-            // toolStripSeparator12
-            // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(119, 6);
-            // 
-            // toolStripMenuItem15
-            // 
-            this.toolStripMenuItem15.Name = "toolStripMenuItem15";
-            this.toolStripMenuItem15.Size = new System.Drawing.Size(122, 24);
-            this.toolStripMenuItem15.Text = "Add";
-            this.toolStripMenuItem15.Click += new System.EventHandler(this.toolStripMenuItem15_Click);
-            // 
-            // toolStripMenuItem16
-            // 
-            this.toolStripMenuItem16.Enabled = false;
-            this.toolStripMenuItem16.Name = "toolStripMenuItem16";
-            this.toolStripMenuItem16.Size = new System.Drawing.Size(122, 24);
-            this.toolStripMenuItem16.Text = "Edit";
-            this.toolStripMenuItem16.Click += new System.EventHandler(this.toolStripMenuItem16_Click);
-            // 
-            // toolStripMenuItem17
-            // 
-            this.toolStripMenuItem17.Enabled = false;
-            this.toolStripMenuItem17.Name = "toolStripMenuItem17";
-            this.toolStripMenuItem17.Size = new System.Drawing.Size(122, 24);
-            this.toolStripMenuItem17.Text = "Delete";
-            this.toolStripMenuItem17.Click += new System.EventHandler(this.toolStripMenuItem17_Click);
             // 
             // btnHomePage
             // 
@@ -3650,9 +3667,9 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1258, 649);
             this.Controls.Add(this.btnHomePage);
-            this.Controls.Add(this.label36);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.label36);
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -3739,9 +3756,9 @@
             this.cmsHsnMaster.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvItem)).EndInit();
+            this.cmsItemMaster.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.cmsItemMaster.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -4030,5 +4047,7 @@
         private System.Windows.Forms.DataGridView dgvItem;
         private System.Windows.Forms.ToolStripMenuItem masterToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem hSNMasterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem itemMasterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newTransToolStripMenuItem;
     }
 }

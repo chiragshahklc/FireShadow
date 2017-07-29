@@ -47,8 +47,6 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtTax1Percentage = new System.Windows.Forms.TextBox();
-            this.txtTax2Percentage = new System.Windows.Forms.TextBox();
             this.lblTax1 = new System.Windows.Forms.Label();
             this.lblTax2 = new System.Windows.Forms.Label();
             this.txtSGST = new System.Windows.Forms.TextBox();
@@ -255,26 +253,6 @@
             this.label4.Size = new System.Drawing.Size(44, 17);
             this.label4.TabIndex = 8;
             this.label4.Text = "Total:";
-            // 
-            // txtTax1Percentage
-            // 
-            this.txtTax1Percentage.Location = new System.Drawing.Point(66, 522);
-            this.txtTax1Percentage.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTax1Percentage.Name = "txtTax1Percentage";
-            this.txtTax1Percentage.ReadOnly = true;
-            this.txtTax1Percentage.Size = new System.Drawing.Size(47, 22);
-            this.txtTax1Percentage.TabIndex = 9;
-            this.txtTax1Percentage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTax1Percentage_KeyPress);
-            // 
-            // txtTax2Percentage
-            // 
-            this.txtTax2Percentage.Location = new System.Drawing.Point(165, 522);
-            this.txtTax2Percentage.Margin = new System.Windows.Forms.Padding(4);
-            this.txtTax2Percentage.Name = "txtTax2Percentage";
-            this.txtTax2Percentage.ReadOnly = true;
-            this.txtTax2Percentage.Size = new System.Drawing.Size(47, 22);
-            this.txtTax2Percentage.TabIndex = 10;
-            this.txtTax2Percentage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTax2Percentage_KeyPress);
             // 
             // lblTax1
             // 
@@ -493,6 +471,7 @@
             // 
             // cmbTaxType
             // 
+            this.cmbTaxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTaxType.FormattingEnabled = true;
             this.cmbTaxType.Location = new System.Drawing.Point(137, 137);
             this.cmbTaxType.Margin = new System.Windows.Forms.Padding(4);
@@ -749,8 +728,6 @@
             this.ClientSize = new System.Drawing.Size(1262, 580);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.dgvTransaction);
-            this.Controls.Add(this.txtTax1Percentage);
-            this.Controls.Add(this.txtTax2Percentage);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -769,7 +746,6 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -784,8 +760,6 @@
         private System.Windows.Forms.DataGridView dgvTransaction;
         private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtTax1Percentage;
-        private System.Windows.Forms.TextBox txtTax2Percentage;
         private System.Windows.Forms.Label lblTax1;
         private System.Windows.Forms.Label lblTax2;
         private System.Windows.Forms.TextBox txtSGST;

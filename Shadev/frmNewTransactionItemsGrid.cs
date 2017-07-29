@@ -16,8 +16,6 @@ namespace Shadev
         AIO a1 = new AIO();
         public string TransNo { get; set; }
         List<long> itemID = new List<long>();
-        List<long> catID = new List<long>();
-        List<long> modID = new List<long>();
         public FrmCompany Stat { get; set; }
         public FrmCompany thisStat { get; set; }
         public Boolean bool_Labour { get; set; }
@@ -106,9 +104,9 @@ namespace Shadev
                                 case FrmCompany.TransAdd:
                                     {
                                         if (thisStat == FrmCompany.itgAdd)
-                                            AIO.command = "insert into TranItemsGrid(itgModID,itgTranNo,itgQTY,itgPrice,itgTotal,itgDesc,itgTranType) VALUES(" + modID[cmbItem.SelectedIndex] + ",'" + TransNo + "'," + txtqty.Text + "," + txtPrice.Text + "," + txtTotal.Text + ",'" + itemDESC + "','" + tranTYPE + "')";
+                                            AIO.command = "insert into TranItemsGrid(itgModID,itgTranNo,itgQTY,itgPrice,itgTotal,itgDesc,itgTranType) VALUES(" + itemID[cmbItem.SelectedIndex] + ",'" + TransNo + "'," + txtqty.Text + "," + txtPrice.Text + "," + txtTotal.Text + ",'" + itemDESC + "','" + tranTYPE + "')";
                                         if (this.thisStat == FrmCompany.itgEdit)
-                                            AIO.command = "update TranItemsGrid set itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
+                                            AIO.command = "update TranItemsGrid set itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
                                         a1.cmdexe();
 
                                     }
@@ -117,9 +115,9 @@ namespace Shadev
                                 case FrmCompany.TransEdit:
                                     {
                                         if (thisStat == FrmCompany.itgAdd)
-                                            AIO.command = "insert into TranItemsGrid(itgModID,itgTranID,itgQTY,itgPrice,itgTotal,itgDesc,itgTranType) VALUES(" + modID[cmbItem.SelectedIndex] + "," + TransNo + "," + txtqty.Text + "," + txtPrice.Text + "," + txtTotal.Text + ",'" + itemDESC + "','" + tranTYPE + "')";
+                                            AIO.command = "insert into TranItemsGrid(itgModID,itgTranID,itgQTY,itgPrice,itgTotal,itgDesc,itgTranType) VALUES(" + itemID[cmbItem.SelectedIndex] + "," + TransNo + "," + txtqty.Text + "," + txtPrice.Text + "," + txtTotal.Text + ",'" + itemDESC + "','" + tranTYPE + "')";
                                         if (this.thisStat == FrmCompany.itgEdit)
-                                            AIO.command = "update TranItemsGrid set itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
+                                            AIO.command = "update TranItemsGrid set itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
                                         a1.cmdexe();
 
                                     }
@@ -133,38 +131,40 @@ namespace Shadev
                 }
                 else if (thisStat == FrmCompany.itgEdit)
                 {
-                    //string query = "";
-                    //if (Stat == FrmCompany.TransAdd)
-                    //    query = " where itgTranNo='" + TransNo + "'";
-                    //else if (Stat == FrmCompany.TransEdit)
-                    //    query = " where itgTranID=" + TransNo;
+                    string query = "";
+                    if (Stat == FrmCompany.TransAdd)
+                        query = " where itgTranNo='" + TransNo + "'";
+                    else if (Stat == FrmCompany.TransEdit)
+                        query = " where itgTranID=" + TransNo;
 
-                    ////AIO.command = "select itgModID from TranItemsGrid" + query;
-                    ////var dt = a1.dataload();
-                    //bool flag = false;
-                    //if (!flag)
-                    //{
-                    //    string itemDESC = rtbDesc.Text.Replace("'", "''");
-                    //    switch (Stat)
-                    //    {
-                    //        case FrmCompany.TransAdd:
-                    //            {
-                    //                AIO.command = "update TranItemsGrid set itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
-                    //                a1.cmdexe();
-                    //            }
-                    //            break;
+                    //AIO.command = "select itgModID from TranItemsGrid" + query;
+                    //var dt = a1.dataload();
+                    bool flag = false;
+                    if (!flag)
+                    {
+                        string itemDESC = rtbDesc.Text.Replace("'", "''");
+                        switch (Stat)
+                        {
+                            case FrmCompany.TransAdd:
+                                {
+                                    //AIO.command = "update TranItemsGrid set itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
+                                    AIO.command = "update TranItemsGrid set itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
+                                    a1.cmdexe();
+                                }
+                                break;
 
-                    //        case FrmCompany.TransEdit:
-                    //            {
-                    //                AIO.command = "update TranItemsGrid set itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
-                    //                a1.cmdexe();
-                    //            }
-                    //            break;
-                    //        default:
-                    //            break;
-                    //    }
-                    //}
-                    //this.Close();
+                            case FrmCompany.TransEdit:
+                                {
+                                    //AIO.command = "update TranItemsGrid set itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
+                                    AIO.command = "update TranItemsGrid set itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
+                                    a1.cmdexe();
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    this.Close();
                 }
             }
             catch (Exception ex)
@@ -208,9 +208,9 @@ namespace Shadev
                 //Load data if form open in edit mode
                 if (thisStat == FrmCompany.itgEdit)
                 {
-                    cmbItem.SelectedItem = row[""].ToString();
+                    cmbItem.SelectedItem = row["Item"].ToString();
                     txtqty.Text = row["QTY"].ToString();
-                    txtPrice.Text = (Convert.ToDouble(row["Price"].ToString()) / Convert.ToDouble(txtqty.Text)).ToString();
+                    txtPrice.Text = row["Price"].ToString();
                     rtbDesc.Text = row["Desc"].ToString();
                     txtCurrStock.Visible = true;
                     RefreshTotal();
@@ -299,12 +299,12 @@ namespace Shadev
                     txtPrice.Text = "0";
                 double price = double.Parse(txtPrice.Text);
                 double qty = double.Parse(txtqty.Text);
-                double total = Math.Round(price * qty, 0);
+                double total = Math.Round(price * qty, 2);
                 txtTotal.Text = total.ToString();
 
 
                 //double total = total / (1 + (Convert.ToDouble(txtTax1Percentage.Text) / 100) + (Convert.ToDouble(txtTax2Percentage.Text) / 100));
-                //txtPrice.Text = Math.Round(price, 0).ToString();
+                //txtPrice.Text = Math.Round(price, 2).ToString();
             }
             catch (Exception ex)
             {
