@@ -38,24 +38,24 @@ namespace Shadev
             try
             {
                 string add = rtbCustomerAdd.Text.Replace("'", "''");
+                if (string.IsNullOrWhiteSpace(txtOpeningBalance.Text))
+                {
+                    txtOpeningBalance.Text = "0";
+                }
                 if (!string.IsNullOrWhiteSpace(txtCustomerName.Text))
                 {
                     switch (Stat)
                     {
                         case FrmCompany.CustAdd:
-                            {
-                                //if (string.IsNullOrWhiteSpace(txtCustomerMobile.Text))
-                                //{
-                                //    txtCustomerMobile.Text = "0";
-                                //}
-                                AIO.command = "insert into Customer(custName,custAdd,custMob,custEmail,custVatTIN,custCstNo,custPAN,custType) values('" + txtCustomerName.Text + "','" + add + "','" + txtCustomerMobile.Text + "','" + txtCustomerEmail.Text + "','" + txtCustomerVat.Text + "','" + txtCSTNo.Text + "','" + txtPAN.Text + "','"+custType+"')";
+                            {   
+                                AIO.command = "insert into Customer(custName,custAdd,custMob,custEmail,custVatTIN,custCstNo,custPAN,custType,custOpenBal) values('" + txtCustomerName.Text + "','" + add + "','" + txtCustomerMobile.Text + "','" + txtCustomerEmail.Text + "','" + txtCustomerVat.Text + "','" + txtCSTNo.Text + "','" + txtPAN.Text + "','"+custType+"','"+txtOpeningBalance.Text+"')";
                                 a1.cmdexe();
                                 this.Close();
                             }
                             break;
                         case FrmCompany.CustEdit:
                             {
-                                AIO.command = "update Customer set custName='" + txtCustomerName.Text + "',custAdd='" + add + "',custMob='" + txtCustomerMobile.Text + "',custEmail='" + txtCustomerEmail.Text + "',custVatTIN='" + txtCustomerVat.Text + "',custCstNo='" + txtCSTNo.Text + "',custPAN='" + txtPAN.Text + "' where id=" + id;
+                                AIO.command = "update Customer set custName='" + txtCustomerName.Text + "',custAdd='" + add + "',custMob='" + txtCustomerMobile.Text + "',custEmail='" + txtCustomerEmail.Text + "',custVatTIN='" + txtCustomerVat.Text + "',custCstNo='" + txtCSTNo.Text + "',custPAN='" + txtPAN.Text + "',custOpenBal="+txtOpeningBalance.Text+" where id=" + id;
                                 a1.cmdexe();
                                 this.Close();
                             }
@@ -107,7 +107,7 @@ namespace Shadev
                     case FrmCompany.CustAdd:
                         {
                             this.Text = "Customer: Add";
-
+                            txtOpeningBalance.Text = "0";
                         }
                         break;
                     case FrmCompany.CustEdit:
@@ -122,6 +122,7 @@ namespace Shadev
                                 txtCustomerVat.Text = row["VAT TIN"].ToString();
                                 txtCSTNo.Text = row["CST No"].ToString();
                                 txtPAN.Text = row["PAN"].ToString();
+                                txtOpeningBalance.Text = row["custOpenBal"].ToString();
                             }
                         }
                         break;

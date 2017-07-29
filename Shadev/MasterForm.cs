@@ -619,10 +619,11 @@ namespace Shadev
             try
             {
                 txtCustSearch.Clear();
-                AIO.command = "select c.id,c.custName as [Name],c.custAdd as [Address],c.custMob as [Mobile],c.custEmail as [Email],c.custVatTIN as [VAT TIN],c.custCstNo as [CST No],c.custPAN as [PAN] from Customer as c where custType='" + custType + "' order by [Name]";
+                AIO.command = "select c.id,c.custName as [Name],c.custAdd as [Address],c.custMob as [Mobile],c.custEmail as [Email],c.custVatTIN as [VAT TIN],c.custCstNo as [CST No],c.custPAN as [PAN],c.custOpenBal from Customer as c where custType='" + custType + "' order by [Name]";
                 var dt = a1.dataload();
                 dgvCustomer.DataSource = dt;
                 dgvCustomer.Columns["id"].Visible = false;
+                dgvCustomer.Columns["custOpenBal"].Visible = false;
                 txtCustSearch.Clear();
 
 
@@ -1049,7 +1050,7 @@ namespace Shadev
                 else if (btnTransType.Text == "Estimate")
                     query = " where" + param + " T.tranType='Estimate' and T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
                 sb.Append(query);
-                
+
                 //Apply sorting in query
                 if (cmbTransSort.SelectedIndex > 0)
                     sort = " order by [" + cmbTransSort.SelectedItem.ToString() + "]";
@@ -1316,8 +1317,10 @@ namespace Shadev
             {
                 if (dgvCustomer.SelectedRows.Count > 0)
                 {
-                    double payReceive = 0, payDone = 0, tranPurchase = 0, tranSell = 0;
+                    double payReceive = 0, payDone = 0, tranPurchase = 0, tranSell = 0, openBal = 0;
                     string id = dgvCustomer.SelectedRows[0].Cells["id"].Value.ToString();
+
+                    openBal = Convert.ToDouble(dgvCustomer.SelectedRows[0].Cells["custOpenBal"].Value);
 
                     AIO.command = "select sum(payAmount) from Payment where payCustId=" + id + " and payType='Receive'";
                     var tmp = a1.cmdexesc();
@@ -1337,7 +1340,7 @@ namespace Shadev
                         tranSell = Convert.ToDouble(tmp);
 
                     //double outstand = (tranPurchase - payDone) - (tranSell - payReceive);
-                    double outstand = (tranSell - payReceive) - (tranPurchase - payDone);
+                    double outstand = openBal + (tranSell - payReceive) - (tranPurchase - payDone);
                     txtOutstanding.Text = outstand.ToString();
                     txtOutstanding.BackColor = txtOutstanding.BackColor;
                     if (outstand > 0)
