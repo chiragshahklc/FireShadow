@@ -404,6 +404,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Sqlite Queries\HSNSubReport" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

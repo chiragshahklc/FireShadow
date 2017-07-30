@@ -1,0 +1,12 @@
+SELECT group_concat(DISTINCT (h.hsnCode)),
+       h.sgst,
+       h.cgst,
+       h.igst,
+       sum(itg.itgPrice*itg.itgQTY * (h.sgst/100))
+  FROM HsnTax h
+       LEFT JOIN
+       Items AS i ON i.hsnId = h.id
+       LEFT JOIN
+       TranItemsGrid AS itg ON itg.itgModID = i.id
+ WHERE itg.itgTranID = 10
+ GROUP BY h.sgst

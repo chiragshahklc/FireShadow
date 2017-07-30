@@ -1,0 +1,26 @@
+SELECT custName,
+       tranDate AS Date,
+       sum(itgTotal + (itgTotal * (igst / 100) ) ) AS T,
+       '0' AS P,
+       tranNo
+  FROM Trans2
+       LEFT JOIN
+       TranItemsGrid ON Trans2.id = itgTranID
+       LEFT JOIN
+       Items ON itgModID = Items.id
+       LEFT JOIN
+       HsnTax ON hsnId = HsnTax.id
+       LEFT JOIN
+       Customer ON tranCustID = Customer.id
+ GROUP BY Trans2.id,
+          custName
+UNION
+SELECT custName,
+       payDate,
+       '0',
+       payAmount,
+       payment.id AS Date
+  FROM Payment
+       LEFT JOIN
+       Customer ON payCustId = Customer.id
+ ORDER BY Date;

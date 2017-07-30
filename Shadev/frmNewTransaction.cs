@@ -251,7 +251,7 @@ namespace Shadev
                     case FrmCompany.TransAdd:
                         {
                             //Fill combobox of Customer
-                            AIO.command = "select id,custName from Customer where custType='" + custType + "'";
+                            AIO.command = "select id,custName from Customer where custType='" + custType + "' order by custName ASC";
                             var dt = a1.dataload();
                             cbmCustomer.Items.Clear();
                             custID.Clear();
@@ -290,7 +290,7 @@ namespace Shadev
                             cID = Convert.ToInt64(a1.cmdexesc());
                             AIO.command = "select custType from Customer where id=" + cID;
                             custType = a1.cmdexesc().ToString();
-                            AIO.command = "select id,custName from Customer where custType='" + custType + "'";
+                            AIO.command = "select id,custName from Customer where custType='" + custType + "' order by custName ASC";
                             var dt3 = a1.dataload();
                             cbmCustomer.Items.Clear();
                             custID.Clear();

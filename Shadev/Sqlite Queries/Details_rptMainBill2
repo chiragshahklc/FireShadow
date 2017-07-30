@@ -1,0 +1,17 @@
+SELECT I.itemDesc AS Item,
+       H.hsnCode AS HSN,
+       T.itgPrice AS Price,
+       T.itgQTY AS QTY,
+       T.itgTotal AS Total,
+       Round(T.itgTotal * (H.sgst / 100), 2) AS SGST,
+       Round(T.itgTotal * (H.cgst / 100), 2) AS CGST,
+       Round(T.itgTotal * (H.igst / 100), 2) AS IGST,
+       Round(T.itgTotal + T.itgTotal * (H.igst / 100), 2) AS Amount,
+       T.itgDesc AS [Desc]
+  FROM TranItemsGrid AS T
+       LEFT JOIN
+       Items AS I ON T.itgModID = I.id
+       LEFT JOIN
+       HsnTax AS H ON I.hsnId = H.id
+ WHERE T.itgTranID = 10
+ ORDER BY T.id ASC;

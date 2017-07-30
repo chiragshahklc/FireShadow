@@ -618,11 +618,42 @@ namespace Shadev
         {
             try
             {
+                StringBuilder sb = new StringBuilder();
+                sb.Append("SELECT c.id, ");
+                sb.Append("c.custName as [Name], ");
+                sb.Append("c.custAdd as [Address], ");
+                sb.Append("c.custMob as [Mobile], ");
+                sb.Append("c.custEmail as [Email], ");
+                sb.Append("c.custVatTIN as [VAT TIN], ");
+                sb.Append("c.custCstNo as [CST No], ");
+                sb.Append("c.custPAN as [PAN], ");
+                sb.Append("c.custOpenBal, ");
+                sb.Append("c.custOpenBal + coalesce(sum(itg.itgTotal), 0) + coalesce(sum((coalesce(itg.itgTotal, 0) * (h.igst / 100))), 0) - ( ");
+                sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                sb.Append("FROM Payment ");
+                sb.Append("WHERE payCustId = c.id AND ");
+                sb.Append("payType = 'Receive' ");
+                sb.Append(") ");
+                sb.Append("AS [Outstanding Balance] ");
+                sb.Append("FROM Customer AS c ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Trans2 t ON t.tranCustID = c.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("TranItemsGrid AS itg ON t.id = itg.itgTranID ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Items AS i ON itg.itgModID = i.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("HsnTax AS h ON i.hsnId = h.id ");
+                sb.Append("WHERE custType='" + custType + "' ");
+                sb.Append("GROUP BY c.custName order by [Name]");
+                AIO.command = sb.ToString();
+
                 txtCustSearch.Clear();
-                AIO.command = "select c.id,c.custName as [Name],c.custAdd as [Address],c.custMob as [Mobile],c.custEmail as [Email],c.custVatTIN as [VAT TIN],c.custCstNo as [CST No],c.custPAN as [PAN],c.custOpenBal from Customer as c where custType='" + custType + "' order by [Name]";
+                //AIO.command = "select c.id,c.custName as [Name],c.custAdd as [Address],c.custMob as [Mobile],c.custEmail as [Email],c.custVatTIN as [VAT TIN],c.custCstNo as [CST No],c.custPAN as [PAN],c.custOpenBal from Customer as c where custType='" + custType + "' order by [Name]";
                 var dt = a1.dataload();
                 dgvCustomer.DataSource = dt;
                 dgvCustomer.Columns["id"].Visible = false;
+                dgvCustomer.Columns["Address"].Visible = false;
                 dgvCustomer.Columns["custOpenBal"].Visible = false;
                 txtCustSearch.Clear();
 
@@ -1317,38 +1348,38 @@ namespace Shadev
             {
                 if (dgvCustomer.SelectedRows.Count > 0)
                 {
-                    double payReceive = 0, payDone = 0, tranPurchase = 0, tranSell = 0, openBal = 0;
-                    string id = dgvCustomer.SelectedRows[0].Cells["id"].Value.ToString();
+                    //double payReceive = 0, payDone = 0, tranPurchase = 0, tranSell = 0, openBal = 0;
+                    //string id = dgvCustomer.SelectedRows[0].Cells["id"].Value.ToString();
 
-                    openBal = Convert.ToDouble(dgvCustomer.SelectedRows[0].Cells["custOpenBal"].Value);
+                    //openBal = Convert.ToDouble(dgvCustomer.SelectedRows[0].Cells["custOpenBal"].Value);
 
-                    AIO.command = "select sum(payAmount) from Payment where payCustId=" + id + " and payType='Receive'";
-                    var tmp = a1.cmdexesc();
-                    if (!DBNull.Value.Equals(tmp))
-                        payReceive = Convert.ToDouble(tmp);
-                    AIO.command = "select sum(payAmount) from Payment where payCustId=" + id + " and payType='Paid'";
-                    tmp = a1.cmdexesc();
-                    if (!DBNull.Value.Equals(tmp))
-                        payDone = Convert.ToDouble(tmp);
-                    AIO.command = "select sum(tranFinalTotal) from Trans where TranCustID=" + id + " and tranType='Purchase'";
-                    tmp = a1.cmdexesc();
-                    if (!DBNull.Value.Equals(tmp))
-                        tranPurchase = Convert.ToDouble(tmp);
-                    AIO.command = "select sum(tranFinalTotal) from Trans where TranCustID=" + id + " and tranType='Sale'";
-                    tmp = a1.cmdexesc();
-                    if (!DBNull.Value.Equals(tmp))
-                        tranSell = Convert.ToDouble(tmp);
+                    //AIO.command = "select sum(payAmount) from Payment where payCustId=" + id + " and payType='Receive'";
+                    //var tmp = a1.cmdexesc();
+                    //if (!DBNull.Value.Equals(tmp))
+                    //    payReceive = Convert.ToDouble(tmp);
+                    //AIO.command = "select sum(payAmount) from Payment where payCustId=" + id + " and payType='Paid'";
+                    //tmp = a1.cmdexesc();
+                    //if (!DBNull.Value.Equals(tmp))
+                    //    payDone = Convert.ToDouble(tmp);
+                    //AIO.command = "select sum(tranFinalTotal) from Trans2 where TranCustID=" + id + " and tranType='Purchase'";
+                    //tmp = a1.cmdexesc();
+                    //if (!DBNull.Value.Equals(tmp))
+                    //    tranPurchase = Convert.ToDouble(tmp);
+                    //AIO.command = "select sum(tranFinalTotal) from Trans2 where TranCustID=" + id + " and tranType='Sale'";
+                    //tmp = a1.cmdexesc();
+                    //if (!DBNull.Value.Equals(tmp))
+                    //    tranSell = Convert.ToDouble(tmp);
 
-                    //double outstand = (tranPurchase - payDone) - (tranSell - payReceive);
-                    double outstand = openBal + (tranSell - payReceive) - (tranPurchase - payDone);
-                    txtOutstanding.Text = outstand.ToString();
-                    txtOutstanding.BackColor = txtOutstanding.BackColor;
-                    if (outstand > 0)
-                        txtOutstanding.ForeColor = Color.Green;
-                    else if (outstand < 0)
-                        txtOutstanding.ForeColor = Color.Red;
-                    else
-                        txtOutstanding.ForeColor = Color.Black;
+                    ////double outstand = (tranPurchase - payDone) - (tranSell - payReceive);
+                    //double outstand = openBal + (tranSell - payReceive) - (tranPurchase - payDone);
+                    //txtOutstanding.Text = outstand.ToString();
+                    //txtOutstanding.BackColor = txtOutstanding.BackColor;
+                    //if (outstand > 0)
+                    //    txtOutstanding.ForeColor = Color.Green;
+                    //else if (outstand < 0)
+                    //    txtOutstanding.ForeColor = Color.Red;
+                    //else
+                    //    txtOutstanding.ForeColor = Color.Black;
 
                 }
             }
@@ -1363,9 +1394,9 @@ namespace Shadev
             try
             {
                 if (string.IsNullOrWhiteSpace(txtCustSearch.Text))
-                    AIO.command = "select c.id,c.custName as [Name],c.custAdd as [Address],c.custMob as [Mobile],c.custEmail as [Email],c.custVatTIN as [VAT TIN],c.custCstNo as [CST No],c.custPAN as [PAN] from Customer as c where custType='" + custType + "'";
+                    AIO.command = "select c.id,c.custName as [Name],c.custAdd as [Address],c.custMob as [Mobile],c.custEmail as [Email],c.custVatTIN as [VAT TIN],c.custCstNo as [CST No],c.custPAN as [PAN],c.custOpenBal from Customer as c where custType='" + custType + "'";
                 else
-                    AIO.command = "select c.id,c.custName as [Name],c.custAdd as [Address],c.custMob as [Mobile],c.custEmail as [Email],c.custVatTIN as [VAT TIN],c.custCstNo as [CST No],c.custPAN as [PAN] from Customer as c where custName like '%" + txtCustSearch.Text + "%' and custType='" + custType + "'";
+                    AIO.command = "select c.id,c.custName as [Name],c.custAdd as [Address],c.custMob as [Mobile],c.custEmail as [Email],c.custVatTIN as [VAT TIN],c.custCstNo as [CST No],c.custPAN as [PAN],c.custOpenBal from Customer as c where custName like '%" + txtCustSearch.Text + "%' and custType='" + custType + "'";
                 var dt = a1.dataload();
                 dgvCustomer.DataSource = dt;
                 dgvCustomer.Columns["id"].Visible = false;
