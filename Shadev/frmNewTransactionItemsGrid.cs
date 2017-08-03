@@ -114,10 +114,13 @@ namespace Shadev
 
                                 case FrmCompany.TransEdit:
                                     {
+                                        AIO.command = "select tranNo from Trans2 where id=" + TransNo;
+                                        var tID = Convert.ToInt32(a1.cmdexesc());
+
                                         if (thisStat == FrmCompany.itgAdd)
-                                            AIO.command = "insert into TranItemsGrid(itgModID,itgTranID,itgQTY,itgPrice,itgTotal,itgDesc,itgTranType) VALUES(" + itemID[cmbItem.SelectedIndex] + "," + TransNo + "," + txtqty.Text + "," + txtPrice.Text + "," + txtTotal.Text + ",'" + itemDESC + "','" + tranTYPE + "')";
+                                            AIO.command = "insert into TranItemsGrid(itgModID,itgTranID,itgTranNo,itgQTY,itgPrice,itgTotal,itgDesc,itgTranType) VALUES(" + itemID[cmbItem.SelectedIndex] + "," + TransNo + "," + tID + "," + txtqty.Text + "," + txtPrice.Text + "," + txtTotal.Text + ",'" + itemDESC + "','" + tranTYPE + "')";
                                         if (this.thisStat == FrmCompany.itgEdit)
-                                            AIO.command = "update TranItemsGrid set itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
+                                            AIO.command = "update TranItemsGrid set itgTranNo=" + tID + ",itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
                                         a1.cmdexe();
 
                                     }
@@ -143,12 +146,15 @@ namespace Shadev
                     if (!flag)
                     {
                         string itemDESC = rtbDesc.Text.Replace("'", "''");
+                        AIO.command = "select tranNo from Trans2 where id=" + TransNo;
+                        var tID = Convert.ToInt32(a1.cmdexesc());
+
                         switch (Stat)
                         {
                             case FrmCompany.TransAdd:
                                 {
                                     //AIO.command = "update TranItemsGrid set itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
-                                    AIO.command = "update TranItemsGrid set itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
+                                    AIO.command = "update TranItemsGrid set itgTranNo=" + tID + ",itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
                                     a1.cmdexe();
                                 }
                                 break;
@@ -156,7 +162,7 @@ namespace Shadev
                             case FrmCompany.TransEdit:
                                 {
                                     //AIO.command = "update TranItemsGrid set itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
-                                    AIO.command = "update TranItemsGrid set itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
+                                    AIO.command = "update TranItemsGrid set itgTranNo=" + tID + ",itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
                                     a1.cmdexe();
                                 }
                                 break;
@@ -222,60 +228,7 @@ namespace Shadev
             }
         }
 
-        //private void cmbComapny_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (cmbComapny.SelectedIndex >= 0)
-        //        {
-        //            AIO.command = "select id,catName from Category where catComID=" + comID[cmbComapny.SelectedIndex];
-        //            var dt = a1.dataload();
-
-        //            cmbCategory.Items.Clear();
-        //            catID.Clear();
-        //            foreach (DataRow row in dt.Rows)
-        //            {
-        //                cmbCategory.Items.Add(row["catName"].ToString());
-        //                catID.Add(long.Parse(row["id"].ToString()));
-        //            }
-
-        //            cmbCategory.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-        //            cmbCategory.AutoCompleteSource = AutoCompleteSource.ListItems;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
-
-        //private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (cmbCategory.SelectedIndex >= 0)
-        //        {
-        //            AIO.command = "select id,modName from Model where modCatID=" + catID[cmbCategory.SelectedIndex];
-        //            var dt = a1.dataload();
-
-        //            cmbModel.Items.Clear();
-        //            modID.Clear();
-        //            foreach (DataRow row in dt.Rows)
-        //            {
-        //                cmbModel.Items.Add(row["modName"].ToString());
-        //                modID.Add(long.Parse(row["id"].ToString()));
-        //            }
-
-        //            cmbModel.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-        //            cmbModel.AutoCompleteSource = AutoCompleteSource.ListItems;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
-
+      
         private void txtTotal_Leave(object sender, EventArgs e)
         {
             try
@@ -391,7 +344,45 @@ namespace Shadev
             }
             else
             {
-                AIO.command = "select stock from Model where id=" + itemID[cmbItem.SelectedIndex];
+                StringBuilder sb = new StringBuilder();
+                sb.Append("SELECT sum(CASE WHEN tig.itgTranType = 'Purchase' THEN tig.itgQTY ELSE 0 END) -sum(CASE WHEN tig.itgTranType = 'Sale' THEN tig.itgQTY ELSE 0 END) AS Outwards ");
+                sb.Append("FROM Items AS i ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("TranItemsGrid AS tig ON tig.itgModID = i.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Trans2 AS t ON t.id = tig.itgTranID ");
+                sb.Append("WHERE i.id ="+ itemID[cmbItem.SelectedIndex] + " ");
+                sb.Append("GROUP BY i.id");
+                AIO.command = sb.ToString();
+
+
+                //AIO.command = "select stock from Model where id=" + itemID[cmbItem.SelectedIndex];
+                var x = Convert.ToInt32(a1.cmdexesc());
+                txtCurrStock.Text = x.ToString();
+            }
+        }
+
+        private void cmbItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbItem.SelectedIndex < 0)
+            {
+                txtCurrStock.Text = "--";
+            }
+            else
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append("SELECT sum(CASE WHEN tig.itgTranType = 'Purchase' THEN tig.itgQTY ELSE 0 END) -sum(CASE WHEN tig.itgTranType = 'Sale' THEN tig.itgQTY ELSE 0 END) AS Outwards ");
+                sb.Append("FROM Items AS i ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("TranItemsGrid AS tig ON tig.itgModID = i.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Trans2 AS t ON t.id = tig.itgTranID ");
+                sb.Append("WHERE i.id =" + itemID[cmbItem.SelectedIndex] + " ");
+                sb.Append("GROUP BY i.id");
+                AIO.command = sb.ToString();
+
+
+                //AIO.command = "select stock from Model where id=" + itemID[cmbItem.SelectedIndex];
                 var x = Convert.ToInt32(a1.cmdexesc());
                 txtCurrStock.Text = x.ToString();
             }

@@ -13,7 +13,6 @@ namespace Shadev
     public partial class frmNewItems : Form
     {
 
-        static int TempId = -1;
         AIO A1;
         public FrmCompany Stat { get; set; }
         List<long> UnitId = new List<long>();

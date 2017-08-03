@@ -145,6 +145,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Expense";
+            this.Load += new System.EventHandler(this.frmExpense_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

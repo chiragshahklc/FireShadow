@@ -404,7 +404,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Sqlite Queries\Customer_OR_Supplier_LedgerReport" />
+    <None Include="Sqlite Queries\Details_rptMainBill2" />
     <None Include="Sqlite Queries\HSNSubReport" />
+    <None Include="Sqlite Queries\ItemWise_Stock_Report" />
+    <None Include="Sqlite Queries\Supplier_Outstanding_Balance" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

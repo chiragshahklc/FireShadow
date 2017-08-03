@@ -220,6 +220,8 @@ namespace Shadev
         {
             try
             {
+                dtpTranDate.MinDate = AIO.OpeningDate;
+
                 AIO.command = "select id,custName from Customer where custType='" + custType + "'";
                 var dt = a1.dataload();
 

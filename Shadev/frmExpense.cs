@@ -70,5 +70,10 @@ namespace Shadev
                 MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void frmExpense_Load(object sender, EventArgs e)
+        {
+            dtpExpense.MinDate = AIO.OpeningDate;
+        }
     }
 }

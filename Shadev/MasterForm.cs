@@ -20,9 +20,11 @@ namespace Shadev
         List<long> modID = new List<long>();
         List<long> CustID = new List<long>();
         List<long> CustIDSearch = new List<long>();
+        List<int> lstPaymentModeID = new List<int>();
+        List<int> lstTransactionTypeID = new List<int>();
         List<TabPage> allTabs = new List<TabPage>();
         public string custType { get; set; }
-        TranSearc tranSearchStat;
+        TranSearc tranSearchStat { get; set; }
 
         public MasterForm()
         {
@@ -36,10 +38,6 @@ namespace Shadev
 
         }
 
-        private void txtAboutCompanyContact_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
         private void txtAboutCompanyEmail_Leave(object sender, EventArgs e)
         {
 
@@ -56,58 +54,6 @@ namespace Shadev
                 fr.modName = Model;
                 fr.id = ID;
                 fr.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void addToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OpenFrmCompanyAddEdit(FrmCompany.CompanyAdd, "", "", "", -1);
-                RefreshCompany();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OpenFrmCompanyAddEdit(FrmCompany.CompanyEdit, cmsCompany.Items[0].Text, "", "", int.Parse(dgvCompany.SelectedRows[0].Cells["id"].Value.ToString()));
-                RefreshCompany();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void addToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OpenFrmCompanyAddEdit(FrmCompany.CategoryAdd, cmbCategoryCompany.SelectedItem.ToString(), "", "", comID[cmbCategoryCompany.SelectedIndex]);
-                RefreshCategory();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void editToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OpenFrmCompanyAddEdit(FrmCompany.CategoryEdit, cmbCategoryCompany.SelectedItem.ToString(), cmsCategory.Items[0].Text, "", int.Parse(dgvCategory.SelectedRows[0].Cells["id"].Value.ToString()));
-                RefreshCategory();
             }
             catch (Exception ex)
             {
@@ -141,36 +87,7 @@ namespace Shadev
             }
         }
 
-        private void RefreshCompany()
-        {
-            try
-            {
-                AIO.command = "select  id,comName as [Company] from Company order by comName ASC";
-                var dt = a1.dataload();
-                dgvCompany.DataSource = dt;
-                dgvCompany.Columns["id"].Visible = false;
-
-                cmbCategoryCompany.Items.Clear();
-                cmbModelCompany.Items.Clear();
-                comID.Clear();
-                foreach (DataRow row in dt.Rows)
-                {
-                    cmbCategoryCompany.Items.Add(row["Company"].ToString());
-                    cmbModelCompany.Items.Add(row["Company"].ToString());
-                    comID.Add(long.Parse(row["id"].ToString()));
-                }
-
-                cmbCategoryCompany.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                cmbCategoryCompany.AutoCompleteSource = AutoCompleteSource.ListItems;
-
-                cmbModelCompany.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                cmbModelCompany.AutoCompleteSource = AutoCompleteSource.ListItems;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+   
 
         private void ProdReg(string Serial)
         {
@@ -203,23 +120,51 @@ namespace Shadev
             try
             {
                 //ProdReg();
+                //Load Payment Mode with default values - Payment
+                AIO.command = "select id, pmName from PaymentMode";
+                using (var dt = a1.dataload())
+                {
+                    cmbPaymentMethod.Items.Clear();
+                    lstPaymentModeID.Clear();
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        cmbPaymentMethod.Items.Add(row["pmName"].ToString());
+                        lstPaymentModeID.Add(int.Parse(row["id"].ToString()));
+                    }
+                    cmbPaymentMethod.AutoCompleteSource = AutoCompleteSource.ListItems;
+                    cmbPaymentMethod.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                }
+
+                //Load Transaction Type with default values - Payment
+                AIO.command = "select id, trtName from TranTypes";
+                using (var dt = a1.dataload())
+                {
+                    cmbPaymentType.Items.Clear();
+                    lstTransactionTypeID.Clear();
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        cmbPaymentType.Items.Add(row["trtName"].ToString());
+                        lstTransactionTypeID.Add(int.Parse(row["id"].ToString()));
+                    }
+                    cmbPaymentType.AutoCompleteSource = AutoCompleteSource.ListItems;
+                    cmbPaymentType.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                }
 
                 btnPayCust.Text = customerToolStripMenuItem.Text;
                 btnTRCust.Text = customerToolStripMenuItem.Text;
                 custType = customerToolStripMenuItem.Text;
                 dtpStartStock.Value = new DateTime(2017, 04, 01);
 
+                RefreshGeneralSettings();
                 refreshbank();
-                RefreshCompany();
                 RefreshCustomer();
                 RefreshAboutMe();
                 RefreshTransaction();
                 RefreshExpense();
                 refreshTandD();
-                RefreshGeneralSettings();
-                RefreshTaxMaster();
                 RefreshHSN();
                 RefreshNewItem();
+                RefreshPayment();
                 tabControl1.Visible = false;
                 foreach (TabPage page in tabControl1.TabPages)
                 {
@@ -263,17 +208,7 @@ namespace Shadev
 
         }
 
-        private void cmbCategoryCompany_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                RefreshCategory();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+   
 
         private void cmbModelCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -315,133 +250,11 @@ namespace Shadev
             }
         }
 
-        private void cmsCompany_Opening(object sender, CancelEventArgs e)
-        {
-            try
-            {
-                if (dgvCompany.SelectedRows.Count > 0)
-                {
-                    cmsCompany.Items[0].Text = dgvCompany.SelectedRows[0].Cells["Company"].Value.ToString();
-                    cmsCompany.Items[3].Enabled = true;
-                    cmsCompany.Items[4].Enabled = true;
-                }
-                else
-                {
-                    cmsCompany.Items[0].Text = "";
-                    cmsCompany.Items[3].Enabled = false;
-                    cmsCompany.Items[4].Enabled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dgvCompany.SelectedRows.Count > 0)
-                {
-                    AIO.command = "select count(id) from Category where catComID=" + dgvCompany.SelectedRows[0].Cells["id"].Value.ToString();
-                    var count = Convert.ToInt32(a1.cmdexesc());
-                    if (count > 0)
-                    {
-                        MessageBox.Show("Foreign Key Error: Company can't be delete.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        AIO.command = "delete from Company where id=" + dgvCompany.SelectedRows[0].Cells["id"].Value.ToString();
-                        a1.cmdexe();
-                    }
-                }
-                RefreshCompany();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+       
+      
 
-        private void cmsCategory_Opening(object sender, CancelEventArgs e)
-        {
-            try
-            {
-                if (cmbCategoryCompany.SelectedIndex >= 0)
-                {
-                    cmsCategory.Items[2].Enabled = true;
-
-                    if (dgvCategory.SelectedRows.Count > 0)
-                    {
-                        cmsCategory.Items[0].Text = dgvCategory.SelectedRows[0].Cells["Category"].Value.ToString();
-                        cmsCategory.Items[3].Enabled = true;
-                        cmsCategory.Items[4].Enabled = true;
-                    }
-                    else
-                    {
-                        cmsCategory.Items[0].Text = "";
-                        cmsCategory.Items[3].Enabled = false;
-                        cmsCategory.Items[4].Enabled = false;
-                    }
-                }
-                else
-                {
-                    cmsCategory.Items[2].Enabled = false;
-                    cmsCategory.Items[3].Enabled = false;
-                    cmsCategory.Items[4].Enabled = false;
-                    cmsCategory.Items[0].Text = "";
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void RefreshCategory()
-        {
-            try
-            {
-                if (cmbCategoryCompany.SelectedIndex >= 0)
-                {
-                    AIO.command = "select id,catName as [Category] from Category where catComID=" + comID[cmbCategoryCompany.SelectedIndex] + " order by catName ASC";
-                    var dt = a1.dataload();
-                    dgvCategory.DataSource = dt;
-                    dgvCategory.Columns["id"].Visible = false;
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dgvCategory.SelectedRows.Count > 0)
-                {
-                    AIO.command = "select count(id) from Model where modCatID=" + dgvCategory.SelectedRows[0].Cells["id"].Value.ToString();
-                    var count = Convert.ToInt32(a1.cmdexesc());
-                    if (count > 0)
-                    {
-                        MessageBox.Show("Foreign Key Error: Category can't be delete.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        AIO.command = "delete from Category where id=" + dgvCategory.SelectedRows[0].Cells["id"].Value.ToString();
-                        a1.cmdexe();
-                    }
-                }
-                RefreshCategory();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+       
 
         private void RefreshModel()
         {
@@ -624,17 +437,46 @@ namespace Shadev
                 sb.Append("c.custAdd as [Address], ");
                 sb.Append("c.custMob as [Mobile], ");
                 sb.Append("c.custEmail as [Email], ");
-                sb.Append("c.custVatTIN as [VAT TIN], ");
+                sb.Append("c.custVatTIN as [GSTIN], ");
                 sb.Append("c.custCstNo as [CST No], ");
                 sb.Append("c.custPAN as [PAN], ");
                 sb.Append("c.custOpenBal, ");
-                sb.Append("c.custOpenBal + coalesce(sum(itg.itgTotal), 0) + coalesce(sum((coalesce(itg.itgTotal, 0) * (h.igst / 100))), 0) - ( ");
-                sb.Append("SELECT coalesce(sum(payAmount), 0) ");
-                sb.Append("FROM Payment ");
-                sb.Append("WHERE payCustId = c.id AND ");
-                sb.Append("payType = 'Receive' ");
-                sb.Append(") ");
-                sb.Append("AS [Outstanding Balance] ");
+                //From here logic is for customer
+                //
+                if (custType == "Customer")
+                {
+                    sb.Append("Round(c.custOpenBal + (coalesce(sum(itg.itgTotal), 0) + coalesce(sum((coalesce(itg.itgTotal, 0) * (h.igst / 100))), 0)) - ( ");
+                    sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                    sb.Append("FROM Payment ");
+                    sb.Append("WHERE payCustId = c.id AND ");
+                    sb.Append("payType = 2 ");
+                    sb.Append(")");
+                    sb.Append("+( ");
+                    sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                    sb.Append("FROM Payment ");
+                    sb.Append("WHERE payCustId = c.id AND ");
+                    sb.Append("payType = 3 ");
+                    sb.Append("), 0) [Outstanding Balance] ");
+                }
+                //
+                //From Here logic is for supplier
+                //
+                else if (custType == "Supplier")
+                {
+                    sb.Append("Round(c.custOpenBal - (coalesce(sum(itg.itgTotal), 0) + coalesce(sum((coalesce(itg.itgTotal, 0) * (h.igst / 100))), 0)) + ( ");
+                    sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                    sb.Append("FROM Payment ");
+                    sb.Append("WHERE payCustId = c.id AND ");
+                    sb.Append("payType = 1 ");
+                    sb.Append(")");
+                    sb.Append("-( ");
+                    sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                    sb.Append("FROM Payment ");
+                    sb.Append("WHERE payCustId = c.id AND ");
+                    sb.Append("payType = 4 ");
+                    sb.Append("), 0) [Outstanding Balance] ");
+                }
+
                 sb.Append("FROM Customer AS c ");
                 sb.Append("LEFT JOIN ");
                 sb.Append("Trans2 t ON t.tranCustID = c.id ");
@@ -799,8 +641,11 @@ namespace Shadev
                 fr.StartPosition = FormStartPosition.CenterParent;
                 fr.Stat = FrmCompany.BankEdit;
                 fr.row = ((DataTable)dgvBank.DataSource).Rows[dgvBank.SelectedRows[0].Index];
-                fr.ShowDialog();
-                refreshbank();
+                if (dgvBank.SelectedRows[0].Cells["id"].Value.ToString() != "1")
+                {
+                    fr.ShowDialog();
+                    refreshbank();
+                }
             }
             catch (Exception ex)
             {
@@ -812,7 +657,7 @@ namespace Shadev
         {
             try
             {
-                AIO.command = "select id,bnkname as [Name],bnkBranch as [Branch],bnkACNo as [AccountNo],bnkIFSC as [IFSC] from Banks order by [Name]";
+                AIO.command = "select id,bnkname as [Name],bnkBranch as [Branch],bnkACNo as [AccountNo],bnkIFSC as [IFSC],bnkOpeningBalance as [Opening Balance] from Banks order by [Name]";
                 var dt = a1.dataload();
                 dgvBank.DataSource = dt;
                 dgvBank.Columns["id"].Visible = false;
@@ -1107,20 +952,44 @@ namespace Shadev
         {
             try
             {
+
+
                 string custName = "", payMode = "", payType = "", sort = "", asc = "";
                 if (cmbCustomerName.SelectedIndex > 0)
-                    custName = " and payCustID=" + CustID[cmbCustomerName.SelectedIndex];
-                if (cmbPaymentMethod.SelectedIndex > 0)
-                    payMode = " and payMethod='" + cmbPaymentMethod.SelectedItem.ToString() + "'";
-                if (cmbPaymentType.SelectedIndex > 0)
-                    payType = " and payType='" + cmbPaymentType.SelectedItem.ToString() + "'";
+                    custName = " and p.payCustID=" + CustID[cmbCustomerName.SelectedIndex];
+                if (cmbPaymentMethod.SelectedIndex >= 0)
+                    payMode = " and p.payMethod=" + lstPaymentModeID[cmbPaymentMethod.SelectedIndex];
+                if (cmbPaymentType.SelectedIndex >= 0)
+                    payType = " and p.payType=" + lstTransactionTypeID[cmbPaymentType.SelectedIndex];
                 if (cmbPaymentSortby.SelectedIndex > 0)
                     sort = " order by [" + cmbPaymentSortby.SelectedItem.ToString() + "]";
                 if (cmbPaymentSortby.SelectedIndex > 0 && cmbPayASC.SelectedIndex > 0)
                     asc = " " + cmbPayASC.SelectedItem.ToString();
-                AIO.command = "select id,(select custName from Customer where id =payCustID) as [Name],payMethod as [Cash Mode],payType as [Payment Type],payCheck as [Cheque No],payAmount as [Amount],payDate as [Date],payDesc as [Desc] from Payment as [Payment1] where payDate between '" + dtpPaymentStart.Value.ToString("yyyy-MM-dd") + "' and '" + dtpPaymentEnd.Value.ToString("yyyy-MM-dd") + "'" + custName + "" + payMode + "" + payType + "" + sort + "" + asc;
-                var dt = a1.dataload();
-                dgvPayment.DataSource = dt;
+                //AIO.command = "select id,(select custName from Customer where id =payCustID) as [Name],payMethod,payMethod as [Payment Mode],payType as [Payment Type],payCheck as [Cheque No],payAmount as [Amount],payDate as [Date],payDesc as [Desc] from Payment as [Payment1] where payDate between '" + dtpPaymentStart.Value.ToString("yyyy-MM-dd") + "' and '" + dtpPaymentEnd.Value.ToString("yyyy-MM-dd") + "'" + custName + "" + payMode + "" + payType + "" + sort + "" + asc;
+                StringBuilder sb = new StringBuilder();
+                sb.Append("SELECT p.id, ");
+                sb.Append("custName AS Name, ");
+                sb.Append("p.payMethod, ");
+                sb.Append("pmName AS [Payment Mode], ");
+                sb.Append("trtName AS [Transaction Type], ");
+                sb.Append("p.payCheck AS[Cheque/Transaction No], ");
+                sb.Append("p.payAmount AS Amount, ");
+                sb.Append("p.payDate AS Date, ");
+                sb.Append("p.payDesc AS [Desc] ");
+                sb.Append("FROM Payment AS p ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Customer ON payCustId = Customer.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("PaymentMode ON payMethod = PaymentMode.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("TranTypes ON p.payType = TranTypes.id ");
+                sb.Append("where p.payDate between '" + dtpPaymentStart.Value.ToString("yyyy-MM-dd") + "' and '" + dtpPaymentEnd.Value.ToString("yyyy-MM-dd") + "'" + custName + "" + payMode + "" + payType + "" + sort + "" + asc);
+                AIO.command = sb.ToString();
+                using (var dt = a1.dataload())
+                {
+                    dgvPayment.DataSource = dt;
+                    dgvPayment.Columns["payMethod"].Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -1187,29 +1056,6 @@ namespace Shadev
             }
         }
 
-        private void companyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SwitchTabPages(AllTabs.Company);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void categoryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SwitchTabPages(AllTabs.Category);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private void modelToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1371,15 +1217,15 @@ namespace Shadev
                     //    tranSell = Convert.ToDouble(tmp);
 
                     ////double outstand = (tranPurchase - payDone) - (tranSell - payReceive);
-                    //double outstand = openBal + (tranSell - payReceive) - (tranPurchase - payDone);
-                    //txtOutstanding.Text = outstand.ToString();
-                    //txtOutstanding.BackColor = txtOutstanding.BackColor;
-                    //if (outstand > 0)
-                    //    txtOutstanding.ForeColor = Color.Green;
-                    //else if (outstand < 0)
-                    //    txtOutstanding.ForeColor = Color.Red;
-                    //else
-                    //    txtOutstanding.ForeColor = Color.Black;
+                    double outstand = Convert.ToDouble(dgvCustomer.SelectedRows[0].Cells["Outstanding Balance"].Value.ToString());
+                    txtOutstanding.Text = dgvCustomer.SelectedRows[0].Cells["Outstanding Balance"].Value.ToString();
+                    txtOutstanding.BackColor = txtOutstanding.BackColor;
+                    if (outstand > 0)
+                        txtOutstanding.ForeColor = Color.Green;
+                    else if (outstand < 0)
+                        txtOutstanding.ForeColor = Color.Red;
+                    else
+                        txtOutstanding.ForeColor = Color.Black;
 
                 }
             }
@@ -1393,10 +1239,75 @@ namespace Shadev
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(txtCustSearch.Text))
-                    AIO.command = "select c.id,c.custName as [Name],c.custAdd as [Address],c.custMob as [Mobile],c.custEmail as [Email],c.custVatTIN as [VAT TIN],c.custCstNo as [CST No],c.custPAN as [PAN],c.custOpenBal from Customer as c where custType='" + custType + "'";
-                else
-                    AIO.command = "select c.id,c.custName as [Name],c.custAdd as [Address],c.custMob as [Mobile],c.custEmail as [Email],c.custVatTIN as [VAT TIN],c.custCstNo as [CST No],c.custPAN as [PAN],c.custOpenBal from Customer as c where custName like '%" + txtCustSearch.Text + "%' and custType='" + custType + "'";
+                StringBuilder sb = new StringBuilder();
+                sb.Append("SELECT c.id, ");
+                sb.Append("c.custName as [Name], ");
+                sb.Append("c.custAdd as [Address], ");
+                sb.Append("c.custMob as [Mobile], ");
+                sb.Append("c.custEmail as [Email], ");
+                sb.Append("c.custVatTIN as [GSTIN], ");
+                sb.Append("c.custCstNo as [CST No], ");
+                sb.Append("c.custPAN as [PAN], ");
+                sb.Append("c.custOpenBal, ");
+                //From here logic is for customer
+                //
+                if (custType == "Customer")
+                {
+                    sb.Append("Round(c.custOpenBal + (coalesce(sum(itg.itgTotal), 0) + coalesce(sum((coalesce(itg.itgTotal, 0) * (h.igst / 100))), 0)) - ( ");
+                    sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                    sb.Append("FROM Payment ");
+                    sb.Append("WHERE payCustId = c.id AND ");
+                    sb.Append("payType = 2 ");
+                    sb.Append(")");
+                    sb.Append("+( ");
+                    sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                    sb.Append("FROM Payment ");
+                    sb.Append("WHERE payCustId = c.id AND ");
+                    sb.Append("payType = 3 ");
+                    sb.Append("), 0) [Outstanding Balance] ");
+                }
+                //
+                //From Here logic is for supplier
+                //
+                else if (custType == "Supplier")
+                {
+                    sb.Append("Round(c.custOpenBal - (coalesce(sum(itg.itgTotal), 0) + coalesce(sum((coalesce(itg.itgTotal, 0) * (h.igst / 100))), 0)) + ( ");
+                    sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                    sb.Append("FROM Payment ");
+                    sb.Append("WHERE payCustId = c.id AND ");
+                    sb.Append("payType = 1 ");
+                    sb.Append(")");
+                    sb.Append("-( ");
+                    sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                    sb.Append("FROM Payment ");
+                    sb.Append("WHERE payCustId = c.id AND ");
+                    sb.Append("payType = 4 ");
+                    sb.Append("), 0) [Outstanding Balance] ");
+                }
+
+                sb.Append("FROM Customer AS c ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Trans2 t ON t.tranCustID = c.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("TranItemsGrid AS itg ON t.id = itg.itgTranID ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Items AS i ON itg.itgModID = i.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("HsnTax AS h ON i.hsnId = h.id ");
+                sb.Append("WHERE custName like '%" + txtCustSearch.Text + "%' and custType='" + custType + "' ");
+                sb.Append("GROUP BY c.custName order by [Name]");
+                AIO.command = sb.ToString();
+
+
+
+
+
+
+
+                //if (string.IsNullOrWhiteSpace(txtCustSearch.Text))
+                //    AIO.command = "select c.id,c.custName as [Name],c.custAdd as [Address],c.custMob as [Mobile],c.custEmail as [Email],c.custVatTIN as [VAT TIN],c.custCstNo as [CST No],c.custPAN as [PAN],c.custOpenBal from Customer as c where custType='" + custType + "'";
+                //else
+                //    AIO.command = "select c.id,c.custName as [Name],c.custAdd as [Address],c.custMob as [Mobile],c.custEmail as [Email],c.custVatTIN as [VAT TIN],c.custCstNo as [CST No],c.custPAN as [PAN],c.custOpenBal from Customer as c where custName like '%" + txtCustSearch.Text + "%' and custType='" + custType + "'";
                 var dt = a1.dataload();
                 dgvCustomer.DataSource = dt;
                 dgvCustomer.Columns["id"].Visible = false;
@@ -1477,6 +1388,7 @@ namespace Shadev
                         frmMainBillView fr = new frmMainBillView();
                         fr.StartPosition = FormStartPosition.CenterParent;
                         fr.ShowInTaskbar = false;
+                        fr.isPDFMode = false;
                         fr.ID = int.Parse(dgvTransaction.SelectedRows[0].Cells["id"].Value.ToString());
                         fr.ShowDialog();
                     }
@@ -1517,17 +1429,51 @@ namespace Shadev
         {
             try
             {
-                AIO.command = "select sum(tranFinalTotal) from Trans where TranDate between '" + dtpstart.Value.ToString("yyyy-MM-dd") + "' and '" + dtpend.Value.ToString("yyyy-MM-dd") + "' and tranType='Purchase' ";
+                //Calculate Purchase
+                StringBuilder sb = new StringBuilder();
+                sb.Append("SELECT sum(itgTotal + itgTotal * (igst / 100)) ");
+                sb.Append("FROM Trans2 ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("TranItemsGrid ON Trans2.id = itgTranID ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Items ON itgModID = Items.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("HsnTax ON hsnId = HsnTax.id ");
+                sb.Append("WHERE TranDate BETWEEN '" + dtpstart.Value.ToString("yyyy-MM-dd") + "' AND '" + dtpend.Value.ToString("yyyy-MM-dd") + "' AND ");
+                sb.Append("tranType = 'Purchase'");
+                AIO.command = sb.ToString();
                 lblTotalPurchase.Text = a1.cmdexesc().ToString();
 
-                AIO.command = "select sum(payAmount) from Payment where payDate between '" + dtpstart.Value.ToString("yyyy-MM-dd") + "' and '" + dtpend.Value.ToString("yyyy-MM-dd") + "' and payType='Paid' ";
+                //Calculate Payment Done
+                AIO.command = "select sum(payAmount) from Payment where payDate between '" + dtpstart.Value.ToString("yyyy-MM-dd") + "' and '" + dtpend.Value.ToString("yyyy-MM-dd") + "' and payType=1 ";
                 lblTotalPaymentDone.Text = a1.cmdexesc().ToString();
 
-                AIO.command = "select sum(tranFinalTotal) from Trans where TranDate between '" + dtpstart.Value.ToString("yyyy-MM-dd") + "' and '" + dtpend.Value.ToString("yyyy-MM-dd") + "' and tranType='Sale' ";
+                //Calculate Debit Note
+                AIO.command = "select sum(payAmount) from Payment where payDate between '" + dtpstart.Value.ToString("yyyy-MM-dd") + "' and '" + dtpend.Value.ToString("yyyy-MM-dd") + "' and payType=4 ";
+                lblDebitNote.Text = a1.cmdexesc().ToString();
+
+                //Calculate Sale
+                sb = new StringBuilder();
+                sb.Append("SELECT sum(itgTotal + itgTotal * (igst / 100)) ");
+                sb.Append("FROM Trans2 ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("TranItemsGrid ON Trans2.id = itgTranID ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Items ON itgModID = Items.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("HsnTax ON hsnId = HsnTax.id ");
+                sb.Append("WHERE TranDate BETWEEN '" + dtpstart.Value.ToString("yyyy-MM-dd") + "' AND '" + dtpend.Value.ToString("yyyy-MM-dd") + "' AND ");
+                sb.Append("tranType = 'Sale'");
+                AIO.command = sb.ToString();
                 lblTotalSell.Text = a1.cmdexesc().ToString();
 
-                AIO.command = "select sum(payAmount) from Payment where payDate between '" + dtpstart.Value.ToString("yyyy-MM-dd") + "' and '" + dtpend.Value.ToString("yyyy-MM-dd") + "' and payType='Receive' ";
+                //Calculate Payment Receive
+                AIO.command = "select sum(payAmount) from Payment where payDate between '" + dtpstart.Value.ToString("yyyy-MM-dd") + "' and '" + dtpend.Value.ToString("yyyy-MM-dd") + "' and payType=2 ";
                 lblTotalPaymentR.Text = a1.cmdexesc().ToString();
+
+                //Calculate Credit Note
+                AIO.command = "select sum(payAmount) from Payment where payDate between '" + dtpstart.Value.ToString("yyyy-MM-dd") + "' and '" + dtpend.Value.ToString("yyyy-MM-dd") + "' and payType=3 ";
+                lblCreditNote.Text = a1.cmdexesc().ToString();
 
                 AIO.command = "select sum(expAmount) from Expense where expDate between  '" + dtpstart.Value.ToString("yyyy-MM-dd") + "' and '" + dtpend.Value.ToString("yyyy-MM-dd") + "' ";
                 lblTotalExpense.Text = a1.cmdexesc().ToString();
@@ -1535,7 +1481,7 @@ namespace Shadev
 
 
 
-                double TotalPurhcase = 0, TotalPaymentDone = 0, TotalSell = 0, TotalPaymentR = 0, TotalExpense = 0, TotalProfit = 0;
+                double TotalPurhcase = 0, TotalPaymentDone = 0, TotalSell = 0, TotalPaymentR = 0, TotalExpense = 0, TotalProfit = 0, CreditNote = 0, DebitNote=0;
 
                 if (!string.IsNullOrWhiteSpace(lblTotalPurchase.Text))
                     TotalPurhcase = Convert.ToDouble(lblTotalPurchase.Text);
@@ -1557,13 +1503,21 @@ namespace Shadev
                     TotalExpense = Convert.ToDouble(lblTotalExpense.Text);
                 else
                     lblTotalExpense.Text = "0";
+                if (!string.IsNullOrWhiteSpace(lblCreditNote.Text))
+                    CreditNote = Convert.ToDouble(lblCreditNote.Text);
+                else
+                    lblCreditNote.Text = "0";
+                if (!string.IsNullOrWhiteSpace(lblDebitNote.Text))
+                    DebitNote = Convert.ToDouble(lblDebitNote.Text);
+                else
+                    lblDebitNote.Text = "0";
 
                 TotalProfit = (TotalSell - TotalPurhcase - TotalExpense);
                 lblTotalProfit.Text = TotalProfit.ToString();
                 if (TotalProfit > 0)
-                    lblTotalProfit.ForeColor = Color.Green;
+                    lblTotalProfit.ForeColor = Color.GreenYellow;
                 else if (TotalProfit < 0)
-                    lblTotalProfit.ForeColor = Color.Red;
+                    lblTotalProfit.ForeColor = Color.Maroon;
                 else
                     lblTotalProfit.ForeColor = Color.Black;
             }
@@ -1780,15 +1734,31 @@ namespace Shadev
         {
             try
             {
-                AIO.command = "select id,pass,tax1name,tax2name,tax1per,tax2per from GeneralSettings";
+                AIO.command = "select id,pass,OpeningDate from GeneralSettings";
                 var dt = a1.dataload();
                 if (dt.Rows.Count > 0 && !DBNull.Value.Equals(dt.Rows[0][0]))
                 {
-                    //txttax1name.Text = dt.Rows[0]["tax1name"].ToString();
-                    //txttax2name.Text = dt.Rows[0]["tax2name"].ToString();
-                    //txttax2percentage.Text = dt.Rows[0]["tax1per"].ToString();
-                    //txttax2percentages.Text = dt.Rows[0]["tax2per"].ToString();
+                    dtpOpeningDate.Value = Convert.ToDateTime(dt.Rows[0]["OpeningDate"].ToString());
+                    AIO.OpeningDate = dtpOpeningDate.Value;
                 }
+
+                AIO.command = "select bnkOpeningBalance from Banks where id=1";
+                txtOpeningBalanceCash.Text = a1.cmdexesc().ToString();
+
+                //Set Opening Date of Software as minimum date.
+                dtpend.MinDate = AIO.OpeningDate;
+                dtpFromStock.MinDate = AIO.OpeningDate;
+                dtpPaymentEnd.MinDate = AIO.OpeningDate;
+                dtpPaymentStart.MinDate = AIO.OpeningDate;
+                dtpstart.MinDate = AIO.OpeningDate;
+                dtpStartStock.MinDate = AIO.OpeningDate;
+                dtpToStock.MinDate = AIO.OpeningDate;
+                dtpTransFrom.MinDate = AIO.OpeningDate;
+                dtpTransTo.MinDate = AIO.OpeningDate;
+                dtpTRFrom.MinDate = AIO.OpeningDate;
+                dtpTRTo.MinDate = AIO.OpeningDate;
+                dateTimePicker1.MinDate = AIO.OpeningDate;
+                dateTimePicker2.MinDate = AIO.OpeningDate;
             }
             catch (Exception ex)
             {
@@ -1849,16 +1819,11 @@ namespace Shadev
             try
             {
                 frmpaymentreport fr = new frmpaymentreport();
-                //string custName = "", payMode = "";
-                //if (cmbCustomerName.SelectedIndex > 0)
-                //    custName = " and payCustID=" + cmbCustomerName.SelectedIndex;
-                //if (cmbPaymentMethod.SelectedIndex > 0)
-                //    payMode = " and payMethod='" + cmbPaymentMethod.SelectedItem.ToString() + "'";
                 string custName = "", payMode = "", payType = "";
                 if (cmbCustomerName.SelectedIndex > 0)
                     custName = " and payCustID=" + CustID[cmbCustomerName.SelectedIndex];
                 if (cmbPaymentMethod.SelectedIndex > 0)
-                    payMode = " and payMethod='" + cmbPaymentMethod.SelectedItem.ToString() + "'";
+                    payMode = " and payMethod=" + lstPaymentModeID[cmbPaymentMethod.SelectedIndex];
                 if (cmbPaymentType.SelectedIndex > 0)
                     payType = " and payType='" + cmbPaymentType.SelectedItem.ToString() + "'";
                 fr.CID = "select id,(select custName from Customer where id =payCustID) as [pname],payMethod as [pmethod],payType as [ptype],payCheck as [pchequeno],payAmount as [pamount],payDate as [pdate] from Payment as [Payment1] where payDate between '" + dtpPaymentStart.Value.ToString("yyyy-MM-dd") + "' and '" + dtpPaymentEnd.Value.ToString("yyyy-MM-dd") + "'" + custName + "" + payMode + "" + payType;
@@ -1912,9 +1877,6 @@ namespace Shadev
 
         private void btnTRShow_Click(object sender, EventArgs e)
         {
-            //if (cmbTRCustomerName.SelectedIndex <= 0 && cmbTRType.SelectedIndex <= 0)
-            //{
-            //AIO.command = "select id,(select custName from Customer) as [Name],payMethod,payType,payCheck,payAmount,payDate,payDesc from Payment where payDate between '" + dtpPaymentStart.Value.ToString("yyyy-MM-dd") + "' and '" + dtpPaymentEnd.Value.ToString("yyyy-MM-dd") + "'";
             string custName = "", tranType = " and tranType!='Estimate'", sort = "", asc = "";
             if (cmbTRCustomerName.SelectedIndex > 0)
                 custName = " and tranCustID=" + CustID[cmbTRCustomerName.SelectedIndex];
@@ -1929,37 +1891,6 @@ namespace Shadev
             dgvTR.DataSource = dt;
             dgvTR.Columns["id"].Visible = false;
 
-
-            //}
-            //else if (cmbTRCustomerName.SelectedIndex > 0 && cmbTRType.SelectedIndex <= 0)
-            //{
-            //    string custName = "", tranType = "";
-            //    if (cmbTRCustomerName.SelectedIndex > 0)
-            //        custName = " and tranCustID=" + cmbTRCustomerName.SelectedIndex;
-            //    if (cmbTRType.SelectedIndex > 0)
-            //        tranType = " and tranType='" + cmbTRType.SelectedItem.ToString() + "'";
-            //    AIO.command = "select id,tranNo as [No],(select custName from Customer where id =tranCustID) as [Name],tranType as [Type],tranDate as [Date],tranTotal as [Amount],(tranTax1/100 * tranTotal) as [Tax1],(tranTax2/100 * tranTotal) as [Tax2],tranFinalTotal as [Total] from Trans where tranDate between '" + dtpTRFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTRTo.Value.ToString("yyyy-MM-dd") + "'" + custName + "" + tranType;
-            //    var dt = a1.dataload();
-            //    dgvTR.DataSource = dt;
-            //    dgvTR.Columns["id"].Visible = false;
-
-            //}
-            //else if (cmbTRCustomerName.SelectedIndex > 0 && cmbTRType.SelectedIndex > 0)
-            //{
-            //    string custName = "", tranType = "";
-            //    if (cmbTRCustomerName.SelectedIndex > 0)
-            //        custName = " and tranCustID=" + cmbTRCustomerName.SelectedIndex;
-            //    if (cmbTRType.SelectedIndex > 0)
-            //        tranType = " and tranType='" + cmbTRType.SelectedItem.ToString() + "'";
-            //    AIO.command = "select id,tranNo as [No],(select custName from Customer where id =tranCustID) as [Name],tranType as [Type],tranDate as [Date],tranTotal as [Amount],(tranTax1/100 * tranTotal) as [Tax1],(tranTax2/100 * tranTotal) as [Tax2],tranFinalTotal as [Total] from Trans where tranDate between '" + dtpTRFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTRTo.Value.ToString("yyyy-MM-dd") + "'" + custName + "" + tranType;
-            //    var dt = a1.dataload();
-            //    dgvTR.DataSource = dt;
-            //    dgvTR.Columns["id"].Visible = false;
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Invalid Selection", "ShadevInfotech", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
         }
 
         private void btnTRPrint_Click(object sender, EventArgs e)
@@ -2057,7 +1988,8 @@ namespace Shadev
             custType = "Customer";
             btnTranBillView.Visible = true;
             btnTranBillView.Text = "Generate Bill";
-            btnPDF.Visible = false;
+            btnPDF.Text = "PDF";
+            btnPDF.Visible = true;
             custType = customerToolStripMenuItem.Text;
             RefreshTransaction();
         }
@@ -2146,6 +2078,7 @@ namespace Shadev
                     frmMainBillView fr = new frmMainBillView();
                     fr.StartPosition = FormStartPosition.CenterParent;
                     fr.ShowInTaskbar = false;
+                    fr.isPDFMode = true;
                     fr.ID = int.Parse(dgvTransaction.SelectedRows[0].Cells["id"].Value.ToString());
                     fr.ShowDialog();
                 }
@@ -2303,7 +2236,7 @@ namespace Shadev
                 frmPayment fr = new frmPayment();
                 fr.StartPosition = FormStartPosition.CenterParent;
                 fr.Stat = FrmCompany.PaymentEdit;
-                fr.row = ((DataTable)dgvPayment.DataSource).Rows[dgvPayment.SelectedRows[0].Index];
+                fr.transID = Convert.ToInt32(dgvPayment.SelectedRows[0].Cells["id"].Value);
                 fr.ShowDialog();
 
                 RefreshPayment();
@@ -2320,63 +2253,6 @@ namespace Shadev
 
         }
 
-        private void btnTMSave_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtTMType.Text) || string.IsNullOrWhiteSpace(txtTMTax1Name.Text) || string.IsNullOrWhiteSpace(txtTMTax1.Text))
-            {
-                MessageBox.Show("You can't leave any field Blank.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                if (string.IsNullOrWhiteSpace(txtTMTax2.Text))
-                    txtTMTax2.Text = "0";
-                AIO.command = "insert into TaxMaster(tmType,tmTax1Name,tmTax1,tmTax2Name,tmTax2) values('" + txtTMType.Text + "','" + txtTMTax1Name.Text + "'," + txtTMTax1.Text + ",'" + txtTMTax2Name.Text + "'," + txtTMTax2.Text + ")";
-                a1.cmdexe();
-
-                txtTMType.Clear();
-                txtTMTax1.Clear();
-                txtTMTax1Name.Clear();
-                txtTMTax2.Clear();
-                txtTMTax2Name.Clear();
-
-                RefreshTaxMaster();
-
-            }
-        }
-
-        private void RefreshTaxMaster()
-        {
-            AIO.command = "select id,tmType as [Type],tmTax1Name as [Tax1 Name],tmTax1 as [Tax1],tmTax2Name as [Tax2 Name],tmTax2 as [Tax2] from TaxMaster";
-            var dt = a1.dataload();
-            dgvTM.DataSource = dt;
-            dgvTM.Columns["id"].Visible = false;
-        }
-
-        private void cmsTaxMaster_Opening(object sender, CancelEventArgs e)
-        {
-            if (dgvTM.SelectedRows.Count > 0)
-            {
-                cmsTaxMaster.Items[0].Text = dgvTM.SelectedRows[0].Cells["Type"].Value.ToString();
-                cmsTaxMaster.Items[2].Enabled = true;
-            }
-            else
-            {
-                cmsTaxMaster.Items[0].Text = "";
-                cmsTaxMaster.Items[2].Enabled = false;
-            }
-        }
-
-        private void dgvTM_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void taxMasterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SwitchTabPages(AllTabs.TaxMaster);
-        }
-
-
         /// <summary>
         /// To Turn off Flickring
         /// </summary>
@@ -2390,15 +2266,6 @@ namespace Shadev
             }
         }
 
-        private void deleteToolStripMenuItem9_Click(object sender, EventArgs e)
-        {
-            if (dgvTM.SelectedRows.Count > 0)
-            {
-                AIO.command = "delete from TaxMaster where id=" + dgvTM.SelectedRows[0].Cells["id"].Value.ToString();
-                a1.cmdexe();
-                RefreshTaxMaster();
-            }
-        }
 
         private void btnTransCustSearch_Click(object sender, EventArgs e)
         {
@@ -2851,10 +2718,42 @@ namespace Shadev
             SwitchTabPages(AllTabs.ItemMaster);
         }
 
-        private void newTransToolStripMenuItem_Click(object sender, EventArgs e)
+   
+
+        private void cmbPaymentType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            frmNewTransaction fr = new frmNewTransaction();
-            fr.ShowDialog();
+
+        }
+
+        private void btnGeneralCommonEnable_Click(object sender, EventArgs e)
+        {
+            if (grpGeneralCommon.Enabled == true)
+            {
+                grpGeneralCommon.Enabled = false;
+                btnGeneralCommonEnable.Text = "Disable";
+            }
+            else
+            {
+                grpGeneralCommon.Enabled = true;
+                btnGeneralCommonEnable.Text = "Enable";
+            }
+        }
+
+        private void btnGeneralCommonSave_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtOpeningBalanceCash.Text))
+                txtOpeningBalanceCash.Text = "0";
+            AIO.command = "update Banks set bnkOpeningBalance="+txtOpeningBalanceCash.Text+" where id=1";
+            a1.cmdexe();
+
+            AIO.command = "update GeneralSettings set OpeningDate='"+dtpOpeningDate.Value.ToString("yyyy-MM-dd")+"' where id=1";
+            a1.cmdexe();
+        }
+
+        private void btnChangePDFFolder_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            DialogResult res = fbd.ShowDialog();
         }
     }
 }

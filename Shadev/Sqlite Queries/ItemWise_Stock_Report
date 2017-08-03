@@ -1,0 +1,11 @@
+SELECT itemDesc,
+       tranDate,
+       case when tranType='Purchase' then itgQTY else 0 end as inward,
+       case when tranType='Sale' then itgQTY else 0 end as outward,
+       tranNo,
+       tranType
+  FROM Items
+       LEFT JOIN
+       TranItemsGrid ON Items.id = itgModID
+       LEFT JOIN
+       Trans2 ON itgTranID = Trans2.id;

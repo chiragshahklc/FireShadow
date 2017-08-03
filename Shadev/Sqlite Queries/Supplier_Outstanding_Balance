@@ -1,0 +1,23 @@
+SELECT custName,
+       Round(c.custOpenBal - (coalesce(sum(itg.itgTotal), 0) + coalesce(sum( (coalesce(itg.itgTotal, 0) * (h.igst / 100) ) ), 0) ) + (
+                                                                                                                                         SELECT coalesce(sum(payAmount), 0) 
+                                                                                                                                           FROM Payment
+                                                                                                                                          WHERE payCustId = c.id AND 
+                                                                                                                                                payType = 1
+                                                                                                                                     )
+-            (
+                 SELECT coalesce(sum(payAmount), 0) 
+                   FROM Payment
+                  WHERE payCustId = c.id AND 
+                        payType = 4
+             ), 0) AS [Outstanding Balance]
+  FROM Customer AS c
+       LEFT JOIN
+       Trans2 t ON t.tranCustID = c.id
+       LEFT JOIN
+       TranItemsGrid AS itg ON t.id = itg.itgTranID
+       LEFT JOIN
+       Items AS i ON itg.itgModID = i.id
+       LEFT JOIN
+       HsnTax AS h ON i.hsnId = h.id
+ GROUP BY c.custName;

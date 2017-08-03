@@ -119,7 +119,7 @@ namespace Shadev
                                 rtbCustomerAdd.Text = row["Address"].ToString();
                                 txtCustomerMobile.Text = row["Mobile"].ToString();
                                 txtCustomerEmail.Text = row["Email"].ToString();
-                                txtCustomerVat.Text = row["VAT TIN"].ToString();
+                                txtCustomerVat.Text = row["GSTIN"].ToString();
                                 txtCSTNo.Text = row["CST No"].ToString();
                                 txtPAN.Text = row["PAN"].ToString();
                                 txtOpeningBalance.Text = row["custOpenBal"].ToString();

@@ -39,25 +39,22 @@ namespace Shadev
 
     public enum AllTabs : int
     {
-        Company = 0,
-        Category = 1,
-        Model = 2,
-        Bank = 5,
-        Customer = 3,
-        TermsAndCondition = 6,
-        Transaction = 7,
-        AboutMe = 4,
-        Expense = 8,
-        Home = 9,
-        Payment = 10,
-        Login = 11,
-        GeneralSettings = 12,
-        TransactionReport = 13,
-        AboutUs = 14,
-        Registration = 15,
-        TaxMaster = 16,
-        HSNMaster = 17,
-        ItemMaster  =18
+        Model,
+        Customer,
+        AboutMe,
+        Bank,
+        TermsAndCondition,
+        Transaction,
+        Expense,
+        Home,
+        Payment,
+        Login,
+        GeneralSettings,
+        TransactionReport,
+        AboutUs,
+        Registration,
+        HSNMaster,
+        ItemMaster
     }
 
     public enum TranSearc : int

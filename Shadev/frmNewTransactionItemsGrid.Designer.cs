@@ -147,6 +147,7 @@
             this.cmbItem.Name = "cmbItem";
             this.cmbItem.Size = new System.Drawing.Size(393, 24);
             this.cmbItem.TabIndex = 3;
+            this.cmbItem.SelectedIndexChanged += new System.EventHandler(this.cmbItem_SelectedIndexChanged);
             this.cmbItem.Leave += new System.EventHandler(this.cmbItem_Leave);
             // 
             // label10

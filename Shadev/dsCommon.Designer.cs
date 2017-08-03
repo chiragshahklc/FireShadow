@@ -4530,6 +4530,8 @@ namespace Shadev {
             
             private global::System.Data.DataColumn columnDesc;
             
+            private global::System.Data.DataColumn columnUnit;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ITGDataTable() {
@@ -4645,6 +4647,14 @@ namespace Shadev {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UnitColumn {
+                get {
+                    return this.columnUnit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4680,7 +4690,7 @@ namespace Shadev {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ITGRow AddITGRow(string Item, int HSN, double Price, double QTY, double Total, double SGST, double CGST, double IGST, double Amount, string Desc) {
+            public ITGRow AddITGRow(string Item, int HSN, double Price, double QTY, double Total, double SGST, double CGST, double IGST, double Amount, string Desc, string Unit) {
                 ITGRow rowITGRow = ((ITGRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Item,
@@ -4692,7 +4702,8 @@ namespace Shadev {
                         CGST,
                         IGST,
                         Amount,
-                        Desc};
+                        Desc,
+                        Unit};
                 rowITGRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowITGRow);
                 return rowITGRow;
@@ -4725,6 +4736,7 @@ namespace Shadev {
                 this.columnIGST = base.Columns["IGST"];
                 this.columnAmount = base.Columns["Amount"];
                 this.columnDesc = base.Columns["Desc"];
+                this.columnUnit = base.Columns["Unit"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4754,6 +4766,8 @@ namespace Shadev {
                 base.Columns.Add(this.columnAmount);
                 this.columnDesc = new global::System.Data.DataColumn("Desc", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDesc);
+                this.columnUnit = new global::System.Data.DataColumn("Unit", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUnit);
                 this.columnItem.Caption = "com";
                 this.columnHSN.Caption = "mod";
                 this.columnPrice.Caption = "qty";
@@ -7504,6 +7518,22 @@ namespace Shadev {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Unit {
+                get {
+                    try {
+                        return ((string)(this[this.tableITG.UnitColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Unit\' in table \'ITG\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableITG.UnitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsItemNull() {
                 return this.IsNull(this.tableITG.ItemColumn);
             }
@@ -7620,6 +7650,18 @@ namespace Shadev {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDescNull() {
                 this[this.tableITG.DescColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUnitNull() {
+                return this.IsNull(this.tableITG.UnitColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUnitNull() {
+                this[this.tableITG.UnitColumn] = global::System.Convert.DBNull;
             }
         }
         

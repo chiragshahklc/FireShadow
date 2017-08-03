@@ -18,7 +18,6 @@ namespace Shadev
         public string TransType { get; set; }
         public string TransNo { get; set; }
         public string custType { get; set; }
-        public string tax1 = "", tax2 = "";
         List<long> custID = new List<long>();
         List<long> bnkID = new List<long>();
         public long id { get; set; }
@@ -212,7 +211,8 @@ namespace Shadev
             try
             {
                 cmbInvoice.SelectedIndex = 0;
-
+                dtpTranDate.MinDate = AIO.OpeningDate;
+                
                 
 
                 //Fill combobox of Tax Type

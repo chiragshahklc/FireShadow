@@ -81,6 +81,8 @@ namespace Shadev
 
         private void frmCopytoSale_Load(object sender, EventArgs e)
         {
+            dtpTransDate.MinDate = AIO.OpeningDate;
+
             //Fill Customer Name Combobox
             AIO.command = "select id,custName from Customer where custType='Customer'";
             var dt = a1.dataload();

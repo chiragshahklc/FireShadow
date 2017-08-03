@@ -32,20 +32,28 @@ namespace Shadev
             try
             {
                 string name = txtBankName.Text.Replace("'", "''");
+
+                //If Opening balance is null then set it to 0(Zero).
+                if (string.IsNullOrWhiteSpace(txtOpeningBalance.Text))
+                    txtOpeningBalance.Text = "0";
+
+
                 if (!string.IsNullOrWhiteSpace(txtBankName.Text))
                 {
                     switch (Stat)
                     {
                         case FrmCompany.BankAdd:
                             {
-                                AIO.command = "INSERT INTO  Banks(bnkname,bnkACNo,bnkBranch,bnkIFSC) VALUES('" + name + "'," + txtACNO.Text + ",'" + txtBankBranch.Text + "','" + txtBankIFSC.Text + "')";
+                                
+
+                                AIO.command = "INSERT INTO  Banks(bnkname,bnkACNo,bnkBranch,bnkIFSC,bnkOpeningBalance) VALUES('" + name + "'," + txtACNO.Text + ",'" + txtBankBranch.Text + "','" + txtBankIFSC.Text + "',"+txtOpeningBalance.Text+")";
                                 a1.cmdexe();
                                 this.Close();
                             }
                             break;
                         case FrmCompany.BankEdit:
                             {
-                                AIO.command = "update Banks  set bnkname='" + name + "',bnkACNo=" + txtACNO.Text + ",bnkBranch='" + txtBankBranch.Text + "',bnkIFSC='" + txtBankIFSC.Text + "' where id=" + id;
+                                AIO.command = "update Banks  set bnkname='" + name + "',bnkACNo=" + txtACNO.Text + ",bnkBranch='" + txtBankBranch.Text + "',bnkIFSC='" + txtBankIFSC.Text + "',bnkOpeningBalance="+txtOpeningBalance.Text+" where id=" + id;
                                 a1.cmdexe();
                                 this.Close();
                             }
@@ -89,6 +97,8 @@ namespace Shadev
         {
             try
             {
+                txtOpeningBalance.Text = "0";
+
                 switch (Stat)
                 {
 
@@ -105,6 +115,7 @@ namespace Shadev
                             txtBankBranch.Text = row["Branch"].ToString();
                             txtACNO.Text = row["AccountNo"].ToString();
                             txtBankIFSC.Text = row["IFSC"].ToString();
+                            txtOpeningBalance.Text = row["Opening Balance"].ToString();
                             id = Convert.ToInt64(row["id"].ToString());
                         }
                         break;

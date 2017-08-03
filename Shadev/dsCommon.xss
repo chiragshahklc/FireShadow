@@ -18,7 +18,7 @@
     <Shape ID="DesignTable:TR" ZOrder="5" X="1547" Y="9" Height="217" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="213" />
     <Shape ID="DesignTable:TOD" ZOrder="4" X="333" Y="372" Height="286" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="282" />
     <Shape ID="DesignTable:Trans2" ZOrder="3" X="802" Y="368" Height="102" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="98" />
-    <Shape ID="DesignTable:ITG" ZOrder="2" X="960" Y="368" Height="263" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="259" />
+    <Shape ID="DesignTable:ITG" ZOrder="2" X="960" Y="368" Height="286" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="259" />
     <Shape ID="DesignTable:HSN" ZOrder="1" X="640" Y="368" Height="148" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="144" />
   </Shapes>
   <Connectors />

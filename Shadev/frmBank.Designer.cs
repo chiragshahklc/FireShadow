@@ -39,11 +39,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCencel = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtOpeningBalance = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtBankName
             // 
-            this.txtBankName.Location = new System.Drawing.Point(93, 74);
+            this.txtBankName.Location = new System.Drawing.Point(140, 34);
             this.txtBankName.Margin = new System.Windows.Forms.Padding(4);
             this.txtBankName.Name = "txtBankName";
             this.txtBankName.Size = new System.Drawing.Size(304, 22);
@@ -52,7 +54,7 @@
             // 
             // txtACNO
             // 
-            this.txtACNO.Location = new System.Drawing.Point(93, 106);
+            this.txtACNO.Location = new System.Drawing.Point(140, 66);
             this.txtACNO.Margin = new System.Windows.Forms.Padding(4);
             this.txtACNO.Name = "txtACNO";
             this.txtACNO.Size = new System.Drawing.Size(304, 22);
@@ -60,7 +62,7 @@
             // 
             // txtBankBranch
             // 
-            this.txtBankBranch.Location = new System.Drawing.Point(93, 138);
+            this.txtBankBranch.Location = new System.Drawing.Point(140, 98);
             this.txtBankBranch.Margin = new System.Windows.Forms.Padding(4);
             this.txtBankBranch.Name = "txtBankBranch";
             this.txtBankBranch.Size = new System.Drawing.Size(304, 22);
@@ -68,7 +70,7 @@
             // 
             // txtBankIFSC
             // 
-            this.txtBankIFSC.Location = new System.Drawing.Point(93, 170);
+            this.txtBankIFSC.Location = new System.Drawing.Point(140, 130);
             this.txtBankIFSC.Margin = new System.Windows.Forms.Padding(4);
             this.txtBankIFSC.Name = "txtBankIFSC";
             this.txtBankIFSC.Size = new System.Drawing.Size(304, 22);
@@ -77,7 +79,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 78);
+            this.label1.Location = new System.Drawing.Point(82, 38);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 17);
@@ -87,7 +89,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 110);
+            this.label2.Location = new System.Drawing.Point(67, 70);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 17);
@@ -97,7 +99,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(27, 142);
+            this.label3.Location = new System.Drawing.Point(74, 102);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 17);
@@ -107,7 +109,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(41, 174);
+            this.label4.Location = new System.Drawing.Point(88, 134);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 17);
@@ -120,7 +122,7 @@
             this.btnSave.BackColor = System.Drawing.Color.Teal;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(94, 203);
+            this.btnSave.Location = new System.Drawing.Point(140, 189);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 29);
             this.btnSave.TabIndex = 13;
@@ -134,7 +136,7 @@
             this.btnCencel.BackColor = System.Drawing.Color.Teal;
             this.btnCencel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCencel.ForeColor = System.Drawing.Color.White;
-            this.btnCencel.Location = new System.Drawing.Point(200, 203);
+            this.btnCencel.Location = new System.Drawing.Point(246, 189);
             this.btnCencel.Name = "btnCencel";
             this.btnCencel.Size = new System.Drawing.Size(100, 29);
             this.btnCencel.TabIndex = 14;
@@ -142,12 +144,32 @@
             this.btnCencel.UseVisualStyleBackColor = false;
             this.btnCencel.Click += new System.EventHandler(this.btnCencel_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 163);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(121, 17);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Opening Balance:";
+            // 
+            // txtOpeningBalance
+            // 
+            this.txtOpeningBalance.Location = new System.Drawing.Point(140, 160);
+            this.txtOpeningBalance.Margin = new System.Windows.Forms.Padding(4);
+            this.txtOpeningBalance.Name = "txtOpeningBalance";
+            this.txtOpeningBalance.Size = new System.Drawing.Size(304, 22);
+            this.txtOpeningBalance.TabIndex = 15;
+            // 
             // frmBank
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(439, 294);
+            this.ClientSize = new System.Drawing.Size(486, 241);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtOpeningBalance);
             this.Controls.Add(this.btnCencel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label4);
@@ -185,5 +207,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCencel;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtOpeningBalance;
     }
 }

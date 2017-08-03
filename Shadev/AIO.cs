@@ -14,6 +14,7 @@ namespace Shadev
         public static string path = "";
         public static string command = "";
         public static string file = "";
+        public static DateTime OpeningDate { get; set; }
         private SQLiteConnection con = new SQLiteConnection("Data Source=" + Path.Combine(AIO.path, AIO.file) + ";foreign keys=true;");//Password=5gs6hf7tjg86sjhfr6hkdg87grfj6ehgfr78lcmksd8;
 
         public int cmdexe()
