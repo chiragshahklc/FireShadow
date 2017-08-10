@@ -55,7 +55,6 @@
             this.ClientSize = new System.Drawing.Size(1262, 653);
             this.Controls.Add(this.crvMainBill);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMainBillView";
             this.ShowInTaskbar = false;

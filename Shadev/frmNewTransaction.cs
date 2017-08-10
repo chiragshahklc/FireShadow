@@ -33,7 +33,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -91,7 +91,7 @@ namespace Shadev
                                 a1.cmdexe();
                                 AIO.command = "select id from Trans2 where tranNo='" + txtTransactionNo.Text + "'";
                                 var tmp = Convert.ToInt32(a1.cmdexesc());
-                                AIO.command = "update TranItemsGrid set itgTranID=" + tmp + ",itgTranType='" + txtTransactionType.Text + "' where itgTranNo='" + txtTransactionNo.Text + "'";
+                                AIO.command = "update TranItemsGrid set itgTranID=" + tmp + ",itgTranType='" + txtTransactionType.Text + "',itgTranNo='" + txtTransactionNo.Text + "' where itgTranNo IS NULL";
                                 a1.cmdexe();
                                 AIO.command = "insert into TranOtherDetails(todDeliveryNote,todSupplierRef,todMOP,todOtherRef,todBuyerNo,todBuyerDated,todDispatchDoc,todDispatchDated,todDispatchThrough,todDestination,todTerms,todTransID) values('" + delnote + "','" + txtSupplierRef.Text + "','" + txtModeOfPayment.Text + "','" + txtOtherReferences.Text + "','" + txtBuerOrderNo.Text + "','" + dtpBuyersOrderNo.Text + "','" + txtDispatchDocNo.Text + "','" + dtpDispatchDocNo.Text + "','" + txtDispatchThrough.Text + "','" + txtDestination.Text + "','" + terms + "'," + tmp + ")";
                                 a1.cmdexe();
@@ -135,7 +135,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -147,7 +147,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -325,7 +325,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -391,7 +391,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -414,7 +414,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -443,7 +443,7 @@ namespace Shadev
 
                 string query = "";
                 if (this.Stat == FrmCompany.TransAdd)
-                    query = "where itgTranNo='" + txtTransactionNo.Text + "'";
+                    query = "where itgTranNo IS NULL";
                 else if (this.Stat == FrmCompany.TransEdit)
                     query = "where itgTranID=" + id;
                 //AIO.command = "select id,(select modName from Model where id=itgModID) as [Model],itgTranID,itgQTY as [QTY],Round((itgPrice*itgQTY),2) as [Price],Round(((itgTax1/100)*(itgPrice*itgQTY)),2) as [Tax1],Round(((itgTax2/100)*(itgPrice*itgQTY)),2) as [Tax2],Round((itgTotal*itgQTY),2) as [Total],itgDesc as [Desc] from TranItemsGrid " + query + " order by id ASC";
@@ -472,19 +472,7 @@ namespace Shadev
                 dgvTransaction.DataSource = dt;
                 dgvTransaction.Columns["id"].Visible = false;
                 dgvTransaction.Columns["itgTranID"].Visible = false;
-                if (cmbTaxType.SelectedIndex == 0)
-                {
-                    dgvTransaction.Columns["IGST"].Visible = false;
-                    dgvTransaction.Columns["SGST"].Visible = true;
-                    dgvTransaction.Columns["CGST"].Visible = true;
-
-                }
-                else if(cmbTaxType.SelectedIndex == 1)
-                {
-                    dgvTransaction.Columns["IGST"].Visible = true;
-                    dgvTransaction.Columns["SGST"].Visible = false;
-                    dgvTransaction.Columns["CGST"].Visible = false;
-                }
+                
 
                 if (dt.Rows.Count > 0)
                 {
@@ -504,6 +492,24 @@ namespace Shadev
                     txtCGST.Text = cgst.ToString();
                     txtIGST.Text = igst.ToString();
                     txtFinalAmount.Text = Math.Round(total, 2).ToString();
+
+                    if (cmbTaxType.SelectedIndex == 0)
+                    {
+                        dgvTransaction.Columns["IGST"].Visible = false;
+                        txtIGST.Text = "0";
+                        dgvTransaction.Columns["SGST"].Visible = true;
+                        dgvTransaction.Columns["CGST"].Visible = true;
+
+                    }
+                    else if (cmbTaxType.SelectedIndex == 1)
+                    {
+                        dgvTransaction.Columns["IGST"].Visible = true;
+                        dgvTransaction.Columns["SGST"].Visible = false;
+                        dgvTransaction.Columns["CGST"].Visible = false;
+                        txtSGST.Text = "0";
+                        txtCGST.Text = "0";
+                    }
+                    
                 }
                 else
                 {
@@ -516,7 +522,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -534,7 +540,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -571,7 +577,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -610,7 +616,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -659,6 +665,95 @@ namespace Shadev
         private void cmbTaxType_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshItems();
+        }
+
+        private void cbmCustomer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbmCustomer.SelectedIndex >= 0)
+            {
+                //From here logic is for customer
+                //
+                StringBuilder sb = new StringBuilder();
+                if (custType == "Customer")
+                {
+                    sb.Append("SELECT Round(c.custOpenBal + (coalesce(sum(itg.itgTotal), 0) + coalesce(sum((coalesce(itg.itgTotal, 0) * (h.igst / 100))), 0)) - ( ");
+                    sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                    sb.Append("FROM Payment ");
+                    sb.Append("WHERE payCustId = c.id AND ");
+                    sb.Append("payType = 2 ");
+                    sb.Append(") ");
+                    sb.Append("-( ");
+                    sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                    sb.Append("FROM Payment ");
+                    sb.Append("WHERE payCustId = c.id AND ");
+                    sb.Append("payType = 3 ");
+                    sb.Append(") ");
+                    sb.Append("+( ");
+                    sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                    sb.Append("FROM Payment ");
+                    sb.Append("WHERE payCustId = c.id AND ");
+                    sb.Append("payType = 1 ");
+                    sb.Append("), 0) as [Outstanding Balance] ");
+                }
+                //
+                //From Here logic is for supplier
+                //
+                else if (custType == "Supplier")
+                {
+                    sb.Append("SELECT Round(c.custOpenBal - (coalesce(sum(itg.itgTotal), 0) + coalesce(sum((coalesce(itg.itgTotal, 0) * (h.igst / 100))), 0)) + ( ");
+                    sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                    sb.Append("FROM Payment ");
+                    sb.Append("WHERE payCustId = c.id AND ");
+                    sb.Append("payType = 1 ");
+                    sb.Append(")");
+                    sb.Append("+( ");
+                    sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                    sb.Append("FROM Payment ");
+                    sb.Append("WHERE payCustId = c.id AND ");
+                    sb.Append("payType = 4 ");
+                    sb.Append(") ");
+                    sb.Append("-( ");
+                    sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                    sb.Append("FROM Payment ");
+                    sb.Append("WHERE payCustId = c.id AND ");
+                    sb.Append("payType = 2 ");
+                    sb.Append("), 0) as [Outstanding Balance] ");
+                }
+                //
+
+                sb.Append("FROM Customer AS c ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Trans2 t ON t.tranCustID = c.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("TranItemsGrid AS itg ON t.id = itg.itgTranID ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Items AS i ON itg.itgModID = i.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("HsnTax AS h ON i.hsnId = h.id ");
+                sb.Append("WHERE c.id='" + custID[cbmCustomer.SelectedIndex] + "' ");
+                sb.Append("GROUP BY c.custName");
+                AIO.command = sb.ToString();
+                double OutAmount = Convert.ToDouble(a1.cmdexesc());
+                txtCustOutStanding.Text = a1.cmdexesc().ToString();
+                if (Convert.ToInt32(OutAmount) > 0)
+                {
+                    txtCustOutStanding.BackColor = Color.White;
+                    txtCustOutStanding.ForeColor = Color.Green;
+                    txtCustOutStanding.Text = OutAmount.ToString(); ;
+                }
+                else if (Convert.ToInt32(OutAmount) < 0)
+                {
+                    txtCustOutStanding.BackColor = Color.White;
+                    txtCustOutStanding.ForeColor = Color.Red;
+                    txtCustOutStanding.Text = OutAmount.ToString(); ;
+                }
+                else
+                {
+                    txtCustOutStanding.BackColor = Color.White;
+                    txtCustOutStanding.ForeColor = Color.Black;
+                    txtCustOutStanding.Text = OutAmount.ToString();
+                }
+            }
         }
     }
 }

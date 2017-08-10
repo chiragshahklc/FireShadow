@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNewItems));
             this.label3 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
             this.txtItemDescription = new System.Windows.Forms.TextBox();
@@ -36,6 +37,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.txtHSNDesc = new System.Windows.Forms.RichTextBox();
+            this.btnHSNAdd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -61,15 +64,16 @@
             // txtItemDescription
             // 
             this.txtItemDescription.Location = new System.Drawing.Point(140, 22);
-            this.txtItemDescription.Margin = new System.Windows.Forms.Padding(4);
+            this.txtItemDescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtItemDescription.Name = "txtItemDescription";
-            this.txtItemDescription.Size = new System.Drawing.Size(401, 22);
+            this.txtItemDescription.Size = new System.Drawing.Size(341, 22);
             this.txtItemDescription.TabIndex = 1;
             // 
             // cmbUnit
             // 
             this.cmbUnit.FormattingEnabled = true;
             this.cmbUnit.Location = new System.Drawing.Point(140, 54);
+            this.cmbUnit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbUnit.Name = "cmbUnit";
             this.cmbUnit.Size = new System.Drawing.Size(207, 24);
             this.cmbUnit.TabIndex = 2;
@@ -78,9 +82,11 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(140, 84);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(207, 24);
             this.comboBox1.TabIndex = 22;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -98,8 +104,9 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.Location = new System.Drawing.Point(140, 114);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(85, 29);
+            this.btnSave.Size = new System.Drawing.Size(85, 30);
             this.btnSave.TabIndex = 59;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -111,18 +118,46 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.Location = new System.Drawing.Point(231, 114);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(85, 29);
+            this.btnCancel.Size = new System.Drawing.Size(85, 30);
             this.btnCancel.TabIndex = 60;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // txtHSNDesc
+            // 
+            this.txtHSNDesc.Location = new System.Drawing.Point(381, 84);
+            this.txtHSNDesc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtHSNDesc.Name = "txtHSNDesc";
+            this.txtHSNDesc.ReadOnly = true;
+            this.txtHSNDesc.Size = new System.Drawing.Size(369, 59);
+            this.txtHSNDesc.TabIndex = 61;
+            this.txtHSNDesc.Text = "";
+            // 
+            // btnHSNAdd
+            // 
+            this.btnHSNAdd.BackColor = System.Drawing.Color.Teal;
+            this.btnHSNAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHSNAdd.Font = new System.Drawing.Font("Bookman Old Style", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHSNAdd.ForeColor = System.Drawing.Color.White;
+            this.btnHSNAdd.Location = new System.Drawing.Point(353, 85);
+            this.btnHSNAdd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHSNAdd.Name = "btnHSNAdd";
+            this.btnHSNAdd.Size = new System.Drawing.Size(23, 23);
+            this.btnHSNAdd.TabIndex = 96;
+            this.btnHSNAdd.Text = "+";
+            this.btnHSNAdd.UseVisualStyleBackColor = false;
+            this.btnHSNAdd.Click += new System.EventHandler(this.btnHSNAdd_Click);
+            // 
             // frmNewItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(561, 174);
+            this.ClientSize = new System.Drawing.Size(772, 174);
+            this.Controls.Add(this.btnHSNAdd);
+            this.Controls.Add(this.txtHSNDesc);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.comboBox1);
@@ -131,7 +166,12 @@
             this.Controls.Add(this.lbl1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbUnit);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MinimizeBox = false;
             this.Name = "frmNewItems";
+            this.ShowInTaskbar = false;
             this.Text = "New Item";
             this.Load += new System.EventHandler(this.frmNewItems_Load);
             this.ResumeLayout(false);
@@ -149,5 +189,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.RichTextBox txtHSNDesc;
+        private System.Windows.Forms.Button btnHSNAdd;
     }
 }

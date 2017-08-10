@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using System.Management;
+using System.IO;
+using System.Collections;
+
 //using SqliteDbAIO;
 
 namespace Shadev
@@ -42,50 +46,7 @@ namespace Shadev
         {
 
         }
-        private void OpenFrmCompanyAddEdit(FrmCompany stat, string Company, string Category, string Model, long ID)
-        {
-            try
-            {
-                frmCompanyAddEdit fr = new frmCompanyAddEdit();
-                fr.StartPosition = FormStartPosition.CenterParent;
-                fr.Stat = stat;
-                fr.comName = Company;
-                fr.catName = Category;
-                fr.modName = Model;
-                fr.id = ID;
-                fr.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
-        private void addToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OpenFrmCompanyAddEdit(FrmCompany.ModelAdd, cmbModelCompany.SelectedItem.ToString(), cmbModelCatagory.SelectedItem.ToString(), "", catID[cmbModelCatagory.SelectedIndex]);
-                RefreshModel();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void editToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OpenFrmCompanyAddEdit(FrmCompany.ModelEdit, cmbModelCompany.SelectedItem.ToString(), cmbModelCatagory.SelectedItem.ToString(), cmsModel.Items[0].Text, int.Parse(dgvModel.SelectedRows[0].Cells["id"].Value.ToString()));
-                RefreshModel();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
    
 
@@ -153,7 +114,7 @@ namespace Shadev
                 btnPayCust.Text = customerToolStripMenuItem.Text;
                 btnTRCust.Text = customerToolStripMenuItem.Text;
                 custType = customerToolStripMenuItem.Text;
-                dtpStartStock.Value = new DateTime(2017, 04, 01);
+
 
                 RefreshGeneralSettings();
                 refreshbank();
@@ -177,6 +138,7 @@ namespace Shadev
                 menuStrip1.Visible = false;
                 tranSearchStat = TranSearc.TransNo;
 
+                
 
                 Configuration config = ConfigurationManager.OpenExeConfiguration(Application.ExecutablePath);
                 if (string.IsNullOrWhiteSpace(config.AppSettings.Settings["RunPath"].Value))
@@ -203,137 +165,9 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-        }
-
-   
-
-        private void cmbModelCompany_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (cmbModelCompany.SelectedIndex >= 0)
-                {
-                    AIO.command = "select id,catName from Category where catComID=" + comID[cmbModelCompany.SelectedIndex];
-                    var dt = a1.dataload();
-
-                    cmbModelCatagory.Items.Clear();
-                    cmbModelCatagory.Text = "";
-                    catID.Clear();
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        cmbModelCatagory.Items.Add(row["catName"].ToString());
-                        catID.Add(long.Parse(row["id"].ToString()));
-                    }
-
-                    cmbModelCatagory.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                    cmbModelCatagory.AutoCompleteSource = AutoCompleteSource.ListItems;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void cmbModelCatagory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                RefreshModel();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-       
-      
-
-       
-
-        private void RefreshModel()
-        {
-            try
-            {
-                if (cmbModelCatagory.SelectedIndex >= 0)
-                {
-
-                    AIO.command = "select id,modName as [Model],stock as [Current Stock] from Model where modCatID=" + catID[cmbModelCatagory.SelectedIndex] + " order by modName ASC";
-                    var dt = a1.dataload();
-
-                    dgvModel.DataSource = dt;
-                    dgvModel.Columns["id"].Visible = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void cmsModel_Opening(object sender, CancelEventArgs e)
-        {
-            try
-            {
-                if (cmbModelCatagory.SelectedIndex >= 0)
-                {
-                    cmsModel.Items[2].Enabled = true;
-                    if (dgvModel.SelectedRows.Count > 0)
-                    {
-                        cmsModel.Items[0].Text = dgvModel.SelectedRows[0].Cells["Model"].Value.ToString();
-                        cmsModel.Items[3].Enabled = true;
-                        cmsModel.Items[4].Enabled = true;
-                    }
-                    else
-                    {
-                        cmsModel.Items[0].Text = "";
-                        cmsModel.Items[3].Enabled = false;
-                        cmsModel.Items[4].Enabled = false;
-                    }
-                }
-                else
-                {
-                    cmsModel.Items[0].Text = "";
-                    cmsModel.Items[2].Enabled = false;
-                    cmsModel.Items[3].Enabled = false;
-                    cmsModel.Items[4].Enabled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void deleteToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dgvModel.SelectedRows.Count > 0)
-                {
-                    AIO.command = "select count(id) from TranItemsGrid where itgModID=" + dgvModel.SelectedRows[0].Cells["id"].Value.ToString();
-                    var count = Convert.ToInt32(a1.cmdexesc());
-                    if (count > 0)
-                    {
-                        MessageBox.Show("Foreign Key Error: Model can't be delete.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        AIO.command = "delete from Model where id=" + dgvModel.SelectedRows[0].Cells["id"].Value.ToString();
-                        a1.cmdexe();
-                    }
-                }
-                RefreshModel();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void addToolStripMenuItem3_Click(object sender, EventArgs e)
@@ -351,7 +185,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -404,7 +238,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -423,7 +257,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -451,11 +285,17 @@ namespace Shadev
                     sb.Append("WHERE payCustId = c.id AND ");
                     sb.Append("payType = 2 ");
                     sb.Append(")");
-                    sb.Append("+( ");
+                    sb.Append("-( ");
                     sb.Append("SELECT coalesce(sum(payAmount), 0) ");
                     sb.Append("FROM Payment ");
                     sb.Append("WHERE payCustId = c.id AND ");
                     sb.Append("payType = 3 ");
+                    sb.Append(") ");
+                    sb.Append("+( ");
+                    sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                    sb.Append("FROM Payment ");
+                    sb.Append("WHERE payCustId = c.id AND ");
+                    sb.Append("payType = 1 ");
                     sb.Append("), 0) [Outstanding Balance] ");
                 }
                 //
@@ -469,11 +309,17 @@ namespace Shadev
                     sb.Append("WHERE payCustId = c.id AND ");
                     sb.Append("payType = 1 ");
                     sb.Append(")");
-                    sb.Append("-( ");
+                    sb.Append("+( ");
                     sb.Append("SELECT coalesce(sum(payAmount), 0) ");
                     sb.Append("FROM Payment ");
                     sb.Append("WHERE payCustId = c.id AND ");
                     sb.Append("payType = 4 ");
+                    sb.Append(") ");
+                    sb.Append("-( ");
+                    sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                    sb.Append("FROM Payment ");
+                    sb.Append("WHERE payCustId = c.id AND ");
+                    sb.Append("payType = 2 ");
                     sb.Append("), 0) [Outstanding Balance] ");
                 }
 
@@ -519,13 +365,12 @@ namespace Shadev
                 cmbTRCustomerName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 cmbTRCustomerName.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-                cmbModelCompany.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                cmbModelCompany.AutoCompleteSource = AutoCompleteSource.ListItems;
+           
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -544,7 +389,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -567,8 +412,14 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private bool Yordle()
+        {
+
+            return false;
         }
 
         private void btnAboutEdit_Click(object sender, EventArgs e)
@@ -588,7 +439,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -601,6 +452,7 @@ namespace Shadev
                 if (dt.Rows.Count > 0 && !DBNull.Value.Equals(dt.Rows[0][0]))
                 {
                     txtAboutCompanyName.Text = dt.Rows[0]["Name"].ToString();
+                    //label46.Text = txtAboutCompanyName.Text;
                     rtbAboutAdd.Text = dt.Rows[0]["Address"].ToString();
                     txtAboutCompanyContact.Text = dt.Rows[0]["Mobile"].ToString();
                     txtAboutCompanyEmail.Text = dt.Rows[0]["Email"].ToString();
@@ -613,7 +465,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -629,7 +481,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -649,7 +501,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -657,14 +509,24 @@ namespace Shadev
         {
             try
             {
-                AIO.command = "select id,bnkname as [Name],bnkBranch as [Branch],bnkACNo as [AccountNo],bnkIFSC as [IFSC],bnkOpeningBalance as [Opening Balance] from Banks order by [Name]";
+                StringBuilder sb = new StringBuilder();
+                sb.Append("SELECT Banks.id,Banks.bnkName as [Name],Banks.bnkBranch as [Branch],Banks.bnkACNo as [AccountNo],Banks.bnkIFSC as [IFSC],Banks.bnkOpeningBalance as [Opening Balance], ");
+                sb.Append("(bnkOpeningBalance - sum(case when P1.payType = 1 then P1.payAmount else 0 end) + sum(case when P1.payType = 2 then P1.payAmount else 0 end) - (select coalesce(sum(expAmount), 0) from Expense where expBank = P1.payBank) ) as [Current Balance] ");
+                sb.Append("FROM Banks ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Payment as P1 ON P1.payBank = Banks.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("TranTypes T2 ON P1.payType = T2.id ");
+                sb.Append("GROUP BY Banks.bnkName;");
+                AIO.command = sb.ToString();
                 var dt = a1.dataload();
                 dgvBank.DataSource = dt;
                 dgvBank.Columns["id"].Visible = false;
+                dgvBank.Columns["Opening Balance"].Visible = false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -682,7 +544,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -699,7 +561,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -718,7 +580,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -737,7 +599,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -752,7 +614,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -760,10 +622,6 @@ namespace Shadev
         {
             try
             {
-                AIO.command = "select max(tranNo) from Trans";
-                var x = a1.cmdexesc();
-
-
                 frmNewTransaction fr = new frmNewTransaction();
                 fr.StartPosition = FormStartPosition.CenterParent;
                 fr.Stat = FrmCompany.TransAdd;
@@ -777,7 +635,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -798,7 +656,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -826,7 +684,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -865,7 +723,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -888,7 +746,7 @@ namespace Shadev
                 sb.Append("CASE WHEN T.taxType = 1 THEN Round(sum((TIG.itgTotal) * (H.sgst / 100)), 2) ELSE 0 END AS [SGST], ");
                 sb.Append("CASE WHEN T.taxType = 1 THEN Round(sum((TIG.itgTotal) * (H.cgst / 100)), 2) ELSE 0 END AS [CGST], ");
                 sb.Append("CASE WHEN T.taxType = 2 THEN Round(sum((TIG.itgTotal) * (H.igst / 100)), 2) ELSE 0 END AS [IGST], ");
-                sb.Append("Round(sum(TIG.itgTotal) + sum((TIG.itgTotal) * (H.igst / 100)), 2) AS [Amount], ");
+                sb.Append("Round(sum(TIG.itgTotal) + sum((TIG.itgTotal) * (H.igst / 100)), 0) AS [Amount], ");
                 sb.Append("T.tranInvoice as [Invoice] ");
                 sb.Append("FROM Trans2 AS T ");
                 sb.Append("LEFT JOIN ");
@@ -918,33 +776,35 @@ namespace Shadev
 
                 //Apply where condition in query
                 if (btnTransType.Text == "All")
-                    query = " where T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
+                    query = " where" + param + " T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
                 else if (btnTransType.Text == "Purchase")
                     query = " where" + param + " T.tranType='Purchase' and T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
                 else if (btnTransType.Text == "Sale")
                     query = " where" + param + " T.tranType='Sale' and T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
                 else if (btnTransType.Text == "Estimate")
                     query = " where" + param + " T.tranType='Estimate' and T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
-                sb.Append(query);
-
+                sb.Append(query);  
+                sb.Append("GROUP BY T.id ");
+                
                 //Apply sorting in query
                 if (cmbTransSort.SelectedIndex > 0)
-                    sort = " order by [" + cmbTransSort.SelectedItem.ToString() + "]";
+                    sort = " order by [" + cmbTransSort.SelectedItem.ToString() + "] ";
                 sb.Append(sort);
 
                 if (cmbTransSort.SelectedIndex > 0 && cmbTransASC.SelectedIndex > 0)
-                    asc = " " + cmbTransASC.SelectedItem.ToString();
+                    asc = " " + cmbTransASC.SelectedItem.ToString() + " ";
                 sb.Append(asc);
 
-                sb.Append("GROUP BY T.id");
                 AIO.command = sb.ToString();
                 var dt = a1.dataload();
                 dgvTransaction.DataSource = dt;
                 dgvTransaction.Columns["id"].Visible = false;
+
+                RefreshNewItem();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -993,7 +853,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1008,7 +868,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1032,7 +892,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1052,7 +912,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1065,7 +925,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1077,7 +937,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1089,7 +949,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1106,7 +966,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1118,7 +978,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1142,7 +1002,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -1162,7 +1022,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -1179,7 +1039,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1231,7 +1091,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1314,7 +1174,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1328,7 +1188,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1349,7 +1209,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -1373,7 +1233,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1403,7 +1263,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -1416,7 +1276,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1523,7 +1383,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1536,7 +1396,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1550,7 +1410,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1637,7 +1497,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -1665,7 +1525,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1704,7 +1564,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -1726,7 +1586,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1747,12 +1607,9 @@ namespace Shadev
 
                 //Set Opening Date of Software as minimum date.
                 dtpend.MinDate = AIO.OpeningDate;
-                dtpFromStock.MinDate = AIO.OpeningDate;
                 dtpPaymentEnd.MinDate = AIO.OpeningDate;
                 dtpPaymentStart.MinDate = AIO.OpeningDate;
                 dtpstart.MinDate = AIO.OpeningDate;
-                dtpStartStock.MinDate = AIO.OpeningDate;
-                dtpToStock.MinDate = AIO.OpeningDate;
                 dtpTransFrom.MinDate = AIO.OpeningDate;
                 dtpTransTo.MinDate = AIO.OpeningDate;
                 dtpTRFrom.MinDate = AIO.OpeningDate;
@@ -1762,7 +1619,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1774,7 +1631,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1786,7 +1643,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1810,7 +1667,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1833,7 +1690,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1850,7 +1707,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -1866,7 +1723,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1915,7 +1772,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1934,7 +1791,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2065,7 +1922,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2085,7 +1942,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2097,7 +1954,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2121,6 +1978,7 @@ namespace Shadev
             if (btnPayCust.Text == customerToolStripMenuItem.Text)
             {
                 btnPayCust.Text = supplierToolStripMenuItem.Text;
+                cmbCustomerName.Text = "";
                 btnTRCust.Text = supplierToolStripMenuItem.Text;
                 custType = supplierToolStripMenuItem.Text;
                 RefreshCustomer();
@@ -2128,6 +1986,7 @@ namespace Shadev
             else if (btnPayCust.Text == supplierToolStripMenuItem.Text)
             {
                 btnPayCust.Text = customerToolStripMenuItem.Text;
+                cmbCustomerName.Text = "";
                 btnTRCust.Text = customerToolStripMenuItem.Text;
                 custType = customerToolStripMenuItem.Text;
                 RefreshCustomer();
@@ -2371,21 +2230,44 @@ namespace Shadev
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Basic query
+            StringBuilder sb = new StringBuilder();
+            sb.Append("SELECT T.id AS id, ");
+            sb.Append("T.tranNo AS [No.], ");
+            sb.Append("T.tranType AS [Type], ");
+            sb.Append("C.custName AS [Name], ");
+            sb.Append("T.tranDate AS [Date], ");
+            sb.Append("sum(TIG.itgTotal) AS [Total], ");
+            sb.Append("CASE WHEN T.taxType = 1 THEN Round(sum((TIG.itgTotal) * (H.sgst / 100)), 2) ELSE 0 END AS [SGST], ");
+            sb.Append("CASE WHEN T.taxType = 1 THEN Round(sum((TIG.itgTotal) * (H.cgst / 100)), 2) ELSE 0 END AS [CGST], ");
+            sb.Append("CASE WHEN T.taxType = 2 THEN Round(sum((TIG.itgTotal) * (H.igst / 100)), 2) ELSE 0 END AS [IGST], ");
+            sb.Append("Round(sum(TIG.itgTotal) + sum((TIG.itgTotal) * (H.igst / 100)), 2) AS [Amount], ");
+            sb.Append("T.tranInvoice as [Invoice] ");
+            sb.Append("FROM Trans2 AS T ");
+            sb.Append("LEFT JOIN ");
+            sb.Append("Customer AS C ON T.tranCustID = C.id ");
+            sb.Append("LEFT JOIN ");
+            sb.Append("TranItemsGrid AS TIG ON T.id = TIG.itgTranID ");
+            sb.Append("LEFT JOIN ");
+            sb.Append("Items AS I ON TIG.itgModID = I.id ");
+            sb.Append("LEFT JOIN ");
+            sb.Append("HsnTax AS H ON I.hsnId = H.id ");
+
             if (tranSearchStat == TranSearc.Customer)
             {
                 string query = "", param = "", sort = "", asc = "";
 
                 if (comboBox2.SelectedIndex < 0)
-                    param = " where tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
+                    param = " where T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
                 else
                 {
                     if (btnTransType.Text == "All")
                     {
-                        param = " where tranCustID=" + CustIDSearch[comboBox2.SelectedIndex] + " and tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "' ";
+                        param = " where T.tranCustID=" + CustIDSearch[comboBox2.SelectedIndex] + " and T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "' ";
                     }
                     else
                     {
-                        param = " where tranCustID=" + CustIDSearch[comboBox2.SelectedIndex] + " and tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "' and tranType='" + btnTransType.Text + "'";
+                        param = " where T.tranCustID=" + CustIDSearch[comboBox2.SelectedIndex] + " and T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "' and T.tranType='" + btnTransType.Text + "'";
                     }
                     //query = CustIDSearch[comboBox2.SelectedIndex].ToString();
                     if (cmbTransSort.SelectedIndex > 0)
@@ -2393,7 +2275,10 @@ namespace Shadev
                     if (cmbTransSort.SelectedIndex > 0 && cmbTransASC.SelectedIndex > 0)
                         asc = " " + cmbTransASC.SelectedItem.ToString();
                 }
-                AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Customer],tranDate as [Date],tranTotal as [Price],((tranTax1/100) * tranTotal) as [Tax1],((tranTax2/100) * tranTotal) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans" + param + "" + sort + "" + asc + "";
+
+                sb.Append(param + "" + sort + "" + asc + " GROUP BY T.id");
+                AIO.command = sb.ToString();
+                //AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Customer],tranDate as [Date],tranTotal as [Price],((tranTax1/100) * tranTotal) as [Tax1],((tranTax2/100) * tranTotal) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans" + param + "" + sort + "" + asc + "";
                 var dt = a1.dataload();
                 dgvTransaction.DataSource = dt;
                 dgvTransaction.Columns["id"].Visible = false;
@@ -2402,6 +2287,30 @@ namespace Shadev
 
         private void comboBox2_TextUpdate(object sender, EventArgs e)
         {
+            //Basic query
+            StringBuilder sb = new StringBuilder();
+            sb.Append("SELECT T.id AS id, ");
+            sb.Append("T.tranNo AS [No.], ");
+            sb.Append("T.tranType AS [Type], ");
+            sb.Append("C.custName AS [Name], ");
+            sb.Append("T.tranDate AS [Date], ");
+            sb.Append("sum(TIG.itgTotal) AS [Total], ");
+            sb.Append("CASE WHEN T.taxType = 1 THEN Round(sum((TIG.itgTotal) * (H.sgst / 100)), 2) ELSE 0 END AS [SGST], ");
+            sb.Append("CASE WHEN T.taxType = 1 THEN Round(sum((TIG.itgTotal) * (H.cgst / 100)), 2) ELSE 0 END AS [CGST], ");
+            sb.Append("CASE WHEN T.taxType = 2 THEN Round(sum((TIG.itgTotal) * (H.igst / 100)), 2) ELSE 0 END AS [IGST], ");
+            sb.Append("Round(sum(TIG.itgTotal) + sum((TIG.itgTotal) * (H.igst / 100)), 2) AS [Amount], ");
+            sb.Append("T.tranInvoice as [Invoice] ");
+            sb.Append("FROM Trans2 AS T ");
+            sb.Append("LEFT JOIN ");
+            sb.Append("Customer AS C ON T.tranCustID = C.id ");
+            sb.Append("LEFT JOIN ");
+            sb.Append("TranItemsGrid AS TIG ON T.id = TIG.itgTranID ");
+            sb.Append("LEFT JOIN ");
+            sb.Append("Items AS I ON TIG.itgModID = I.id ");
+            sb.Append("LEFT JOIN ");
+            sb.Append("HsnTax AS H ON I.hsnId = H.id");
+
+
             if (tranSearchStat == TranSearc.TransNo)
             {
                 string query = "", param = "", sort = "", asc = "";
@@ -2409,30 +2318,30 @@ namespace Shadev
                 {
                     //param = " where tranDate between '"+dtpTransFrom.Value.ToString("yyyy-MM-dd")+"' and '"+dtpTransTo.Value.ToString("yyyy-MM-dd")+"'";
                     if (btnTransType.Text == "All")
-                        param = " where tranNo like '%" + comboBox2.Text + "%' and tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
+                        param = " where T.tranNo like '%" + comboBox2.Text + "%' and T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
                     //AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Customer],tranDate as [Date],tranTotal as [Price],((tranTax1/100) * tranTotal) as [Tax1],((tranTax2/100) * tranTotal) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans";
                     else if (btnTransType.Text == "Purchase")
-                        param = " where tranNo like '%" + comboBox2.Text + "%' and tranType='Purchase' and tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
+                        param = " where T.tranNo like '%" + comboBox2.Text + "%' and T.tranType='Purchase' and T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
                     //AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Customer],tranDate as [Date],tranTotal as [Price],((tranTax1/100) * tranTotal) as [Tax1],((tranTax2/100) * tranTotal) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans where tranType='Purchase'";
                     else if (btnTransType.Text == "Sale")
-                        param = " where tranNo like '%" + comboBox2.Text + "%' and tranType='Sale' and tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
+                        param = " where T.tranNo like '%" + comboBox2.Text + "%' and T.tranType='Sale' and T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
                     //AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Customer],tranDate as [Date],tranTotal as [Price],((tranTax1/100) * tranTotal) as [Tax1],((tranTax2/100) * tranTotal) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans where tranType='Sale'";
                     else if (btnTransType.Text == "Estimate")
-                        param = " where tranNo like '%" + comboBox2.Text + "%' and tranType='Estimate' and tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
+                        param = " where T.tranNo like '%" + comboBox2.Text + "%' and T.tranType='Estimate' and T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
                 }
                 else
                 {
                     if (btnTransType.Text == "All")
-                        param = " where tranNo like '%" + comboBox2.Text + "%' and tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
+                        param = " where T.tranNo like '%" + comboBox2.Text + "%' and T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
                     //AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Customer],tranDate as [Date],tranTotal as [Price],((tranTax1/100) * tranTotal) as [Tax1],((tranTax2/100) * tranTotal) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans";
                     else if (btnTransType.Text == "Purchase")
-                        param = " where tranNo like '%" + comboBox2.Text + "%' and tranType='Purchase' and tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
+                        param = " where T.tranNo like '%" + comboBox2.Text + "%' and T.tranType='Purchase' and T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
                     //AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Customer],tranDate as [Date],tranTotal as [Price],((tranTax1/100) * tranTotal) as [Tax1],((tranTax2/100) * tranTotal) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans where tranType='Purchase'";
                     else if (btnTransType.Text == "Sale")
-                        param = " where tranNo like '%" + comboBox2.Text + "%' and tranType='Sale' and tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
+                        param = " where T.tranNo like '%" + comboBox2.Text + "%' and T.tranType='Sale' and T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
                     //AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Customer],tranDate as [Date],tranTotal as [Price],((tranTax1/100) * tranTotal) as [Tax1],((tranTax2/100) * tranTotal) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans where tranType='Sale'";
                     else if (btnTransType.Text == "Estimate")
-                        param = " where tranNo like '%" + comboBox2.Text + "%' and tranType='Estimate' and tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
+                        param = " where T.tranNo like '%" + comboBox2.Text + "%' and T.tranType='Estimate' and T.tranDate between '" + dtpTransFrom.Value.ToString("yyyy-MM-dd") + "' and '" + dtpTransTo.Value.ToString("yyyy-MM-dd") + "'";
                 }
 
                 if (cmbTransSort.SelectedIndex > 0)
@@ -2440,7 +2349,9 @@ namespace Shadev
                 if (cmbTransSort.SelectedIndex > 0 && cmbTransASC.SelectedIndex > 0)
                     asc = " " + cmbTransASC.SelectedItem.ToString();
 
-                AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Customer],tranDate as [Date],tranTotal as [Price],((tranTax1/100) * tranTotal) as [Tax1],((tranTax2/100) * tranTotal) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans" + param + "" + sort + "" + asc + "";
+                sb.Append(param + "" + sort + "" + asc + " GROUP BY T.id");
+                AIO.command = sb.ToString();
+                //AIO.command = "select id,tranNo as [No.],tranType as [Type],(select custName from Customer where id=tranCustID) as [Customer],tranDate as [Date],tranTotal as [Price],((tranTax1/100) * tranTotal) as [Tax1],((tranTax2/100) * tranTotal) as [Tax2],tranFinalTotal as [Total],tranInvoice as [Invoice] from Trans" + param + "" + sort + "" + asc + "";
                 var dt = a1.dataload();
                 dgvTransaction.DataSource = dt;
                 dgvTransaction.Columns["id"].Visible = false;
@@ -2449,17 +2360,17 @@ namespace Shadev
 
         private void btnStockReport_Click(object sender, EventArgs e)
         {
-            frmStockReport fr = new frmStockReport();
-            fr.fromDate = dtpFromStock.Value;
-            fr.ToDate = dtpToStock.Value;
-            fr.StartDate = dtpStartStock.Value;
-            fr.StartPosition = FormStartPosition.CenterParent;
-            fr.ShowDialog();
+            //frmStockReport fr = new frmStockReport();
+            //fr.fromDate = dtpFromStock.Value;
+            //fr.ToDate = dtpToStock.Value;
+            //fr.StartDate = dtpStartStock.Value;
+            //fr.StartPosition = FormStartPosition.CenterParent;
+            //fr.ShowDialog();
         }
 
         private void dgvHsn_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
-            e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            //e.Column.SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
         private void toolStripMenuItem11_Click(object sender, EventArgs e)
@@ -2475,7 +2386,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2483,7 +2394,19 @@ namespace Shadev
         {
             try
             {
-                AIO.command = "SELECT id,hsnCode as HSN_Code,sgst as SGST,cgst as CGST,igst as IGST ,Desc as Description FROM hsnTax";
+                //AIO.command = "SELECT id,hsnCode as HSN_Code,sgst as SGST,cgst as CGST,igst as IGST ,Desc as Description FROM hsnTax";
+                StringBuilder sb = new StringBuilder();
+                sb.Append("SELECT id, ");
+                sb.Append("hsnCode AS HSN_Code, ");
+                sb.Append("sgst AS SGST, ");
+                sb.Append("cgst AS CGST, ");
+                sb.Append("igst AS IGST, ");
+                sb.Append("[Desc] AS Description ");
+                sb.Append("FROM hsnTax ");
+                sb.Append("WHERE hsnCode LIKE '%"+txtHSNSearch.Text+"%' OR ");
+                sb.Append("[desc] LIKE '%"+txtHSNSearch.Text+"%' ");
+                sb.Append("ORDER BY id");
+                AIO.command = sb.ToString();
                 var v1 = a1.dataload();
                 if (v1 != null)
                 {
@@ -2510,10 +2433,11 @@ namespace Shadev
                 fr.ShowDialog();
 
                 RefreshHSN();
+                RefreshNewItem();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2531,7 +2455,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2576,7 +2500,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2586,7 +2510,7 @@ namespace Shadev
             {
                 if (dgvHsn.SelectedRows.Count > 0)
                 {
-                    cmsHsnMaster.Items[0].Text = dgvHsn.SelectedRows[0].Cells["id"].Value.ToString();
+                    cmsHsnMaster.Items[0].Text = dgvHsn.SelectedRows[0].Cells["HSN_Code"].Value.ToString();
                     cmsHsnMaster.Items[3].Enabled = true;
                     cmsHsnMaster.Items[4].Enabled = true;
                 }
@@ -2599,7 +2523,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2621,7 +2545,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2631,12 +2555,21 @@ namespace Shadev
             {
                 StringBuilder sb = new StringBuilder();
 
-                sb.Append("SELECT I.id,I.itemDesc as Item,H.hsnCode as HSN_Code,U.uom as Unit ");
+                sb.Append("SELECT I.id,I.itemDesc as Item,H.hsnCode as HSN_Code,U.uom as Unit, ");
+                sb.Append("sum(CASE WHEN tig.itgTranType = 'Purchase' THEN tig.itgQTY ELSE 0 END) - sum(CASE WHEN tig.itgTranType = 'Sale' THEN tig.itgQTY ELSE 0 END) AS [Current Stock] ");
                 sb.Append("FROM ");
                 sb.Append("Items as I LEFT JOIN hsnTax as H ");
                 sb.Append("ON I.hsnId = H.id ");
                 sb.Append("LEFT JOIN Units as U ");
-                sb.Append("ON I.oid = U.id");
+                sb.Append("ON I.oid = U.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("TranItemsGrid AS tig ON tig.itgModID = i.id ");
+                sb.Append("LEFT JOIN ");
+                sb.Append("Trans2 AS t ON t.id = tig.itgTranID ");
+                sb.Append("WHERE I.itemDesc LIKE '%"+txtIMSearch.Text+"%' OR ");
+                sb.Append("H.hsnCode LIKE '%"+txtIMSearch.Text+"%' ");
+                sb.Append("GROUP BY I.id ");
+                sb.Append("ORDER BY I.itemDesc;");
                 AIO.command = sb.ToString();
                 var v1 = a1.dataload();
                 if (v1 != null)
@@ -2667,7 +2600,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2686,7 +2619,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2709,7 +2642,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -2754,6 +2687,42 @@ namespace Shadev
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             DialogResult res = fbd.ShowDialog();
+        }
+
+        private void ledgerReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLRReport fr= new frmLRReport();
+            fr.StartPosition = FormStartPosition.CenterParent;
+            fr.ShowDialog();
+        }
+
+        private void cmbCustomerName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmItemReport fr = new frmItemReport();
+            fr.StartPosition = FormStartPosition.CenterParent;
+            fr.ShowDialog();
+        }
+
+        private void stockReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmStockReport fr = new frmStockReport();
+            fr.StartPosition = FormStartPosition.CenterParent;
+            fr.ShowDialog();
+        }
+
+        private void txtIMSearch_TextChanged(object sender, EventArgs e)
+        {
+            RefreshNewItem();
+        }
+
+        private void txtHSNSearch_TextChanged(object sender, EventArgs e)
+        {
+            RefreshHSN();
         }
     }
 }

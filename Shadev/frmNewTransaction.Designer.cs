@@ -90,6 +90,8 @@
             this.txtSupplierRef = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtDeliverNote = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtCustOutStanding = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransaction)).BeginInit();
             this.cmsTransaction.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -99,7 +101,7 @@
             // 
             // txtTransactionType
             // 
-            this.txtTransactionType.Location = new System.Drawing.Point(137, 48);
+            this.txtTransactionType.Location = new System.Drawing.Point(137, 78);
             this.txtTransactionType.Margin = new System.Windows.Forms.Padding(4);
             this.txtTransactionType.Name = "txtTransactionType";
             this.txtTransactionType.ReadOnly = true;
@@ -109,7 +111,7 @@
             // 
             // txtTransactionNo
             // 
-            this.txtTransactionNo.Location = new System.Drawing.Point(137, 79);
+            this.txtTransactionNo.Location = new System.Drawing.Point(137, 109);
             this.txtTransactionNo.Margin = new System.Windows.Forms.Padding(4);
             this.txtTransactionNo.Name = "txtTransactionNo";
             this.txtTransactionNo.Size = new System.Drawing.Size(229, 22);
@@ -125,12 +127,13 @@
             this.cbmCustomer.Name = "cbmCustomer";
             this.cbmCustomer.Size = new System.Drawing.Size(229, 24);
             this.cbmCustomer.TabIndex = 1;
+            this.cbmCustomer.SelectedIndexChanged += new System.EventHandler(this.cbmCustomer_SelectedIndexChanged);
             this.cbmCustomer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbmCustomer_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 51);
+            this.label1.Location = new System.Drawing.Point(7, 81);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 17);
@@ -140,7 +143,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 83);
+            this.label2.Location = new System.Drawing.Point(16, 113);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 17);
@@ -236,7 +239,7 @@
             // 
             // txtTotal
             // 
-            this.txtTotal.Location = new System.Drawing.Point(137, 169);
+            this.txtTotal.Location = new System.Drawing.Point(137, 199);
             this.txtTotal.Margin = new System.Windows.Forms.Padding(4);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
@@ -247,7 +250,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(82, 172);
+            this.label4.Location = new System.Drawing.Point(82, 202);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 17);
@@ -257,7 +260,7 @@
             // lblTax1
             // 
             this.lblTax1.AutoSize = true;
-            this.lblTax1.Location = new System.Drawing.Point(79, 199);
+            this.lblTax1.Location = new System.Drawing.Point(79, 229);
             this.lblTax1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTax1.Name = "lblTax1";
             this.lblTax1.Size = new System.Drawing.Size(50, 17);
@@ -267,7 +270,7 @@
             // lblTax2
             // 
             this.lblTax2.AutoSize = true;
-            this.lblTax2.Location = new System.Drawing.Point(79, 232);
+            this.lblTax2.Location = new System.Drawing.Point(79, 262);
             this.lblTax2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTax2.Name = "lblTax2";
             this.lblTax2.Size = new System.Drawing.Size(50, 17);
@@ -276,7 +279,7 @@
             // 
             // txtSGST
             // 
-            this.txtSGST.Location = new System.Drawing.Point(137, 196);
+            this.txtSGST.Location = new System.Drawing.Point(137, 226);
             this.txtSGST.Margin = new System.Windows.Forms.Padding(4);
             this.txtSGST.Name = "txtSGST";
             this.txtSGST.ReadOnly = true;
@@ -286,7 +289,7 @@
             // 
             // txtCGST
             // 
-            this.txtCGST.Location = new System.Drawing.Point(137, 229);
+            this.txtCGST.Location = new System.Drawing.Point(137, 259);
             this.txtCGST.Margin = new System.Windows.Forms.Padding(4);
             this.txtCGST.Name = "txtCGST";
             this.txtCGST.ReadOnly = true;
@@ -297,7 +300,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(35, 292);
+            this.label9.Location = new System.Drawing.Point(35, 322);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(94, 17);
@@ -306,7 +309,7 @@
             // 
             // txtFinalAmount
             // 
-            this.txtFinalAmount.Location = new System.Drawing.Point(138, 289);
+            this.txtFinalAmount.Location = new System.Drawing.Point(138, 319);
             this.txtFinalAmount.Margin = new System.Windows.Forms.Padding(4);
             this.txtFinalAmount.Name = "txtFinalAmount";
             this.txtFinalAmount.ReadOnly = true;
@@ -318,7 +321,7 @@
             // 
             this.dtpTranDate.CustomFormat = "dd-MM-yyyy";
             this.dtpTranDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTranDate.Location = new System.Drawing.Point(137, 108);
+            this.dtpTranDate.Location = new System.Drawing.Point(137, 138);
             this.dtpTranDate.Name = "dtpTranDate";
             this.dtpTranDate.Size = new System.Drawing.Size(229, 22);
             this.dtpTranDate.TabIndex = 4;
@@ -326,7 +329,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(86, 112);
+            this.label10.Location = new System.Drawing.Point(86, 142);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(42, 17);
@@ -336,7 +339,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(86, 373);
+            this.label11.Location = new System.Drawing.Point(86, 403);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(44, 17);
@@ -346,7 +349,7 @@
             // cmbBank
             // 
             this.cmbBank.FormattingEnabled = true;
-            this.cmbBank.Location = new System.Drawing.Point(137, 370);
+            this.cmbBank.Location = new System.Drawing.Point(137, 400);
             this.cmbBank.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBank.Name = "cmbBank";
             this.cmbBank.Size = new System.Drawing.Size(230, 24);
@@ -355,7 +358,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(33, 402);
+            this.label12.Location = new System.Drawing.Point(33, 432);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(92, 17);
@@ -369,7 +372,7 @@
             this.cmbInvoice.Items.AddRange(new object[] {
             "Tax Invoice",
             "Estimate"});
-            this.cmbInvoice.Location = new System.Drawing.Point(138, 400);
+            this.cmbInvoice.Location = new System.Drawing.Point(138, 430);
             this.cmbInvoice.Margin = new System.Windows.Forms.Padding(4);
             this.cmbInvoice.Name = "cmbInvoice";
             this.cmbInvoice.Size = new System.Drawing.Size(229, 24);
@@ -383,12 +386,14 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 20);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(400, 463);
+            this.tabControl1.Size = new System.Drawing.Size(400, 521);
             this.tabControl1.TabIndex = 30;
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tabPage1.Controls.Add(this.label22);
+            this.tabPage1.Controls.Add(this.txtCustOutStanding);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.txtIGST);
             this.tabPage1.Controls.Add(this.btnCancel);
@@ -418,14 +423,14 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(392, 434);
+            this.tabPage1.Size = new System.Drawing.Size(392, 492);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Main Bill Data";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(85, 262);
+            this.label6.Location = new System.Drawing.Point(85, 292);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 17);
@@ -434,7 +439,7 @@
             // 
             // txtIGST
             // 
-            this.txtIGST.Location = new System.Drawing.Point(137, 259);
+            this.txtIGST.Location = new System.Drawing.Point(137, 289);
             this.txtIGST.Margin = new System.Windows.Forms.Padding(4);
             this.txtIGST.Name = "txtIGST";
             this.txtIGST.ReadOnly = true;
@@ -447,7 +452,7 @@
             this.btnCancel.BackColor = System.Drawing.Color.Teal;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.Color.White;
-            this.btnCancel.Location = new System.Drawing.Point(266, 318);
+            this.btnCancel.Location = new System.Drawing.Point(266, 348);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 29);
             this.btnCancel.TabIndex = 32;
@@ -461,7 +466,7 @@
             this.btnSave.BackColor = System.Drawing.Color.Teal;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(137, 318);
+            this.btnSave.Location = new System.Drawing.Point(137, 348);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 29);
             this.btnSave.TabIndex = 31;
@@ -473,7 +478,7 @@
             // 
             this.cmbTaxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTaxType.FormattingEnabled = true;
-            this.cmbTaxType.Location = new System.Drawing.Point(137, 137);
+            this.cmbTaxType.Location = new System.Drawing.Point(137, 167);
             this.cmbTaxType.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTaxType.Name = "cmbTaxType";
             this.cmbTaxType.Size = new System.Drawing.Size(229, 24);
@@ -483,7 +488,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(62, 140);
+            this.label5.Location = new System.Drawing.Point(62, 170);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 17);
@@ -720,6 +725,25 @@
             this.txtDeliverNote.Size = new System.Drawing.Size(230, 22);
             this.txtDeliverNote.TabIndex = 4;
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(40, 51);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(89, 17);
+            this.label22.TabIndex = 32;
+            this.label22.Text = "Outstanding:";
+            // 
+            // txtCustOutStanding
+            // 
+            this.txtCustOutStanding.Location = new System.Drawing.Point(138, 48);
+            this.txtCustOutStanding.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCustOutStanding.Name = "txtCustOutStanding";
+            this.txtCustOutStanding.ReadOnly = true;
+            this.txtCustOutStanding.Size = new System.Drawing.Size(228, 22);
+            this.txtCustOutStanding.TabIndex = 31;
+            // 
             // frmNewTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -809,5 +833,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtIGST;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox txtCustOutStanding;
     }
 }

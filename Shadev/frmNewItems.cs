@@ -17,6 +17,7 @@ namespace Shadev
         public FrmCompany Stat { get; set; }
         List<long> UnitId = new List<long>();
         List<long> HSNId = new List<long>();
+        List<string> lstHSNDesc = new List<string>();
         public long id { get; set; }
 
         public DataRow row { get; set; }
@@ -99,6 +100,8 @@ namespace Shadev
 
             try
             {
+                StringBuilder sb = new StringBuilder();
+
                 //Fill combobox of Units
                 AIO.command = "SELECT id,uom from Units";
                 var dt = A1.dataload();
@@ -113,14 +116,21 @@ namespace Shadev
                 cmbUnit.AutoCompleteSource = AutoCompleteSource.ListItems;
 
                 //Fill combobox of HSNCodes
-                AIO.command = "SELECT id,hsnCode from HsnTax";
+                sb.Append("SELECT id, ");
+                sb.Append("hsnCode, ");
+                sb.Append("[desc] ");
+                sb.Append("FROM HsnTax ");
+                sb.Append("ORDER BY hsnCode;");
+                AIO.command = sb.ToString();
                 var dt1 = A1.dataload();
                 comboBox1.Items.Clear();
                 HSNId.Clear();
+                lstHSNDesc.Clear();
                 foreach (DataRow row in dt1.Rows)
                 {
                     comboBox1.Items.Add(row["hsnCode"].ToString());
                     HSNId.Add(Convert.ToInt64(row["id"].ToString()));
+                    lstHSNDesc.Add(row["desc"].ToString());
                 }
                 comboBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox1.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -160,5 +170,51 @@ namespace Shadev
         {
             this.Close();
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedIndex >= 0)
+            {
+                txtHSNDesc.Text = lstHSNDesc[comboBox1.SelectedIndex];
+            }
+        }
+
+        private void RefreshHSN()
+        {
+            StringBuilder sb = new StringBuilder();
+            //Fill combobox of HSNCodes
+            sb.Append("SELECT id, ");
+            sb.Append("hsnCode, ");
+            sb.Append("[desc] ");
+            sb.Append("FROM HsnTax ");
+            sb.Append("ORDER BY hsnCode;");
+            AIO.command = sb.ToString();
+            var dt1 = A1.dataload();
+            comboBox1.Items.Clear();
+            HSNId.Clear();
+            lstHSNDesc.Clear();
+            foreach (DataRow row in dt1.Rows)
+            {
+                comboBox1.Items.Add(row["hsnCode"].ToString());
+                HSNId.Add(Convert.ToInt64(row["id"].ToString()));
+                lstHSNDesc.Add(row["desc"].ToString());
+            }
+            comboBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox1.AutoCompleteSource = AutoCompleteSource.ListItems;
+        }
+
+        private void btnHSNAdd_Click(object sender, EventArgs e)
+        {
+            frmHsnTax fr = new frmHsnTax();
+            fr.StartPosition = FormStartPosition.CenterParent;
+            fr.Stat = FrmCompany.HSNAdd;
+            fr.ShowDialog();
+            RefreshHSN();
+            comboBox1.SelectedItem = comboBox1.Text;
+            if (comboBox1.SelectedIndex < 0)
+                comboBox1.Text = "";
+        }
+
+    
     }
 }

@@ -18,7 +18,7 @@ namespace Shadev
     public partial class frmMainBillView : Form
     {
         public bool isPDFMode { get; set; }
-        AIO a1 = new AIO();   
+        AIO a1 = new AIO();
         public int ID { get; set; }
         public frmMainBillView()
         {
@@ -30,7 +30,17 @@ namespace Shadev
 
             try
             {
-                rptMainBill2 rpt = new rptMainBill2();
+                AIO.command = "select taxType from Trans2 where id=" + ID;
+                var taxType = int.Parse(a1.cmdexesc().ToString());
+                var rpt = new ReportClass();
+                if (taxType == 1)
+                {
+                     rpt = new rptMainBill2();
+                }
+                else
+                {
+                     rpt = new rptMainBill3();
+                }
                 dsCommon ds = new dsCommon();
 
 
@@ -91,19 +101,27 @@ namespace Shadev
                 sb.Append("h.sgst AS [SGST], ");
                 sb.Append("h.cgst AS [CGST], ");
                 sb.Append("h.igst AS [IGST], ");
-                sb.Append("sum(itg.itgPrice * itg.itgQTY * (h.sgst / 100)) AS [TAX] ");
+                
+                if (taxType == 1)
+                {
+                    sb.Append("sum(itg.itgPrice * itg.itgQTY * (h.sgst / 100)) AS [TAX] ");
+                }
+                else
+                {
+                    sb.Append("sum(itg.itgPrice * itg.itgQTY * (h.igst / 100)) AS [TAX] ");
+                }
                 sb.Append("FROM HsnTax AS h ");
                 sb.Append("LEFT JOIN ");
                 sb.Append("Items AS i ON i.hsnId = h.id ");
                 sb.Append("LEFT JOIN ");
                 sb.Append("TranItemsGrid AS itg ON itg.itgModID = i.id ");
-                sb.Append("WHERE itg.itgTranID ="+ ID + " ");
+                sb.Append("WHERE itg.itgTranID =" + ID + " ");
                 sb.Append("GROUP BY h.sgst");
                 AIO.command = sb.ToString();
                 da = new SQLiteDataAdapter(AIO.command, con);
                 da.Fill(ds, "HSN");
 
-                
+
                 //ParameterFieldDefinitions crParameterFieldDefinitions;
                 //ParameterFieldDefinition crParameterFieldDefinition;
                 //ParameterValues crParameterValues = new ParameterValues();
@@ -146,7 +164,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -110,6 +110,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsCommon.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dsLreport.cs">
+      <DependentUpon>dsLreport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsLreport1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsLreport.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dsStock.cs">
       <DependentUpon>dsStock.xsd</DependentUpon>
     </Compile>
@@ -165,6 +173,18 @@
     </Compile>
     <Compile Include="frmHsnTax.Designer.cs">
       <DependentUpon>frmHsnTax.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmItemReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmItemReport.Designer.cs">
+      <DependentUpon>frmItemReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLRReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLRReport.Designer.cs">
+      <DependentUpon>frmLRReport.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMainBillView.cs">
       <SubType>Form</SubType>
@@ -232,6 +252,20 @@
     <Compile Include="frmTransactionReport.Designer.cs">
       <DependentUpon>frmTransactionReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="ItemReport.cs">
+      <DependentUpon>ItemReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ItemReport1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemReport.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LrReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LrReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MasterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +280,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rptItem.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptItem.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptMainBill4.cs">
+      <DependentUpon>rptMainBill4.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="rptMainBill3.cs">
+      <DependentUpon>rptMainBill3.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="rptMainBill2.cs">
       <DependentUpon>rptMainBill2.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -256,6 +308,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptMainBill.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptStockReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptStockReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="StockReport.cs">
@@ -302,6 +360,12 @@
     <EmbeddedResource Include="frmHsnTax.resx">
       <DependentUpon>frmHsnTax.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmItemReport.resx">
+      <DependentUpon>frmItemReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLRReport.resx">
+      <DependentUpon>frmLRReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMainBillView.resx">
       <DependentUpon>frmMainBillView.cs</DependentUpon>
     </EmbeddedResource>
@@ -335,6 +399,10 @@
     <EmbeddedResource Include="frmTransactionReport.resx">
       <DependentUpon>frmTransactionReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LrReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>LrReport.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="MasterForm.resx">
       <DependentUpon>MasterForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -352,6 +420,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="rptItem.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptItem.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptMainBill4.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptMainBill4.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptMainBill3.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptMainBill3.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="rptMainBill2.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptMainBill2.cs</LastGenOutput>
@@ -359,6 +439,10 @@
     <EmbeddedResource Include="rptMainBill.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptMainBill.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptStockReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptStockReport.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="StockReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -383,6 +467,17 @@
     <None Include="dsCommon.xss">
       <DependentUpon>dsCommon.xsd</DependentUpon>
     </None>
+    <None Include="dsLreport.xsc">
+      <DependentUpon>dsLreport.xsd</DependentUpon>
+    </None>
+    <None Include="dsLreport.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsLreport1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dsLreport.xss">
+      <DependentUpon>dsLreport.xsd</DependentUpon>
+    </None>
     <None Include="dsStock.xsc">
       <DependentUpon>dsStock.xsd</DependentUpon>
     </None>
@@ -395,6 +490,17 @@
       <DependentUpon>dsStock.xsd</DependentUpon>
     </None>
     <None Include="Font\ufonts.com_lucida-grande.ttf" />
+    <None Include="ItemReport.xsc">
+      <DependentUpon>ItemReport.xsd</DependentUpon>
+    </None>
+    <None Include="ItemReport.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ItemReport1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ItemReport.xss">
+      <DependentUpon>ItemReport.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -416,6 +522,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\convent.png" />
     <None Include="Resources\mahavirLogo.png" />
     <None Include="Resources\shadevLogo.png" />
     <None Include="Resources\iconImage.png" />

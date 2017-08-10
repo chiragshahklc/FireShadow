@@ -45,42 +45,19 @@ namespace Shadev
                     {
                         string query = "";
                         if (Stat == FrmCompany.TransAdd)
-                            query = " where itgTranNo='" + TransNo + "'";
+                            query = " where itgTranNo IS NULL";
                         else if (Stat == FrmCompany.TransEdit)
                             query = " where itgTranID=" + TransNo;
 
 
-                        bool flag = false;
+                        bool isItemAdded = false;
                         if (cmbItem.SelectedIndex < 0)
                         {
                             if (string.IsNullOrWhiteSpace(cmbItem.Text))
                             {
                                 MessageBox.Show("Item Name can't be Blank.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
-                            else
-                            {
-                                //    AIO.command = "insert into Model(modName,modCatID) values('" + cmbItem.Text + "'," + catID[cmbCategory.SelectedIndex] + ")";
-                                //    a1.cmdexe();
-                                //    string model = cmbItem.Text;
-                                //    if (cmbCategory.SelectedIndex >= 0)
-                                //    {
-                                //        AIO.command = "select id,modName from Model where modCatID=" + catID[cmbCategory.SelectedIndex];
-                                //        var dt = a1.dataload();
 
-                                //        cmbModel.Items.Clear();
-                                //        modID.Clear();
-                                //        foreach (DataRow row in dt.Rows)
-                                //        {
-                                //            cmbModel.Items.Add(row["modName"].ToString());
-                                //            modID.Add(long.Parse(row["id"].ToString()));
-                                //        }
-
-                                //        cmbModel.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                                //        cmbModel.AutoCompleteSource = AutoCompleteSource.ListItems;
-                                //    }
-
-                                //    cmbModel.SelectedItem = model;
-                            }
                         }
                         else
                         {
@@ -90,13 +67,13 @@ namespace Shadev
                             {
                                 if (itemID[cmbItem.SelectedIndex] == Convert.ToInt64(row["itgModID"].ToString()))
                                 {
-                                    flag = true;
+                                    isItemAdded = true;
                                     MessageBox.Show("Item is already been added once. You can't add it again.", "ShadevInfotech", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     break;
                                 }
                             }
                         }
-                        if (!flag)
+                        if (!isItemAdded)
                         {
                             string itemDESC = rtbDesc.Text.Replace("'", "''");
                             switch (Stat)
@@ -104,9 +81,9 @@ namespace Shadev
                                 case FrmCompany.TransAdd:
                                     {
                                         if (thisStat == FrmCompany.itgAdd)
-                                            AIO.command = "insert into TranItemsGrid(itgModID,itgTranNo,itgQTY,itgPrice,itgTotal,itgDesc,itgTranType) VALUES(" + itemID[cmbItem.SelectedIndex] + ",'" + TransNo + "'," + txtqty.Text + "," + txtPrice.Text + "," + txtTotal.Text + ",'" + itemDESC + "','" + tranTYPE + "')";
+                                            AIO.command = "insert into TranItemsGrid(itgModID,itgQTY,itgPrice,itgDisc,itgTotal,itgDesc,itgTranType) VALUES(" + itemID[cmbItem.SelectedIndex] + "," + txtqty.Text + "," + txtPrice.Text + "," + txtDisc.Text + "," + txtTotal.Text + ",'" + itemDESC + "','" + tranTYPE + "')";
                                         if (this.thisStat == FrmCompany.itgEdit)
-                                            AIO.command = "update TranItemsGrid set itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
+                                            AIO.command = "update TranItemsGrid set itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgDisc=" + txtDisc.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
                                         a1.cmdexe();
 
                                     }
@@ -118,9 +95,9 @@ namespace Shadev
                                         var tID = Convert.ToInt32(a1.cmdexesc());
 
                                         if (thisStat == FrmCompany.itgAdd)
-                                            AIO.command = "insert into TranItemsGrid(itgModID,itgTranID,itgTranNo,itgQTY,itgPrice,itgTotal,itgDesc,itgTranType) VALUES(" + itemID[cmbItem.SelectedIndex] + "," + TransNo + "," + tID + "," + txtqty.Text + "," + txtPrice.Text + "," + txtTotal.Text + ",'" + itemDESC + "','" + tranTYPE + "')";
+                                            AIO.command = "insert into TranItemsGrid(itgModID,itgTranID,itgTranNo,itgQTY,itgPrice,itgDisc,itgTotal,itgDesc,itgTranType) VALUES(" + itemID[cmbItem.SelectedIndex] + "," + TransNo + "," + tID + "," + txtqty.Text + "," + txtPrice.Text + "," + txtDisc.Text + "," + txtTotal.Text + ",'" + itemDESC + "','" + tranTYPE + "')";
                                         if (this.thisStat == FrmCompany.itgEdit)
-                                            AIO.command = "update TranItemsGrid set itgTranNo=" + tID + ",itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
+                                            AIO.command = "update TranItemsGrid set itgTranNo=" + tID + ",itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgDisc=" + txtDisc.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
                                         a1.cmdexe();
 
                                     }
@@ -136,7 +113,7 @@ namespace Shadev
                 {
                     string query = "";
                     if (Stat == FrmCompany.TransAdd)
-                        query = " where itgTranNo='" + TransNo + "'";
+                        query = " where itgTranNo IS NULL";
                     else if (Stat == FrmCompany.TransEdit)
                         query = " where itgTranID=" + TransNo;
 
@@ -153,16 +130,14 @@ namespace Shadev
                         {
                             case FrmCompany.TransAdd:
                                 {
-                                    //AIO.command = "update TranItemsGrid set itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
-                                    AIO.command = "update TranItemsGrid set itgTranNo=" + tID + ",itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
+                                    AIO.command = "update TranItemsGrid set itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgDisc=" + txtDisc.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
                                     a1.cmdexe();
                                 }
                                 break;
 
                             case FrmCompany.TransEdit:
                                 {
-                                    //AIO.command = "update TranItemsGrid set itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
-                                    AIO.command = "update TranItemsGrid set itgTranNo=" + tID + ",itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
+                                    AIO.command = "update TranItemsGrid set itgTranNo=" + tID + ",itgModID=" + itemID[cmbItem.SelectedIndex] + " ,itgQTY=" + txtqty.Text + ",itgPrice=" + txtPrice.Text + ",itgDisc=" + txtDisc.Text + ",itgTotal=" + txtTotal.Text + " ,itgDesc='" + rtbDesc.Text + "' where id=" + row["id"].ToString();
                                     a1.cmdexe();
                                 }
                                 break;
@@ -175,7 +150,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -187,7 +162,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -195,21 +170,27 @@ namespace Shadev
         {
             try
             {
+                StringBuilder sb = new StringBuilder();
+
                 //Set Active control on form when Form Load
                 this.ActiveControl = cmbItem;
-
-                //Fill cmbItem combobox with data of items from DB for AutoFill
-                AIO.command = "select  id,itemDesc as [Item] from Items";
-                var dt = a1.dataload();
-                cmbItem.Items.Clear();
-                itemID.Clear();
-                foreach (DataRow row in dt.Rows)
-                {
-                    cmbItem.Items.Add(row["Item"].ToString());
-                    itemID.Add(Convert.ToInt64(row["id"].ToString()));
-                }
-                cmbItem.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                cmbItem.AutoCompleteSource = AutoCompleteSource.ListItems;
+                RefreshItems();
+                ////Fill cmbItem combobox with data of items from DB for AutoFill
+                //sb.Append("SELECT id, ");
+                //sb.Append("itemDesc AS Item ");
+                //sb.Append("FROM Items ");
+                //sb.Append("ORDER BY itemDesc;");
+                //AIO.command = sb.ToString();
+                //var dt = a1.dataload();
+                //cmbItem.Items.Clear();
+                //itemID.Clear();
+                //foreach (DataRow row in dt.Rows)
+                //{
+                //    cmbItem.Items.Add(row["Item"].ToString());
+                //    itemID.Add(Convert.ToInt64(row["id"].ToString()));
+                //}
+                //cmbItem.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                //cmbItem.AutoCompleteSource = AutoCompleteSource.ListItems;
 
                 //Load data if form open in edit mode
                 if (thisStat == FrmCompany.itgEdit)
@@ -224,11 +205,11 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-      
+
         private void txtTotal_Leave(object sender, EventArgs e)
         {
             try
@@ -237,7 +218,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -250,9 +231,13 @@ namespace Shadev
                     txtqty.Text = "1";
                 if (string.IsNullOrWhiteSpace(txtPrice.Text))
                     txtPrice.Text = "0";
+                if (string.IsNullOrWhiteSpace(txtDisc.Text))
+                    txtDisc.Text = "0";
                 double price = double.Parse(txtPrice.Text);
                 double qty = double.Parse(txtqty.Text);
-                double total = Math.Round(price * qty, 2);
+                double disc = Math.Round(Convert.ToDouble(txtDisc.Text) * qty, 2);
+                double total = Math.Round((price * qty) - disc, 2);
+
                 txtTotal.Text = total.ToString();
 
 
@@ -261,33 +246,9 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        //private void txtTax1Percentage_Leave(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        RefreshTotal();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
-
-        //private void txtTax2Percentage_Leave(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        RefreshTotal();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
 
         private void txtPrice_Leave(object sender, EventArgs e)
         {
@@ -297,7 +258,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -309,32 +270,9 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-        //private void cmbModel_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        //MessageBox.Show(cmbModel.SelectedIndex.ToString());
-        //        if (cmbModel.SelectedIndex < 0)
-        //        {
-        //            txtCurrStock.Text = "--";
-        //        }
-        //        else
-        //        {
-        //            AIO.command = "select stock from Model where id=" + modID[cmbModel.SelectedIndex];
-        //            var x = Convert.ToInt32(a1.cmdexesc());
-        //            txtCurrStock.Text = x.ToString();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
 
         private void cmbItem_Leave(object sender, EventArgs e)
         {
@@ -351,7 +289,7 @@ namespace Shadev
                 sb.Append("TranItemsGrid AS tig ON tig.itgModID = i.id ");
                 sb.Append("LEFT JOIN ");
                 sb.Append("Trans2 AS t ON t.id = tig.itgTranID ");
-                sb.Append("WHERE i.id ="+ itemID[cmbItem.SelectedIndex] + " ");
+                sb.Append("WHERE i.id =" + itemID[cmbItem.SelectedIndex] + " ");
                 sb.Append("GROUP BY i.id");
                 AIO.command = sb.ToString();
 
@@ -386,6 +324,39 @@ namespace Shadev
                 var x = Convert.ToInt32(a1.cmdexesc());
                 txtCurrStock.Text = x.ToString();
             }
+        }
+
+        private void btnAddItems_Click(object sender, EventArgs e)
+        {
+            frmNewItems fr = new frmNewItems();
+            fr.StartPosition = FormStartPosition.CenterParent;
+            fr.Stat = FrmCompany.NewItemAdd;
+            fr.ShowDialog();
+            RefreshItems();
+            cmbItem.SelectedItem = cmbItem.Text;
+            if (cmbItem.SelectedIndex < 0)
+                cmbItem.Text = "";
+        }
+
+        private void RefreshItems()
+        {
+            StringBuilder sb = new StringBuilder();
+            //Fill cmbItem combobox with data of items from DB for AutoFill
+            sb.Append("SELECT id, ");
+            sb.Append("itemDesc AS Item ");
+            sb.Append("FROM Items ");
+            sb.Append("ORDER BY itemDesc;");
+            AIO.command = sb.ToString();
+            var dt = a1.dataload();
+            cmbItem.Items.Clear();
+            itemID.Clear();
+            foreach (DataRow row in dt.Rows)
+            {
+                cmbItem.Items.Add(row["Item"].ToString());
+                itemID.Add(Convert.ToInt64(row["id"].ToString()));
+            }
+            cmbItem.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbItem.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
     }
 }

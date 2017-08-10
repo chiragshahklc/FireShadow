@@ -32,7 +32,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -101,7 +101,7 @@ namespace Shadev
                         if (Stat == FrmCompany.PaymentAdd)
                             AIO.command = "insert into Payment(payCustId,payMethod,payType,payAmount,payDate,payDesc,payBank,payCheck) Values(" + custID + "," + lstPaymentModeID[cmbmethod.SelectedIndex] + "," + lstTransacionTypeID[cmbPayType.SelectedIndex] + "," + txtAmt.Text + ",'" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "','" + paydesc + "',1,NULL)";
                         else if (Stat == FrmCompany.PaymentEdit)
-                            AIO.command = "update Payment set payMethod=" + lstPaymentModeID[cmbmethod.SelectedIndex] + ",payType=" + lstTransacionTypeID[cmbPayType.SelectedIndex] + ",payAmount=" + txtAmt.Text + ",payDate='" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "',payDesc='" + rtbDesc.Text + "',payBank=" + lstBankID[cmbBank.SelectedIndex] + ",payCheck=NULL where id=" + transID;
+                            AIO.command = "update Payment set payMethod=" + lstPaymentModeID[cmbmethod.SelectedIndex] + ",payType=" + lstTransacionTypeID[cmbPayType.SelectedIndex] + ",payAmount=" + txtAmt.Text + ",payDate='" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "',payDesc='" + rtbDesc.Text + "',payBank=1,payCheck=NULL where id=" + transID;
                         a1.cmdexe();
                         this.Close();
                     }
@@ -109,7 +109,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -170,9 +170,11 @@ namespace Shadev
                         lstTransacionTypeID.Clear();
                         foreach (DataRow row in dt2.Rows)
                         {
+                            //cmbPayType.Items.Add(row["trtName"].ToString());
+                            //lstTransacionTypeID.Add(int.Parse(row["id"].ToString()));
                             if (custType == "Customer")
                             {
-                                if (int.Parse(row["id"].ToString()) == 2 || int.Parse(row["id"].ToString()) == 3)
+                                if (int.Parse(row["id"].ToString()) != 4)
                                 {
                                     cmbPayType.Items.Add(row["trtName"].ToString());
                                     lstTransacionTypeID.Add(int.Parse(row["id"].ToString()));
@@ -180,7 +182,7 @@ namespace Shadev
                             }
                             else if (custType == "Supplier")
                             {
-                                if (int.Parse(row["id"].ToString()) == 1 || int.Parse(row["id"].ToString()) == 4)
+                                if (int.Parse(row["id"].ToString()) != 3)
                                 {
                                     cmbPayType.Items.Add(row["trtName"].ToString());
                                     lstTransacionTypeID.Add(int.Parse(row["id"].ToString()));
@@ -236,9 +238,11 @@ namespace Shadev
                             lstTransacionTypeID.Clear();
                             foreach (DataRow row in dt2.Rows)
                             {
+                                //cmbPayType.Items.Add(row["trtName"].ToString());
+                                //lstTransacionTypeID.Add(int.Parse(row["id"].ToString()));
                                 if (custType == "Customer")
                                 {
-                                    if (int.Parse(row["id"].ToString()) == 2 || int.Parse(row["id"].ToString()) == 3)
+                                    if (int.Parse(row["id"].ToString()) != 4)
                                     {
                                         cmbPayType.Items.Add(row["trtName"].ToString());
                                         lstTransacionTypeID.Add(int.Parse(row["id"].ToString()));
@@ -246,7 +250,7 @@ namespace Shadev
                                 }
                                 else if (custType == "Supplier")
                                 {
-                                    if (int.Parse(row["id"].ToString()) == 1 || int.Parse(row["id"].ToString()) == 4)
+                                    if (int.Parse(row["id"].ToString()) != 3)
                                     {
                                         cmbPayType.Items.Add(row["trtName"].ToString());
                                         lstTransacionTypeID.Add(int.Parse(row["id"].ToString()));
@@ -276,13 +280,19 @@ namespace Shadev
                             sb.Append("FROM Payment ");
                             sb.Append("WHERE payCustId = c.id AND ");
                             sb.Append("payType = 2 ");
-                            sb.Append(")");
-                            sb.Append("+( ");
+                            sb.Append(") ");
+                            sb.Append("-( ");
                             sb.Append("SELECT coalesce(sum(payAmount), 0) ");
                             sb.Append("FROM Payment ");
                             sb.Append("WHERE payCustId = c.id AND ");
                             sb.Append("payType = 3 ");
-                            sb.Append("), 0) [Outstanding Balance] ");
+                            sb.Append(") ");
+                            sb.Append("+( ");
+                            sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                            sb.Append("FROM Payment ");
+                            sb.Append("WHERE payCustId = c.id AND ");
+                            sb.Append("payType = 1 ");
+                            sb.Append("), 0) as [Outstanding Balance] ");
                         }
                         //
                         //From Here logic is for supplier
@@ -295,13 +305,20 @@ namespace Shadev
                             sb.Append("WHERE payCustId = c.id AND ");
                             sb.Append("payType = 1 ");
                             sb.Append(")");
-                            sb.Append("-( ");
+                            sb.Append("+( ");
                             sb.Append("SELECT coalesce(sum(payAmount), 0) ");
                             sb.Append("FROM Payment ");
                             sb.Append("WHERE payCustId = c.id AND ");
                             sb.Append("payType = 4 ");
-                            sb.Append("), 0) [Outstanding Balance] ");
+                            sb.Append(") ");
+                            sb.Append("-( ");
+                            sb.Append("SELECT coalesce(sum(payAmount), 0) ");
+                            sb.Append("FROM Payment ");
+                            sb.Append("WHERE payCustId = c.id AND ");
+                            sb.Append("payType = 2 ");
+                            sb.Append("), 0) as [Outstanding Balance] ");
                         }
+                        //
 
                         sb.Append("FROM Customer AS c ");
                         sb.Append("LEFT JOIN ");
@@ -342,7 +359,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -365,7 +382,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -377,7 +394,7 @@ namespace Shadev
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

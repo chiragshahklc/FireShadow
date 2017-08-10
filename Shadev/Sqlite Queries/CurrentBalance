@@ -1,0 +1,9 @@
+SELECT Banks.bnkName,
+       (bnkOpeningBalance - sum(case when P1.payType = 1 then P1.payAmount else 0 end) + sum(case when P1.payType = 2 then P1.payAmount else 0 end ) - (select coalesce(sum(expAmount),0) from Expense where expBank = P1.payBank) ) as [Balance]
+  FROM Payment as P1
+       LEFT JOIN
+       Banks ON P1.payBank = Banks.id
+       LEFT JOIN
+       TranTypes T2 ON P1.payType = T2.id
+      
+ GROUP BY Banks.bnkName;
